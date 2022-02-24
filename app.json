@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "kaag",
+    "slug": "nav",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/kaag_icon.png",
+    "splash": {
+      "image": "./assets/Splash_Screen.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/kaag_icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.uic.kaag.v3"
+    },
+    "web": {
+      "favicon": "./assets/kaag_icon.png"
+    }
+  }
+}
