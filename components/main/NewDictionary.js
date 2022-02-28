@@ -235,13 +235,11 @@ function NewDictionary({ currentUser, route, navigation }) {
           <Text style={styles.title_text}>Word </Text>
           <Text style={styles.guidelines}>
             {" "}
-            Type the Kinagan word you want to explain.{" "}
+            Type the word you want to contribute.{" "}
           </Text>
           {isFieldInError("kagan") &&
             getErrorsInField("kagan").map((errorMessage) => (
-              <Text style={{ color: "red" }}>
-                Please enter the Kinagan word
-              </Text>
+              <Text style={{ color: "red" }}>Please enter the word</Text>
             ))}
           <TextInput
             style={styles.input}
@@ -254,7 +252,7 @@ function NewDictionary({ currentUser, route, navigation }) {
         <View style={styles.paddingLeft}>
           <Text style={styles.title_text}>In Filipino </Text>
           <Text style={styles.guidelines}>
-            Translate the Kinagan word you have suggested to Filipino{" "}
+            Translate the word you have suggested to Filipino{" "}
           </Text>
           {isFieldInError("filipino") &&
             getErrorsInField("filipino").map((errorMessage) => (
@@ -272,7 +270,7 @@ function NewDictionary({ currentUser, route, navigation }) {
         <View style={styles.paddingLeft}>
           <Text style={styles.title_text}>Classification </Text>
           <Text style={styles.guidelines}>
-            Classification of the Kagan word ex.(Verb, Noun, Pronoun, Adverb){" "}
+            Classification of the word ex.(Verb, Noun, Pronoun, Adverb){" "}
           </Text>
           <Picker
             style={styles.input}
@@ -291,7 +289,7 @@ function NewDictionary({ currentUser, route, navigation }) {
         <View style={styles.paddingLeft}>
           <Text style={styles.title_text}>Pronunciation </Text>
           <Text style={styles.guidelines}>
-            How to pronounce the Kinagan word, Ex. Ka-gan.{" "}
+            How to pronounce the word, Ex. Ka-gan.{" "}
           </Text>
           {isFieldInError("pronunciation") &&
             getErrorsInField("pronunciation").map((errorMessage) => (
@@ -309,7 +307,7 @@ function NewDictionary({ currentUser, route, navigation }) {
         <View style={styles.paddingLeft}>
           <Text style={styles.title_text}>Example Sentence</Text>
           <Text style={styles.guidelines}>
-            Write an example of the word you have suggested in Kinagan.
+            Write an example of the word you have suggested.
           </Text>
           {isFieldInError("sentence") &&
             getErrorsInField("sentence").map((errorMessage) => (
@@ -326,7 +324,7 @@ function NewDictionary({ currentUser, route, navigation }) {
         <View style={styles.paddingLeft}>
           <Text style={styles.title_text}>English Meaning </Text>
           <Text style={styles.guidelines}>
-            Define the Kinagan word you have suggested in English.
+            Define the word you have suggested in English.
           </Text>
           {isFieldInError("filipinoSentence") &&
             getErrorsInField("filipinoSentence").map((errorMessage) => (
@@ -346,7 +344,7 @@ function NewDictionary({ currentUser, route, navigation }) {
         <View style={styles.paddingLeft}>
           <Text style={styles.title_text}>Meaning </Text>
           <Text style={styles.guidelines}>
-            Define the Kinagan word you have suggested in Filipino.
+            Define the word you have suggested in Filipino.
           </Text>
           {isFieldInError("meaning") &&
             getErrorsInField("meaning").map((errorMessage) => (
@@ -363,8 +361,7 @@ function NewDictionary({ currentUser, route, navigation }) {
         <View style={styles.paddingLeft}>
           <Text style={styles.title_text}>Audio </Text>
           <Text style={styles.guidelines}>
-            Upload an audio on how to pronounce the Kinagan word you have
-            suggested.
+            Upload an audio on how to pronounce the word you have contributed.
           </Text>
           {isFieldInError("audio") &&
             getErrorsInField("aduio").map((errorMessage) => (
@@ -424,7 +421,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 1,
     width: "90%",
-    backgroundColor: "#8E2835",
+    backgroundColor: "#BFA42A",
     //top: 130,
     marginTop: 20,
     marginBottom: 80,

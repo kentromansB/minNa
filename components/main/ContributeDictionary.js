@@ -24,8 +24,8 @@ export default function Course({ navigation }) {
         <Text style={styles.description}>
           Community language champions, linguistic scholars, and others involved
           in language revitalization work are invited to help build and improve
-          the mobile application. Here, we can add new content relevant to
-          language Kinagan.{" "}
+          the mobile application. Here, we can add new content relevant to the
+          language.{" "}
         </Text>
       </View>
 
@@ -65,7 +65,7 @@ export default function Course({ navigation }) {
         <TouchableOpacity
           style={[
             styles.proceedButton,
-            { backgroundColor: toggleCheckBox ? "#8E2835" : "#8E28353D" },
+            { backgroundColor: toggleCheckBox ? "#004AAD" : "#BFA42A3D" },
           ]}
           disabled={!toggleCheckBox}
           onPress={() => navigation.navigate("NewDictionary")}

@@ -8,7 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
   SafeAreaView,
-  StatusBar
+  StatusBar,
 } from "react-native";
 
 import Svg, { Path, G, Rect, Polygon, Title } from "react-native-svg";
@@ -17,13 +17,16 @@ import { connect } from "react-redux";
 function Course({ currentUser, navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+      >
         <View>
-          <Text style={[styles.textHead,{}]}>Hello, {currentUser.name}! </Text>
+          <Text style={[styles.textHead, {}]}>Hello, {currentUser.name}! </Text>
         </View>
 
-      {/* "What do you want to learn today box" */}
-        <View style={styles.headline_box}>
+        {/* "What do you want to learn today box" */}
+        {/* <View style={styles.headline_box}>
           <Text style={styles.textHeadline}>
             What do you want to learn today?
           </Text>
@@ -528,124 +531,120 @@ function Course({ currentUser, navigation }) {
                   </Svg>
                   {/* <Image
                                             source={require("../../assets/Learning-pana.png")}
-                                            style={{ width: 140, height: 140 }}/> */}
+                                            style={{ width: 140, height: 140 }}/> 
                 </View>
-          </View>
-          
-          {/* Kagan Course text */}
-          <View>
-            <Text style={styles.textKagan}>Kagan Course </Text>
-          </View>
-          
-          {/* Kagan courses options. */}
-          <View>
-                 {/* Vocabulary.js */}
-                <TouchableOpacity
-                  style={styles.buttonVocab}
-                  onPress={() => navigation.navigate("Vocabulary")}
-                >
-                  <View style={styles.contextButton}>
-                    <Image
-                      style={{ width: 30, height: 40 }}
-                      source={require("../../assets/vocab.png")}
-                    />
+          </View> */}
 
-                    <View style={styles.text_Context}>
-                      <Text style={styles.textVocab}> Vocabulary</Text>
-                      <Text style={styles.textVocabSub}> Translate words</Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
+        {/* Kagan Course text */}
+        <View>
+          <Text style={styles.textKagan}>Course</Text>
+        </View>
 
-                {/* Grammar.js */}
-                <TouchableOpacity
-                  style={styles.buttonVocab}
-                  onPress={() => navigation.navigate("Grammar")}
-                >
-                  <View style={styles.contextButton}>
-                    <Image
-                      style={{ width: 40, height: 40 }}
-                      source={require("../../assets/grammar.png")}
-                    />
-                    <View style={styles.text_Context}>
-                      <Text style={styles.textVocab}> Phrases</Text>
-                      <Text style={styles.textVocabSub}>
-                        {" "}
-                        Select and Translate Phrases
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
+        {/* Kagan courses options. */}
+        <View>
+          {/* Vocabulary.js */}
+          <TouchableOpacity
+            style={styles.buttonVocab}
+            onPress={() => navigation.navigate("Vocabulary")}
+          >
+            <View style={styles.contextButton}>
+              <Image
+                style={{ width: 30, height: 40 }}
+                source={require("../../assets/vocab.png")}
+              />
 
-                {/* Speech.js */}
-                <TouchableOpacity
-                  style={styles.buttonVocab}
-                  onPress={() => navigation.navigate("Speech")}
-                >
-                  <View style={styles.contextButton}>
-                    <Image
-                      style={{ width: 50, height: 40 }}
-                      source={require("../../assets/pronun.png")}
-                    />
-                    <View style={styles.text_Context}>
-                      <Text style={styles.textVocab}> Speech</Text>
-                      <Text style={styles.textVocabSub}>
-                        {" "}
-                        Select the correct pronunciation
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-      </View>   
+              <View style={styles.text_Context}>
+                <Text style={styles.textVocab}> Vocabulary</Text>
+                <Text style={styles.textVocabSub}> Translate words</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
 
-      {/* Images Course text */}
-      <View style={{paddingTop:10, paddingVertical:5}}>
-            <Text style={styles.textKagan}>About Kagan </Text>
-      </View>     
+          {/* Grammar.js */}
+          <TouchableOpacity
+            style={styles.buttonVocab}
+            onPress={() => navigation.navigate("Grammar")}
+          >
+            <View style={styles.contextButton}>
+              <Image
+                style={{ width: 40, height: 40 }}
+                source={require("../../assets/grammar.png")}
+              />
+              <View style={styles.text_Context}>
+                <Text style={styles.textVocab}> Phrases</Text>
+                <Text style={styles.textVocabSub}>
+                  {" "}
+                  Select and Translate Phrases
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
 
-      {/* About Kagan options. */}
-          <View style={{paddingBottom:30}}>
-                 {/* AboutCulture.js */}
-                <TouchableOpacity
-                  style={styles.buttonVocab}
-                  onPress={() => navigation.navigate("Traditions")}
-                >
-                  <View style={styles.contextButton}>
-                    <Image
-                      style={{ width: 40, height: 40 }}
-                      source={require("../../assets/images.png")}
-                    />
+          {/* Speech.js */}
+          <TouchableOpacity
+            style={styles.buttonVocab}
+            onPress={() => navigation.navigate("Speech")}
+          >
+            <View style={styles.contextButton}>
+              <Image
+                style={{ width: 50, height: 40 }}
+                source={require("../../assets/pronun.png")}
+              />
+              <View style={styles.text_Context}>
+                <Text style={styles.textVocab}> Speech</Text>
+                <Text style={styles.textVocabSub}>
+                  {" "}
+                  Select the correct pronunciation
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-                    <View style={styles.text_Context}>
-                      <Text style={styles.textVocab}>Images</Text>
-                      <Text style={styles.textVocabSub}>About the Kagan Culture</Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
+        {/* Images Course text */}
+        <View style={{ paddingTop: 10, paddingVertical: 5 }}>
+          <Text style={styles.textKagan}>About</Text>
+        </View>
 
-                {/* AboutCulture.js */}
-                <TouchableOpacity
-                  style={styles.buttonVocab}
-                  onPress={() => navigation.navigate("Event")}
-                >
-                  <View style={styles.contextButton}>
-                    <Image
-                      style={{ width: 40, height: 40 }}
-                      source={require("../../assets/book.png")}
-                    />
+        {/* About Kagan options. */}
+        <View style={{ paddingBottom: 30 }}>
+          {/* AboutCulture.js */}
+          <TouchableOpacity
+            style={styles.buttonVocab}
+            onPress={() => navigation.navigate("Traditions")}
+          >
+            <View style={styles.contextButton}>
+              <Image
+                style={{ width: 40, height: 40 }}
+                source={require("../../assets/images.png")}
+              />
 
-                    <View style={styles.text_Context}>
-                      <Text style={styles.textVocab}>More about Kagan</Text>
-                      <Text style={styles.textVocabSub}>About the Kagan Culture</Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
+              <View style={styles.text_Context}>
+                <Text style={styles.textVocab}>Images</Text>
+                <Text style={styles.textVocabSub}>About the Culture</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
 
-                
-      </View>                       
+          {/* AboutCulture.js */}
+          <TouchableOpacity
+            style={styles.buttonVocab}
+            onPress={() => navigation.navigate("Event")}
+          >
+            <View style={styles.contextButton}>
+              <Image
+                style={{ width: 40, height: 40 }}
+                source={require("../../assets/book.png")}
+              />
 
-    </ScrollView>
-
+              <View style={styles.text_Context}>
+                <Text style={styles.textVocab}>More</Text>
+                <Text style={styles.textVocabSub}>About the Culture</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -663,18 +662,16 @@ const styles = StyleSheet.create({
     //paddingVertical: 30,
     alignContent: "center",
   },
-    scrollView: {
-      
-      marginHorizontal: 40,
-      //paddingVertical: 30
-    },
+  scrollView: {
+    marginHorizontal: 40,
+    //paddingVertical: 30
+  },
   containerbox: {
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "center",
   },
   header: {
-    
     alignContent: "flex-start",
     alignSelf: "flex-start",
     marginLeft: 50,
@@ -684,12 +681,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#EBEBEB",
     alignItems: "center",
     borderRadius: 15,
-    marginVertical:10
+    marginVertical: 10,
   },
   contextButton: {
     //padding: 13,
     flexDirection: "row",
-    paddingHorizontal:35,
+    paddingHorizontal: 35,
     alignItems: "center",
   },
   text_Context: {
@@ -704,7 +701,7 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     letterSpacing: 0.25,
     color: "black",
-    paddingVertical:15
+    paddingVertical: 15,
   },
   textSubHead: {
     flexDirection: "row",
@@ -725,7 +722,7 @@ const styles = StyleSheet.create({
     padding: 15,
     marginBottom: -30,
   },
-  
+
   grammar: {
     top: 70,
     left: 40,
@@ -752,7 +749,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#8E2835",
   },
   buttonVocab: {
-    width:"100%",
+    width: "100%",
     //alignSelf: "center",
     //alignItems: "flex-start",
     //marginTop: 10,
@@ -760,8 +757,8 @@ const styles = StyleSheet.create({
     //width: 300,
     backgroundColor: "#EBEBEB",
     borderRadius: 10,
-    paddingVertical:15,
-    marginVertical:5
+    paddingVertical: 15,
+    marginVertical: 5,
   },
   buttonGrammar: {
     alignSelf: "center",

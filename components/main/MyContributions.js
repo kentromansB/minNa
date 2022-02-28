@@ -39,7 +39,7 @@ function MyContributions({ dictionaryAll, currentUser, navigation }) {
           tabBarContentContainerStyle: {
             backgroundColor: "#f2f2f2",
           },
-          tabBarActiveTintColor: "#8E2835",
+          tabBarActiveTintColor: "#004aad",
           tabBarInactiveTintColor: "#B2B2B2",
 
           tabBarPressColor: "#8E2835",

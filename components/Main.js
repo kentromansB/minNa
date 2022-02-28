@@ -56,7 +56,7 @@ export class Main extends Component {
       <Tab.Navigator
         initialRouteName="Course"
         labeled={false}
-        activeColor="#8E2835"
+        activeColor="#004AAD"
         inactiveColor="#B2B2B2"
         barStyle={{ backgroundColor: "#f2f2f2" }}
       >

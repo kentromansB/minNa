@@ -25,13 +25,12 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBBOHNuFcDbSprMbzUMu3jQpyo5aGxBvyg",
-  authDomain: "kaag-1aa02.firebaseapp.com",
-  projectId: "kaag-1aa02",
-  storageBucket: "kaag-1aa02.appspot.com",
-  messagingSenderId: "192145880916",
-  appId: "1:192145880916:web:fef684f7c8cb0b6e6abac1",
-  measurementId: "G-E8PYDQP5LT",
+  apiKey: "AIzaSyAHGEUMnTu_5XeqWK2SIz_4w5icJEvxZrA",
+  authDomain: "minna-47e79.firebaseapp.com",
+  projectId: "minna-47e79",
+  storageBucket: "minna-47e79.appspot.com",
+  messagingSenderId: "162831823788",
+  appId: "1:162831823788:web:c442ab1485f72e4fccc009",
 };
 
 if (firebase.apps.length === 0) {
@@ -76,8 +75,8 @@ import PhrasesScreen3 from "./components/main/coursepacks/screens/Phrases/Phrase
 import CultureScreen from "./components/main/AboutCulture";
 import FoodScreen from "./components/main/AboutFood";
 import EventsScreen from "./components/main/AboutEvents";
-import TraditionScreen from "./components/main/Traditions"
-import ClothingScreen from "./components/main/AboutClothing"
+import TraditionScreen from "./components/main/Traditions";
+import ClothingScreen from "./components/main/AboutClothing";
 
 const Stack = createStackNavigator();
 
@@ -119,21 +118,22 @@ export class App extends Component {
             <Stack.Screen
               name="Landing"
               component={LandingScreen}
-              options={{ 
-                headerShown: false }}
+              options={{
+                headerShown: false,
+              }}
             />
-            <Stack.Screen 
-                name="Register" 
-                component={RegisterScreen}
-                options={{
-                  headerShadowVisible: false,
-                  headerTintColor: "#000000",
-                  headerStyle: {
-                    backgroundColor: "#F2F2F2",
-                    borderBottomWidth: 0,
-                  },
-                }}
-                 />
+            <Stack.Screen
+              name="Register"
+              component={RegisterScreen}
+              options={{
+                headerShadowVisible: false,
+                headerTintColor: "#000000",
+                headerStyle: {
+                  backgroundColor: "#004AAD",
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
             <Stack.Screen
               name="ForgotPassword"
               component={ForgotPasswordScreen}
@@ -142,17 +142,18 @@ export class App extends Component {
                 headerShown: false,
               }}
             />
-            <Stack.Screen 
-              name="Login" 
+            <Stack.Screen
+              name="Login"
               component={LoginScreen}
               options={{
                 headerShadowVisible: false,
                 headerTintColor: "#000000",
                 headerStyle: {
-                  backgroundColor: "#F2F2F2",
+                  backgroundColor: "#004AAD",
                   borderBottomWidth: 0,
                 },
-              }} />
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       );
@@ -167,8 +168,6 @@ export class App extends Component {
               options={{ headerShown: false }}
             />
 
-              
-
             <Stack.Screen
               name="MainContribution"
               component={ContributionScreen}
@@ -177,7 +176,7 @@ export class App extends Component {
                 title: "New Post",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                 },
               }}
             />
@@ -188,7 +187,7 @@ export class App extends Component {
                 title: "Vocabulary",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                 },
               }}
             />
@@ -199,7 +198,7 @@ export class App extends Component {
                 title: "Speech",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                 },
               }}
             />
@@ -211,7 +210,7 @@ export class App extends Component {
                 title: "Phrases",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                 },
               }}
             />
@@ -223,7 +222,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -233,12 +232,11 @@ export class App extends Component {
             <Stack.Screen
               name="Culture"
               component={CultureScreen}
-              
               options={{
                 title: " ",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                 },
               }}
             />
@@ -246,12 +244,11 @@ export class App extends Component {
             <Stack.Screen
               name="Food"
               component={FoodScreen}
-              
               options={{
                 title: " ",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                 },
               }}
             />
@@ -259,12 +256,11 @@ export class App extends Component {
             <Stack.Screen
               name="Event"
               component={EventsScreen}
-              
               options={{
                 title: " ",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                 },
               }}
             />
@@ -272,28 +268,26 @@ export class App extends Component {
             <Stack.Screen
               name="Clothing"
               component={ClothingScreen}
-              
               options={{
                 title: " ",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                 },
               }}
-            />  
+            />
 
             <Stack.Screen
               name="Traditions"
               component={TraditionScreen}
-              
               options={{
                 title: " ",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                 },
               }}
-            />  
+            />
 
             <Stack.Screen
               name="NewWord"
@@ -303,7 +297,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -318,7 +312,7 @@ export class App extends Component {
                 title: "New Post",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                 },
                 //           headerRight:() => (
                 //             <TouchableOpacity title="Save" onPress={() => uploadImage()}>
@@ -336,7 +330,7 @@ export class App extends Component {
                 title: "Upload a Word",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                 },
               }}
             />
@@ -348,7 +342,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -362,7 +356,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -376,7 +370,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -390,7 +384,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -404,7 +398,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -419,7 +413,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -433,7 +427,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -447,7 +441,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -462,7 +456,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -477,7 +471,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -487,11 +481,11 @@ export class App extends Component {
               name="ValidatorScreen"
               component={BeAValidatorScreen}
               options={{
-                title: " ",
+                title: "Be A Validator",
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -502,11 +496,11 @@ export class App extends Component {
               name="ValAppScreen"
               component={ValidatorAppScreen}
               options={{
-                title: " ",
+                title: "Validator Application",
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -520,7 +514,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -534,7 +528,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -548,7 +542,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -562,7 +556,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -576,7 +570,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -590,7 +584,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -605,7 +599,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -619,7 +613,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -633,7 +627,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#8E2835",
+                  backgroundColor: "#004AAD",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },

@@ -12,11 +12,15 @@ import {
 
 import { TextInput } from "react-native-paper";
 import Svg, { Path, G, Rect, Polygon, Title } from "react-native-svg";
-
+import PassMeter from "react-native-passmeter";
 import firebase from "firebase/app";
 import "firebase/firestore";
 require("firebase/auth");
 import ValidationComponent from "react-native-form-validator";
+
+const MAX_LEN = 15,
+  MIN_LEN = 6,
+  PASS_LABELS = ["Too Short", "Weak", "Normal", "Strong", "Secure"];
 
 export default class Register extends ValidationComponent {
   constructor(props) {
@@ -146,6 +150,13 @@ export default class Register extends ValidationComponent {
                 }
               />
             ) : null}
+            <PassMeter
+              showLabels
+              password={password}
+              maxLength={MAX_LEN}
+              minLength={MIN_LEN}
+              labels={PASS_LABELS}
+            />
           </View>
         </View>
         <View style={{ paddingTop: 20 }}>

@@ -17,7 +17,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Audio } from "expo-av";
-import { Value } from "react-native-reanimated";
 import { Sound } from "expo-av/build/Audio";
 
 var head = require("../../assets/learning.svg");
@@ -94,11 +93,11 @@ function Dictionary({ filteredDictionary, navigation }) {
     <NavigationContainer independent={true}>
       <View style={styles.headLine}>
         <View style={styles.title}>
-          <Text style={styles.textHead}>KAAG</Text>
+          <Text style={styles.textHead}>ALIMA</Text>
           <Text style={styles.textSubHead}>Dictionary</Text>
           <TextInput
             style={styles.input}
-            placeholder="Search for Filipino or Kagan words..."
+            placeholder="Search for Filipino or Local words..."
             onChangeText={(text) => searchFilterFunction(text)}
             value={search}
           ></TextInput>
@@ -153,7 +152,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: "100%",
     height: 200,
-    backgroundColor: "#8E2835",
+    backgroundColor: "#004AAD",
     padding: 10,
   },
 
@@ -164,11 +163,11 @@ const styles = StyleSheet.create({
   },
   textHead: {
     flexDirection: "row",
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: "bold",
     lineHeight: 21,
     letterSpacing: 0.25,
-    color: "white",
+    color: "#BFA42A",
   },
   textSubHead: {
     flexDirection: "row",

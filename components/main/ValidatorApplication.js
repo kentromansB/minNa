@@ -106,13 +106,13 @@ function ValidatorApplication({ currentUser, route, navigation }) {
         <View style={{ marginVertical: 15 }}>
           <View>
             <Text style={[styles.text, { color: "#000000" }]}>
-              Be a KAAG Validator
+              Be an ALIMA Validator
             </Text>
           </View>
           <Text>
-            A KAAG Validator must be from Kagan Tribe, a linguists, speaks
-            Kinagan/ Kagan. He/She will validate submissions and contributions
-            of different Kinagan words.
+            An ALIMA Validator must be from the Tribe, a linguists, or speaks
+            the language. He/She will validate submissions and contributions of
+            different words.
           </Text>
         </View>
 
@@ -142,7 +142,7 @@ function ValidatorApplication({ currentUser, route, navigation }) {
             Why should you be our validator?
           </Text>
           <Text>
-            Explain why do you want to become a KAAG Validator. Share your
+            Explain why do you want to become an ALIMA Validator. Share your
             experiences.
           </Text>
           <TextInput
@@ -150,8 +150,7 @@ function ValidatorApplication({ currentUser, route, navigation }) {
             style={[
               styles.addButton,
               { height: 180 },
-              { paddingHorizontal: 10,
-              flexDirection:"row" },
+              { paddingHorizontal: 10, flexDirection: "row" },
             ]}
             onChangeText={(note) => setNote(note)}
           ></TextInput>
@@ -165,7 +164,7 @@ function ValidatorApplication({ currentUser, route, navigation }) {
           }}
         >
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#8E2835" }]}
+            style={[styles.button, { backgroundColor: "#bfa42a" }]}
             onPress={() => uploadPDF()}
           >
             <Text style={[styles.text, { fontSize: 16, color: "white" }]}>
