@@ -75,7 +75,14 @@ function Settings({ currentUser, navigation }) {
               <Text style={styles.menuItemText}>Check Submissions</Text>
             </View>
           </TouchableRipple>
-
+          <TouchableRipple
+            onPress={() => navigation.navigate("AddLanguageScreen")}
+          >
+            <View style={styles.menuItem}>
+              <Icon name="database-plus" color="#777777" size={25} />
+              <Text style={styles.menuItemText}>Add New Language</Text>
+            </View>
+          </TouchableRipple>
           <TouchableRipple onPress={() => onLogout()}>
             <View style={styles.menuItem}>
               <Icon name="logout" color="#777777" size={25} />

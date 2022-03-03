@@ -77,6 +77,7 @@ import FoodScreen from "./components/main/AboutFood";
 import EventsScreen from "./components/main/AboutEvents";
 import TraditionScreen from "./components/main/Traditions";
 import ClothingScreen from "./components/main/AboutClothing";
+import AddLanguageScreen from "./components/main/AddLanguage";
 
 const Stack = createStackNavigator();
 
@@ -624,6 +625,20 @@ export class App extends Component {
               component={PhrasesScreen3}
               options={{
                 title: "Conversation",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#004AAD",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+            <Stack.Screen
+              name="AddLanguageScreen"
+              component={AddLanguageScreen}
+              options={{
+                title: "Add Language",
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
