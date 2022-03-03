@@ -27,6 +27,7 @@ function AddLanguage({ currentUser, route, navigation }) {
   //   const [pdf, setPdf] = useState(null);
   //   c, setLoading] = useState(null);
   const [language, setLanguage] = useState("");
+  const [convertedLanguage, setConvertedLanguage] = useState("");
   const [history, setHistory] = useState("");
 
   const chooseFile = async () => {
@@ -47,11 +48,12 @@ function AddLanguage({ currentUser, route, navigation }) {
   const convertTextToLowerCase = () => {
     // To convert Lower Case
     let lowerCaseText = language.toLowerCase();
-    setLanguage(lowerCaseText);
+    setConvertedLanguage(lowerCaseText);
   };
 
   const submit = async () => {
     convertTextToLowerCase();
+    console.log(convertedLanguage);
     saveUserData();
   };
 
@@ -59,14 +61,13 @@ function AddLanguage({ currentUser, route, navigation }) {
     firebase
       .firestore()
       .collection("languages")
-      .doc(language)
+      .doc(convertedLanguage)
       .set({
-        language: language,
+        language: convertedLanguage,
         creation: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .then(function () {
         alert("Language Successfully Added.");
-        setLoading(null);
         navigation.navigate("Settings");
       });
   };

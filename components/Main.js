@@ -10,6 +10,7 @@ import {
   fetchAllUserPosts,
   fetchFilteredDictionary,
   fetchValidatedDictionary,
+  fetchLanguages,
 } from "../redux/actions/index";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -46,10 +47,11 @@ export class Main extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchAllUser();
-    this.props.fetchUserPosts();
-    this.props.fetchAllUserPosts();
-    this.props.fetchFilteredDictionary();
-    this.props.fetchValidatedDictionary();
+    // this.props.fetchUserPosts();
+    // this.props.fetchAllUserPosts();
+    // this.props.fetchFilteredDictionary();
+    // this.props.fetchValidatedDictionary();
+    this.props.fetchLanguages();
   }
   render() {
     return (
@@ -203,11 +205,12 @@ const mapDispatchProps = (dispatch) =>
   bindActionCreators(
     {
       fetchUser,
-      fetchUserPosts,
-      fetchAllUserPosts,
-      fetchFilteredDictionary,
+      // fetchUserPosts,
+      // fetchAllUserPosts,
+      // fetchFilteredDictionary,
       fetchAllUser,
-      fetchValidatedDictionary,
+      // fetchValidatedDictionary,
+      fetchLanguages,
     },
     dispatch
   );

@@ -5,6 +5,7 @@ import {
   USER_ALL_POSTS_STATE_CHANGE,
   FILTERED_DICTIONARY_STATE_CHANGE,
   VALIDATE_DICTIONARY_STATE_CHANGE,
+  LANGUAGE_STATE_CHANGE,
 } from "../constants";
 
 const initialState = {
@@ -27,6 +28,11 @@ export const user = (state = initialState, action) => {
       return {
         ...state,
         usersAll: action.usersAll,
+      };
+    case LANGUAGE_STATE_CHANGE:
+      return {
+        ...state,
+        languages: action.languages,
       };
     case USER_POSTS_STATE_CHANGE:
       return {

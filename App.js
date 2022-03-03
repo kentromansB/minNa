@@ -38,6 +38,7 @@ if (firebase.apps.length === 0) {
 }
 
 import LandingScreen from "./components/auth/Landing";
+import LanguageScreen from "./components/main/Language";
 import RegisterScreen from "./components/auth/Register";
 import ForgotPasswordScreen from "./components/auth/ForgotPassword";
 import LoginScreen from "./components/auth/Login";
@@ -163,6 +164,13 @@ export class App extends Component {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Main">
+            <Stack.Screen
+              name="Language"
+              component={LanguageScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
             <Stack.Screen
               name="Main"
               component={MainScreen}

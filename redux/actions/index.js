@@ -5,6 +5,7 @@ import {
   USER_ALL_POSTS_STATE_CHANGE,
   FILTERED_DICTIONARY_STATE_CHANGE,
   VALIDATE_DICTIONARY_STATE_CHANGE,
+  LANGUAGE_STATE_CHANGE,
 } from "../constants/index";
 import firebase from "firebase";
 require("firebase/firestore");
@@ -33,6 +34,20 @@ export function fetchAllUser() {
       .then((snapshot) => {
         if (snapshot.exists) {
           dispatch({ type: USER_ALL_STATE_CHANGE, usersAll: snapshot.data() });
+        } else {
+        }
+      });
+  };
+}
+export function fetchLanguages() {
+  return (dispatch) => {
+    firebase
+      .firestore()
+      .collection("languages")
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists) {
+          dispatch({ type: LANGUAGE_STATE_CHANGE, languages: snapshot.data() });
         } else {
         }
       });
