@@ -79,6 +79,8 @@ import EventsScreen from "./components/main/AboutEvents";
 import TraditionScreen from "./components/main/Traditions";
 import ClothingScreen from "./components/main/AboutClothing";
 import AddLanguageScreen from "./components/main/AddLanguage";
+import AddQuiz from "./components/main/AddQuiz";
+import AddQuestion from "./components/main/AddQuestion";
 
 const Stack = createStackNavigator();
 
@@ -656,6 +658,35 @@ export class App extends Component {
                 },
               }}
             />
+            <Stack.Screen
+              name="AddQuestion"
+              component={AddQuestion}
+              options={{
+                title: "Questions",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#004AAD",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+            <Stack.Screen
+              name="AddQuiz"
+              component={AddQuiz}
+              options={{
+                title: "AddQuiz",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#004AAD",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+           
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

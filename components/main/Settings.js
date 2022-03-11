@@ -89,6 +89,14 @@ function Settings({ currentUser, navigation }) {
               <Text style={styles.menuItemText}>Languages</Text>
             </View>
           </TouchableRipple>
+            {/*Add Quiz */}
+          <TouchableRipple onPress={() => navigation.navigate("AddQuestion")}>
+            <View style={styles.menuItem}>
+              <Icon name="bookshelf" color="#777777" size={25} />
+              <Text style={styles.menuItemText}>Questions</Text>
+            </View>
+          </TouchableRipple>
+          
           <TouchableRipple onPress={() => onLogout()}>
             <View style={styles.menuItem}>
               <Icon name="logout" color="#777777" size={25} />
@@ -140,6 +148,8 @@ function Settings({ currentUser, navigation }) {
               <Text style={styles.menuItemText}>Check Submissions</Text>
             </View>
           </TouchableRipple>
+          
+
           <TouchableRipple onPress={() => onLogout()}>
             <View style={styles.menuItem}>
               <Icon name="logout" color="#777777" size={25} />
