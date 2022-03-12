@@ -21,12 +21,12 @@ import { Sound } from "expo-av/build/Audio";
 
 var head = require("../../assets/learning.svg");
 
-function Language({ languages, navigation }) {
+function Language({ navigation }) {
   const [playing, setPlaying] = useState(false);
-  const [datalist, setDatalist] = useState(languages);
+  const [datalist, setDatalist] = useState("");
   const [search, setSearch] = useState("");
-  const [filteredDataSource, setFilteredDataSource] = useState(languages);
-  const [masterDataSource, setMasterDataSource] = useState(languages);
+  const [filteredDataSource, setFilteredDataSource] = useState("");
+  const [masterDataSource, setMasterDataSource] = useState("");
   const [loading, setLoading] = useState(false);
 
   // const startLoading = () => {
@@ -48,16 +48,16 @@ function Language({ languages, navigation }) {
         .collection("languages")
         .get()
         .then((snapshot) => {
-          let languages = snapshot.docs.map((doc) => {
+          let masterDataSource = snapshot.docs.map((doc) => {
             const data = doc.data();
             const id = doc.id;
             return { id, ...data };
           });
 
-          setDatalist(languages);
-          setFilteredDataSource(languages);
-          setMasterDataSource(languages);
-          console.log(languages);
+          setDatalist(masterDataSource);
+          setFilteredDataSource(masterDataSource);
+          setMasterDataSource(masterDataSource);
+          console.log(masterDataSource);
         });
     });
 
@@ -112,7 +112,9 @@ function Language({ languages, navigation }) {
           return (
             <TouchableOpacity
               style={styles.container}
-              onPress={() => navigation.navigate("Word", { data: item })}
+              onPress={() =>
+                navigation.navigate("Main", { language: item.language })
+              }
             >
               <View style={styles.bodycontainer}>
                 <Text style={styles.inKagan}>{item.language} </Text>
@@ -125,11 +127,13 @@ function Language({ languages, navigation }) {
   );
 }
 
-const mapStateToProps = (store) => ({
-  languages: store.userState.languages,
-});
+// const mapStateToProps = (state, ownProps) => ({
+//   languageState: store.userState.l,
+// });
 
-export default connect(mapStateToProps, null)(Language);
+// export default connect(mapStateToProps, null)(Language);
+
+export default Language;
 
 const styles = StyleSheet.create({
   container: {

@@ -15,6 +15,7 @@ const initialState = {
   postsAll: [],
   filteredDictionary: [],
   validatedDictionary: [],
+  language: [],
 };
 
 export const user = (state = initialState, action) => {
@@ -32,7 +33,7 @@ export const user = (state = initialState, action) => {
     case LANGUAGE_STATE_CHANGE:
       return {
         ...state,
-        languages: action.languages,
+        language: action.language,
       };
     case USER_POSTS_STATE_CHANGE:
       return {

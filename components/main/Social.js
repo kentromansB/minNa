@@ -20,11 +20,12 @@ require("firebase/firebase-storage");
 
 import { Dimensions } from "react-native";
 
-function Community({ postsAll, navigation }) {
+function Social({ postsAll, navigation, route, language }) {
   const dimensions = Dimensions.get("window");
   //const imageHeight = Math.round(dimensions.width * 1 / 1);
   const imageWidth = dimensions.width;
   const [datalist, setDatalist] = useState(postsAll);
+  console.log(language);
 
   useEffect(() => {
     setDatalist(postsAll);
@@ -50,7 +51,6 @@ function Community({ postsAll, navigation }) {
 
     return unsubscribe;
   }, [navigation]);
-
   return (
     <FlatList
       nestedScrollEnabled
@@ -98,7 +98,7 @@ const mapStateToProps = (store) => ({
   postsAll: store.userState.postsAll,
 });
 
-export default connect(mapStateToProps, null)(Community);
+export default connect(mapStateToProps, null)(Social);
 
 const styles = StyleSheet.create({
   title: {

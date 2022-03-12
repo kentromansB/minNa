@@ -43,11 +43,14 @@ export function fetchLanguages() {
   return (dispatch) => {
     firebase
       .firestore()
-      .collection("languages")
+      .collection(language.language)
       .get()
       .then((snapshot) => {
         if (snapshot.exists) {
-          dispatch({ type: LANGUAGE_STATE_CHANGE, languages: snapshot.data() });
+          dispatch({
+            type: LANGUAGE_STATE_CHANGE,
+            language: snapshot.data(),
+          });
         } else {
         }
       });

@@ -19,11 +19,11 @@ require("firebase/firestore");
 require("firebase/firebase-storage");
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-function Community({ currentUser, posts, navigation, props }) {
+function Feed({ currentUser, posts, navigation, language }) {
   const dimensions = Dimensions.get("window");
   const imageHeight = Math.round((dimensions.width * 1) / 1);
   const imageWidth = dimensions.width;
-
+  console.log(language);
   const [datalist, setDatalist] = useState(posts);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ function Community({ currentUser, posts, navigation, props }) {
                 source={require("../../assets/blank.png")}
               />
             ) : null}
-            <Text style={styles.profilename}> {currentUser.name}</Text>
+            <Text style={styles.profilename}></Text>
           </View>
           <Text style={{ fontWeight: "bold", marginLeft: 10 }}>
             {" "}
@@ -102,7 +102,7 @@ const mapStateToProps = (store) => ({
   currentUser: store.userState.currentUser,
 });
 
-export default connect(mapStateToProps, null)(Community);
+export default connect(mapStateToProps, null)(Feed);
 
 const styles = StyleSheet.create({
   title: {

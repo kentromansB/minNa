@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "kaag",
+    "name": "alima",
     "slug": "nav",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/kaag_icon.png",
+    "icon": "./assets/favicon.png",
     "splash": {
-      "image": "./assets/Splash_Screen.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,13 +19,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/kaag_icon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.uic.kaag.v3"
+      "package": "com.uic.minna.alima.v1"
     },
     "web": {
-      "favicon": "./assets/kaag_icon.png"
+      "favicon": "./assets/favicon.png"
     }
   }
 }

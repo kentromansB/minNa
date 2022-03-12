@@ -21,7 +21,9 @@ import { NavigationContainer } from "@react-navigation/native";
 
 const Tab = createMaterialTopTabNavigator();
 
-function Community({ currentUser, navigation }) {
+function Community({ currentUser, route, navigation }) {
+  const { language } = route?.params ?? {};
+  console.log(language);
   return (
     <NavigationContainer independent={true}>
       <View style={styles.container}>
@@ -48,8 +50,14 @@ function Community({ currentUser, navigation }) {
           },
         })}
       >
-        <Tab.Screen name="Feed" component={FeedScreen} />
-        <Tab.Screen name="Social" component={SocialScreen} />
+        <Tab.Screen
+          name="Feed"
+          children={(props) => <FeedScreen language={language} {...props} />}
+        />
+        <Tab.Screen
+          name="Social"
+          children={(props) => <SocialScreen language={language} {...props} />}
+        />
       </Tab.Navigator>
 
       <Pressable
@@ -60,6 +68,9 @@ function Community({ currentUser, navigation }) {
         <MaterialCommunityIcons name="plus" color={"#ffffff"} size={40} />
       </Pressable>
     </NavigationContainer>
+    // <View>
+    //   <Text>{language}</Text>
+    // </View>
   );
 }
 

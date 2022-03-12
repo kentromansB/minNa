@@ -41,6 +41,7 @@ import DictionaryScreen from "./main/Dictionary";
 import CommunityScreen from "./main/Community";
 import ContributeDictionary from "./main/ContributeDictionary";
 import ProfileScreen from "./main/Settings";
+// import data from "./main/coursepacks/quizdata/Vocabulary/QuizData3";
 // import { FirstScreenNavigator } from "../CustomNavigation";
 
 export class Main extends Component {
@@ -51,9 +52,13 @@ export class Main extends Component {
     // this.props.fetchAllUserPosts();
     // this.props.fetchFilteredDictionary();
     // this.props.fetchValidatedDictionary();
-    this.props.fetchLanguages();
+    // this.props.fetchLanguages();
   }
+
   render() {
+    const { language } = this.props.route.params;
+    console.log(language);
+
     return (
       <Tab.Navigator
         initialRouteName="Course"
@@ -65,6 +70,12 @@ export class Main extends Component {
         <Tab.Screen
           name="Course"
           component={CourseScreen}
+          listeners={({ navigation }) => ({
+            tabPress: (event) => {
+              event.preventDefault();
+              navigation.navigate("Course", { language: language });
+            },
+          })}
           options={{
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="home" color={color} size={26} />
@@ -75,6 +86,12 @@ export class Main extends Component {
           name="Dictionary"
           component={DictionaryScreen}
           //navigation = {this.props.navigation}
+          listeners={({ navigation }) => ({
+            tabPress: (event) => {
+              event.preventDefault();
+              navigation.navigate("Dictionary", { language: language });
+            },
+          })}
           options={{
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
@@ -92,7 +109,7 @@ export class Main extends Component {
           listeners={({ navigation }) => ({
             tabPress: (event) => {
               event.preventDefault();
-              navigation.navigate("Community");
+              navigation.navigate("Community", { language: language });
             },
           })}
           options={{
@@ -113,7 +130,9 @@ export class Main extends Component {
           listeners={({ navigation }) => ({
             tabPress: (event) => {
               event.preventDefault();
-              navigation.navigate("ContributeDictionary");
+              navigation.navigate("ContributeDictionary", {
+                language: language,
+              });
             },
           })}
           options={{
@@ -210,7 +229,7 @@ const mapDispatchProps = (dispatch) =>
       // fetchFilteredDictionary,
       fetchAllUser,
       // fetchValidatedDictionary,
-      fetchLanguages,
+      // fetchLanguages,
     },
     dispatch
   );

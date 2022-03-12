@@ -21,14 +21,17 @@ import { Sound } from "expo-av/build/Audio";
 
 var head = require("../../assets/learning.svg");
 
-function Dictionary({ filteredDictionary, navigation }) {
+function Dictionary({ route, navigation }) {
   const [playing, setPlaying] = useState(false);
-  const [datalist, setDatalist] = useState(filteredDictionary);
+  const [datalist, setDatalist] = useState("");
   const [search, setSearch] = useState("");
-  const [filteredDataSource, setFilteredDataSource] =
-    useState(filteredDictionary);
-  const [masterDataSource, setMasterDataSource] = useState(filteredDictionary);
+  const [filteredDataSource, setFilteredDataSource] = useState("");
+  const [masterDataSource, setMasterDataSource] = useState("");
   const [loading, setLoading] = useState(false);
+  const { language } = route?.params ?? {};
+
+  var setLanguage = language;
+  var languageDictionary = language.concat("Dictionary");
 
   // const startLoading = () => {
   //   setLoading(true);
@@ -46,20 +49,19 @@ function Dictionary({ filteredDictionary, navigation }) {
     const unsubscribe = navigation.addListener("focus", () => {
       firebase
         .firestore()
-        .collection("dictionaryAll")
-        .orderBy("kagan", "asc")
-        .where("status", "==", "1")
+        .collection("languages")
+        .where("language", "==", language)
         .get()
         .then((snapshot) => {
-          let filteredDictionary = snapshot.docs.map((doc) => {
+          let masterDataSource = snapshot.docs.map((doc) => {
             const data = doc.data();
             const id = doc.id;
             return { id, ...data };
           });
 
-          setDatalist(filteredDictionary);
-          setFilteredDataSource(filteredDictionary);
-          setMasterDataSource(filteredDictionary);
+          setDatalist(masterDataSource);
+          setFilteredDataSource(masterDataSource);
+          setMasterDataSource(masterDataSource);
         });
     });
 
@@ -74,8 +76,8 @@ function Dictionary({ filteredDictionary, navigation }) {
       // Update FilteredDataSource
       const newData = masterDataSource.filter(function (item) {
         const itemData = `${
-          item.kagan ? item.kagan.toUpperCase() : "".toUpperCase()
-        } ${item.filipino ? item.filipino.toUpperCase() : "".toUpperCase()}`;
+          item.language ? item.language.toUpperCase() : "".toUpperCase()
+        }`;
         const textData = text.toUpperCase();
         return itemData.indexOf(textData) > -1;
       });
@@ -88,7 +90,8 @@ function Dictionary({ filteredDictionary, navigation }) {
       setSearch(text);
     }
   };
-
+  console.log(language);
+  console.log(languageDictionary);
   return (
     <NavigationContainer independent={true}>
       <View style={styles.headLine}>
@@ -117,7 +120,7 @@ function Dictionary({ filteredDictionary, navigation }) {
               onPress={() => navigation.navigate("Word", { data: item })}
             >
               <View style={styles.bodycontainer}>
-                <Text style={styles.inKagan}>{item.kagan} </Text>
+                <Text style={styles.inKagan}>{item.language} </Text>
                 <Text style={styles.inFilipino}>
                   {item.filipino} (in filipino)
                 </Text>
@@ -132,7 +135,7 @@ function Dictionary({ filteredDictionary, navigation }) {
 }
 
 const mapStateToProps = (store) => ({
-  filteredDictionary: store.userState.filteredDictionary,
+  languageState: store.userState.languageState,
 });
 
 export default connect(mapStateToProps, null)(Dictionary);

@@ -165,7 +165,7 @@ export class App extends Component {
     return (
       <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Main">
+          <Stack.Navigator initialRouteName="Language">
             <Stack.Screen
               name="Language"
               component={LanguageScreen}

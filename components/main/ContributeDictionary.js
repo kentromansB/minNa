@@ -12,9 +12,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import Unorderedlist from "react-native-unordered-list";
 import Svg, { Path, G, Rect, Polygon, Title } from "react-native-svg";
 
-export default function Course({ navigation }) {
+export default function Course({ navigation, route }) {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-
+  const { language } = route?.params ?? {};
   const [complianceModal, setComplianceModal] = useState(true);
 
   return (
@@ -24,8 +24,8 @@ export default function Course({ navigation }) {
         <Text style={styles.description}>
           Community language champions, linguistic scholars, and others involved
           in language revitalization work are invited to help build and improve
-          the mobile application. Here, we can add new content relevant to the
-          language.{" "}
+          the mobile application. Here, we can add new content relevant to the{" "}
+          {language} language.{" "}
         </Text>
       </View>
 
