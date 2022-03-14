@@ -25,7 +25,9 @@ const onLogout = () => {
   firebase.auth().signOut();
 };
 
-function Settings({ currentUser, navigation }) {
+function Settings({ currentUser, navigation, route }) {
+  const { language } = route?.params ?? {};
+  console.log(language);
   if (currentUser.type == "2") {
     return (
       <SafeAreaView style={styles.container}>
@@ -50,7 +52,9 @@ function Settings({ currentUser, navigation }) {
 
         <View style={styles.menuWrapper}>
           <TouchableRipple
-            onPress={() => navigation.navigate("MyContribution")}
+            onPress={() =>
+              navigation.navigate("MyContribution", { language: language })
+            }
           >
             <View style={styles.menuItem}>
               <Icon name="folder-outline" color="#777777" size={25} />
@@ -65,7 +69,11 @@ function Settings({ currentUser, navigation }) {
               <Text style={styles.menuItemText}>Applications</Text>
             </View>
           </TouchableRipple>
-          <TouchableRipple onPress={() => navigation.navigate("Validate")}>
+          <TouchableRipple
+            onPress={() =>
+              navigation.navigate("Validate", { language: language })
+            }
+          >
             <View style={styles.menuItem}>
               <Icon
                 name="checkbox-marked-circle-outline"
@@ -89,14 +97,14 @@ function Settings({ currentUser, navigation }) {
               <Text style={styles.menuItemText}>Languages</Text>
             </View>
           </TouchableRipple>
-            {/*Add Quiz */}
+          {/*Add Quiz */}
           <TouchableRipple onPress={() => navigation.navigate("AddQuestion")}>
             <View style={styles.menuItem}>
               <Icon name="bookshelf" color="#777777" size={25} />
               <Text style={styles.menuItemText}>Questions</Text>
             </View>
           </TouchableRipple>
-          
+
           <TouchableRipple onPress={() => onLogout()}>
             <View style={styles.menuItem}>
               <Icon name="logout" color="#777777" size={25} />
@@ -148,7 +156,6 @@ function Settings({ currentUser, navigation }) {
               <Text style={styles.menuItemText}>Check Submissions</Text>
             </View>
           </TouchableRipple>
-          
 
           <TouchableRipple onPress={() => onLogout()}>
             <View style={styles.menuItem}>

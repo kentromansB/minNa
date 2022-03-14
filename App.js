@@ -131,9 +131,9 @@ export class App extends Component {
               component={RegisterScreen}
               options={{
                 headerShadowVisible: false,
-                headerTintColor: "#000000",
+                headerTintColor: "#ffffff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   borderBottomWidth: 0,
                 },
               }}
@@ -151,9 +151,9 @@ export class App extends Component {
               component={LoginScreen}
               options={{
                 headerShadowVisible: false,
-                headerTintColor: "#000000",
+                headerTintColor: "#ffffff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   borderBottomWidth: 0,
                 },
               }}
@@ -187,7 +187,7 @@ export class App extends Component {
                 title: "New Post",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                 },
               }}
             />
@@ -198,7 +198,7 @@ export class App extends Component {
                 title: "Vocabulary",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                 },
               }}
             />
@@ -209,7 +209,7 @@ export class App extends Component {
                 title: "Speech",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                 },
               }}
             />
@@ -221,7 +221,7 @@ export class App extends Component {
                 title: "Phrases",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                 },
               }}
             />
@@ -233,7 +233,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -247,7 +247,7 @@ export class App extends Component {
                 title: " ",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                 },
               }}
             />
@@ -259,7 +259,7 @@ export class App extends Component {
                 title: " ",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                 },
               }}
             />
@@ -271,7 +271,7 @@ export class App extends Component {
                 title: " ",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                 },
               }}
             />
@@ -283,7 +283,7 @@ export class App extends Component {
                 title: " ",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                 },
               }}
             />
@@ -295,7 +295,7 @@ export class App extends Component {
                 title: " ",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                 },
               }}
             />
@@ -308,7 +308,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -323,7 +323,7 @@ export class App extends Component {
                 title: "New Post",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                 },
                 //           headerRight:() => (
                 //             <TouchableOpacity title="Save" onPress={() => uploadImage()}>
@@ -341,7 +341,7 @@ export class App extends Component {
                 title: "Upload a Word",
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                 },
               }}
             />
@@ -353,7 +353,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -367,7 +367,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -381,7 +381,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -395,7 +395,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -409,7 +409,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -424,7 +424,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -438,7 +438,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -452,7 +452,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -467,7 +467,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -482,7 +482,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -496,7 +496,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -511,7 +511,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -525,7 +525,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -539,7 +539,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -553,7 +553,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -567,7 +567,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -581,7 +581,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -595,7 +595,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -610,7 +610,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -624,7 +624,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -638,7 +638,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -652,7 +652,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -666,7 +666,7 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
@@ -680,13 +680,12 @@ export class App extends Component {
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {
-                  backgroundColor: "#004AAD",
+                  backgroundColor: "#215A88",
                   elevation: 0,
                   borderBottomWidth: 0,
                 },
               }}
             />
-           
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

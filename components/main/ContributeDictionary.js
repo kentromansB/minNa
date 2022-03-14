@@ -65,10 +65,12 @@ export default function Course({ navigation, route }) {
         <TouchableOpacity
           style={[
             styles.proceedButton,
-            { backgroundColor: toggleCheckBox ? "#004AAD" : "#BFA42A3D" },
+            { backgroundColor: toggleCheckBox ? "#215a88" : "#91B2EB" },
           ]}
           disabled={!toggleCheckBox}
-          onPress={() => navigation.navigate("NewDictionary")}
+          onPress={() =>
+            navigation.navigate("NewDictionary", { language: language })
+          }
         >
           <Text style={styles.subtitle}> PROCEED </Text>
         </TouchableOpacity>

@@ -63,7 +63,7 @@ export class Main extends Component {
       <Tab.Navigator
         initialRouteName="Course"
         labeled={false}
-        activeColor="#004AAD"
+        activeColor="#215A88"
         inactiveColor="#B2B2B2"
         barStyle={{ backgroundColor: "#f2f2f2" }}
       >
@@ -143,13 +143,13 @@ export class Main extends Component {
         />
         <Tab.Screen
           name="Settings"
-          component={ProfileStackScreen}
+          component={ProfileScreen}
           //navigation = {this.props.navigation}
           //to pass along the props inside it and make it easier the logic from the profile screen perspective
           listeners={({ navigation }) => ({
             tabPress: (event) => {
               event.preventDefault();
-              navigation.navigate("Settings");
+              navigation.navigate("Settings", { language: language });
             },
           })}
           options={{
@@ -162,59 +162,61 @@ export class Main extends Component {
     );
   }
 }
-const ProfileStackScreen = ({ navigation }) => {
-  // const {colors} = useTheme();
+// const ProfileStackScreen = ({ navigation, route }) => {
+//   // const {colors} = useTheme();
+//   const { language } = route?.params ?? {};
+//   console.log(language);
 
-  return (
-    <ProfileStack.Navigator
-      screenOptions={{
-        headerStyle: {
-          //backgroundColor: colors.background,
-          //shadowColor: colors.background, // iOS
-          elevation: 0, // Android
-        },
-        //headerTintColor: colors.text,
-      }}
-    >
-      <ProfileStack.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{
-          headerStyle: {
-            backgroundColor: "#f2f2f2",
-            elevation: 0,
-            borderBottomWidth: 0,
-          },
+//   return (
+//     <ProfileStack.Navigator
+//       screenOptions={{
+//         headerStyle: {
+//           //backgroundColor: colors.background,
+//           //shadowColor: colors.background, // iOS
+//           elevation: 0, // Android
+//         },
+//         //headerTintColor: colors.text,
+//       }}
+//     >
+//       <ProfileStack.Screen
+//         name="Profile"
+//         component={ProfileScreen}
+//         options={{
+//           headerStyle: {
+//             backgroundColor: "#f2f2f2",
+//             elevation: 0,
+//             borderBottomWidth: 0,
+//           },
 
-          title: "",
-          headerRight: () => (
-            <View style={{ marginRight: 10 }}>
-              <MaterialCommunityIcons.Button
-                name="account-edit"
-                size={25}
-                backgroundColor="#f2f2f2"
-                color="#777777"
-                onPress={() => navigation.navigate("EditProfile")}
-              />
-            </View>
-          ),
-        }}
-      />
-      <ProfileStack.Screen
-        name="EditProfile"
-        options={{
-          title: "Edit Profile",
-          headerStyle: {
-            backgroundColor: "#f2f2f2",
-            elevation: 0,
-            borderBottomWidth: 0,
-          },
-        }}
-        component={EditProfileScreen}
-      />
-    </ProfileStack.Navigator>
-  );
-};
+//           title: "",
+//           headerRight: () => (
+//             <View style={{ marginRight: 10 }}>
+//               <MaterialCommunityIcons.Button
+//                 name="account-edit"
+//                 size={25}
+//                 backgroundColor="#f2f2f2"
+//                 color="#777777"
+//                 onPress={() => navigation.navigate("EditProfile")}
+//               />
+//             </View>
+//           ),
+//         }}
+//       />
+//       <ProfileStack.Screen
+//         name="EditProfile"
+//         options={{
+//           title: "Edit Profile",
+//           headerStyle: {
+//             backgroundColor: "#f2f2f2",
+//             elevation: 0,
+//             borderBottomWidth: 0,
+//           },
+//         }}
+//         component={EditProfileScreen}
+//       />
+//     </ProfileStack.Navigator>
+//   );
+// };
 
 const mapStateToProps = (store) => ({
   currentUser: store.userState.currentUser,

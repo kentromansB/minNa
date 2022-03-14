@@ -18,14 +18,15 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import UploadList from "./UploadList";
 import UploadItem from "./UploadItem";
 
-export default function Contribution({ navigation }) {
+export default function Contribution({ navigation, route }) {
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
-
+  const { language } = route?.params ?? {};
   const [uploadModal, setUploadModal] = useState(false);
+  console.log(language);
   const closeUploadModal = () => {
     setUploadModal(false);
   };

@@ -30,7 +30,9 @@ var head = require("../../assets/learning.svg");
 
 const Tab = createMaterialTopTabNavigator();
 
-function ValidateWord() {
+function ValidateWord({ route }) {
+  const { language } = route?.params ?? {};
+  console.log(language);
   return (
     <SafeAreaView style={styles.container}>
       <Tab.Navigator
@@ -48,10 +50,22 @@ function ValidateWord() {
           },
         })}
       >
-        <Tab.Screen name="all" component={AllScreen} />
-        <Tab.Screen name="confirm" component={ConfirmScreen} />
-        <Tab.Screen name="pending" component={PendingScreen} />
-        <Tab.Screen name="declined" component={DeclineScreen} />
+        <Tab.Screen
+          name="all"
+          children={(props) => <AllScreen language={language} {...props} />}
+        />
+        <Tab.Screen
+          name="confirm"
+          children={(props) => <ConfirmScreen language={language} {...props} />}
+        />
+        <Tab.Screen
+          name="pending"
+          children={(props) => <PendingScreen language={language} {...props} />}
+        />
+        <Tab.Screen
+          name="declined"
+          children={(props) => <DeclineScreen language={language} {...props} />}
+        />
       </Tab.Navigator>
     </SafeAreaView>
   );

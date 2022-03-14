@@ -40,10 +40,10 @@ function Community({ currentUser, route, navigation }) {
           tabBarContentContainerStyle: {
             backgroundColor: "#f2f2f2",
           },
-          tabBarActiveTintColor: "#004AAD",
+          tabBarActiveTintColor: "#215a88",
           tabBarInactiveTintColor: "#B2B2B2",
 
-          tabBarPressColor: "#8E2835",
+          tabBarPressColor: "#215a88",
           tabBarLabelStyle: {
             fontSize: 15,
             fontWeight: "bold",
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     shadowColor: "#F02A4B",
     shadowOpacity: 0.3,
     shadowOffset: { height: 10 },
-    backgroundColor: "#BFA42A",
+    backgroundColor: "#91B2EB",
     bottom: 30,
     right: 30,
     elevation: 9,
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     lineHeight: 21,
     letterSpacing: 0.25,
-    color: "#004AAD",
+    color: "#215a88",
   },
   textSubHead: {
     flexDirection: "row",

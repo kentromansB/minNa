@@ -61,9 +61,9 @@ function AddLanguage({ currentUser, route, navigation }) {
     firebase
       .firestore()
       .collection("languages")
-      .doc(convertedLanguage)
+      .doc(language)
       .set({
-        language: convertedLanguage,
+        language: language,
         creation: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .then(function () {

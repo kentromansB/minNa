@@ -20,10 +20,10 @@ require("firebase/firestore");
 require("firebase/firebase-storage");
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-function MContriAll({ currentUser, navigation, props }) {
+function MContriAll({ currentUser, navigation, props, language }) {
   const [status, setStatus] = useState("All");
   const [datalist, setDatalist] = useState("");
-
+  console.log(language);
   // useEffect(() => {
   //   setDatalist(dictionaryAll);
   // }, [dictionaryAll]);

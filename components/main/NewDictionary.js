@@ -34,6 +34,8 @@ function NewDictionary({ currentUser, route, navigation }) {
   const [audio, setAudio] = useState(null);
   const [loading, setLoading] = useState(null);
   const [wordID, setWordID] = useState(makeid());
+  const { language } = route?.params ?? {};
+  console.log(language);
   function makeid() {
     var randomText = "";
     var possible =
@@ -162,7 +164,7 @@ function NewDictionary({ currentUser, route, navigation }) {
 
     const taskCompleted = () => {
       task.snapshot.ref.getDownloadURL().then((snapshot) => {
-        SavePostData(snapshot);
+        // SavePostData(snapshot);
         saveAllPostData(snapshot);
         setLoading(null);
         console.log(snapshot);
@@ -177,33 +179,35 @@ function NewDictionary({ currentUser, route, navigation }) {
 
     task.on("state_changed", taskProgress, taskError, taskCompleted);
   };
-  const SavePostData = (downloadURL) => {
-    firebase
-      .firestore()
-      .collection("userDictionary")
-      .doc(firebase.auth().currentUser.uid)
-      .collection("userDictionary")
-      .doc(wordID)
-      .set({
-        wordId: wordID,
-        email: currentUser.email,
-        downloadURL,
-        kagan,
-        filipino,
-        classification,
-        sentence,
-        pronunciation,
-        filipinoSentence,
-        meaning,
-        status: "0",
-        upload: "1",
-        creation: firebase.firestore.FieldValue.serverTimestamp(),
-      });
-  };
+  // const SavePostData = (downloadURL) => {
+  //   firebase
+  //     .firestore()
+  //     .collection("userDictionary")
+  //     .doc(firebase.auth().currentUser.uid)
+  //     .collection("userDictionary")
+  //     .doc(wordID)
+  //     .set({
+  //       wordId: wordID,
+  //       email: currentUser.email,
+  //       downloadURL,
+  //       kagan,
+  //       filipino,
+  //       classification,
+  //       sentence,
+  //       pronunciation,
+  //       filipinoSentence,
+  //       meaning,
+  //       status: "0",
+  //       upload: "1",
+  //       creation: firebase.firestore.FieldValue.serverTimestamp(),
+  //     });
+  // };
   const saveAllPostData = (downloadURL) => {
     firebase
       .firestore()
-      .collection("dictionaryAll")
+      .collection("languages")
+      .doc(language)
+      .collection("dictionary")
       .add({
         uid: firebase.auth().currentUser.uid,
         wordId: wordID,
@@ -421,7 +425,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 1,
     width: "90%",
-    backgroundColor: "#BFA42A",
+    backgroundColor: "#215a88",
     //top: 130,
     marginTop: 20,
     marginBottom: 80,

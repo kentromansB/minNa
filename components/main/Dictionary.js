@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: "100%",
     height: 200,
-    backgroundColor: "#004AAD",
+    backgroundColor: "#215a88",
     padding: 10,
   },
 
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     lineHeight: 21,
     letterSpacing: 0.25,
-    color: "#BFA42A",
+    color: "#91B2EB",
   },
   textSubHead: {
     flexDirection: "row",

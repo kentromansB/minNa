@@ -76,7 +76,7 @@ export default class Register extends ValidationComponent {
     return (
       <ScrollView style={styles.container}>
         <View>
-          <Text style={styles.welcome}>Welcome to KAAG,</Text>
+          <Text style={styles.welcome}>Welcome to ALIMA,</Text>
           <Text style={styles.subtitle}>Create account to get started!</Text>
         </View>
         <View style={styles.loginGroup}>
@@ -89,7 +89,7 @@ export default class Register extends ValidationComponent {
               ))}
             <TextInput
               label="Name"
-              activeUnderlineColor="#8E2835"
+              activeUnderlineColor="#215a88"
               onChangeText={(name) => this.setState({ name })}
             />
           </View>
@@ -98,7 +98,7 @@ export default class Register extends ValidationComponent {
             <TextInput
               keyboardType="email-address"
               label="Email"
-              activeUnderlineColor="#8E2835"
+              activeUnderlineColor="#215a88"
               onChangeText={(email) => this.setState({ email })}
             />
           </View>
@@ -118,7 +118,7 @@ export default class Register extends ValidationComponent {
                 iconColor={"#222222"}
                 onChangeText={(password) => this.setState({ password })}
                 value={password}
-                activeUnderlineColor="#8E2835"
+                activeUnderlineColor="#215a88"
                 right={
                   <TextInput.Icon
                     name="eye"
@@ -138,7 +138,7 @@ export default class Register extends ValidationComponent {
                 iconColor={"#222222"}
                 onChangeText={(password) => this.setState({ password })}
                 value={password}
-                activeUnderlineColor="#8E2835"
+                activeUnderlineColor="#215a88"
                 right={
                   <TextInput.Icon
                     name="eye-off"
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 1,
     width: "100%",
-    backgroundColor: "#8E2835",
+    backgroundColor: "#215a88",
   },
   buttonGoogle: {
     alignSelf: "flex-start",
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
   },
   textSignUp: {
     fontSize: 14,
-    color: "#8E2835",
+    color: "#91B2EB",
     fontWeight: "bold",
   },
   input: {
