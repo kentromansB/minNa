@@ -45,7 +45,7 @@ const Word = ({ route }) => {
     <ScrollView>
       <View style={styles.headLine}>
         <View style={styles.header_line}>
-          <Text style={styles.inKagan}> {data?.kagan} </Text>
+          <Text style={styles.inKagan}> {data?.word} </Text>
           <Text style={styles.inPronounciation}> /{data?.pronunciation}/ </Text>
 
           <TouchableOpacity
@@ -71,9 +71,9 @@ const Word = ({ route }) => {
         <View style={{ paddingVertical: 8 }}>
           <Text style={styles.boldText}>Additional Information </Text>
           <View style={{ paddingHorizontal: 10 }}>
-            <Text style={{ color: "#8E2835" }}>Translation in Filipino</Text>
+            <Text style={{ color: "#215a88" }}>Translation in Filipino</Text>
             <Text style={[styles.contextText]}>{data?.filipino} </Text>
-            <Text style={{ color: "#8E2835" }}>Definition</Text>
+            <Text style={{ color: "#215a88" }}>Definition</Text>
             <Text style={[styles.contextText]}>{data?.sentence}</Text>
           </View>
         </View>
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: "100%",
     height: 150,
-    backgroundColor: "#8E2835",
+    backgroundColor: "#215a88",
   },
   header_line: {
     flexDirection: "column",
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     padding: 8,
     margin: 10,
     borderRadius: 7,
-    backgroundColor: "#79222D",
+    backgroundColor: "#91b2eb",
   },
   boldText: {
     fontWeight: "bold",

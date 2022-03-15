@@ -23,7 +23,7 @@ function Feed({ currentUser, posts, navigation, language }) {
   const dimensions = Dimensions.get("window");
   const imageHeight = Math.round((dimensions.width * 1) / 1);
   const imageWidth = dimensions.width;
-  console.log(language);
+
   const [datalist, setDatalist] = useState(posts);
 
   useEffect(() => {

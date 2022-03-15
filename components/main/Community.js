@@ -23,7 +23,7 @@ const Tab = createMaterialTopTabNavigator();
 
 function Community({ currentUser, route, navigation }) {
   const { language } = route?.params ?? {};
-  console.log(language);
+
   return (
     <NavigationContainer independent={true}>
       <View style={styles.container}>

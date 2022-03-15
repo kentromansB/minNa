@@ -25,7 +25,6 @@ function Social({ postsAll, navigation, route, language }) {
   //const imageHeight = Math.round(dimensions.width * 1 / 1);
   const imageWidth = dimensions.width;
   const [datalist, setDatalist] = useState(postsAll);
-  console.log(language);
 
   useEffect(() => {
     setDatalist(postsAll);

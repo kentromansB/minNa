@@ -23,7 +23,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 function MContriPend({ currentUser, navigation, props, language }) {
   const [status, setStatus] = useState("All");
   const [datalist, setDatalist] = useState("");
-  console.log(language);
+
   // useEffect(() => {
   //   setDatalist(dictionaryAll);
   // }, [dictionaryAll]);

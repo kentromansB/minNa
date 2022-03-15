@@ -12,7 +12,6 @@ import {
 import firebase from "firebase";
 require("firebase/firestore");
 require("firebase/firebase-storage");
-import { connect } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -50,7 +49,9 @@ function Dictionary({ route, navigation }) {
       firebase
         .firestore()
         .collection("languages")
-        .where("language", "==", language)
+        .doc(language)
+        .collection("dictionary")
+        .where("status", "==", "1")
         .get()
         .then((snapshot) => {
           let masterDataSource = snapshot.docs.map((doc) => {
@@ -76,7 +77,7 @@ function Dictionary({ route, navigation }) {
       // Update FilteredDataSource
       const newData = masterDataSource.filter(function (item) {
         const itemData = `${
-          item.language ? item.language.toUpperCase() : "".toUpperCase()
+          item.word ? item.word.toUpperCase() : "".toUpperCase()
         }`;
         const textData = text.toUpperCase();
         return itemData.indexOf(textData) > -1;
@@ -90,8 +91,6 @@ function Dictionary({ route, navigation }) {
       setSearch(text);
     }
   };
-  console.log(language);
-  console.log(languageDictionary);
   return (
     <NavigationContainer independent={true}>
       <View style={styles.headLine}>
@@ -120,7 +119,7 @@ function Dictionary({ route, navigation }) {
               onPress={() => navigation.navigate("Word", { data: item })}
             >
               <View style={styles.bodycontainer}>
-                <Text style={styles.inKagan}>{item.language} </Text>
+                <Text style={styles.inKagan}>{item.word} </Text>
                 <Text style={styles.inFilipino}>
                   {item.filipino} (in filipino)
                 </Text>
@@ -134,11 +133,7 @@ function Dictionary({ route, navigation }) {
   );
 }
 
-const mapStateToProps = (store) => ({
-  languageState: store.userState.languageState,
-});
-
-export default connect(mapStateToProps, null)(Dictionary);
+export default Dictionary;
 
 const styles = StyleSheet.create({
   container: {
@@ -209,7 +204,7 @@ const styles = StyleSheet.create({
   },
   inFilipino: {
     fontSize: 11,
-    color: "#8E2835",
+    color: "#215a88",
     fontStyle: "italic",
   },
   meaning: {

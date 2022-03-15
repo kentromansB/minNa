@@ -23,7 +23,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 function VWAll({ validatedDictionary, navigation, language }) {
   const [status, setStatus] = useState("All");
   const [datalist, setDatalist] = useState(validatedDictionary);
-  console.log(language);
+
   useEffect(() => {
     setDatalist(validatedDictionary);
   }, [validatedDictionary]);

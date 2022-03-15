@@ -68,7 +68,7 @@ function AddLanguage({ currentUser, route, navigation }) {
       })
       .then(function () {
         alert("Language Successfully Added.");
-        navigation.navigate("Settings");
+        navigation.navigate("Language");
       });
   };
 

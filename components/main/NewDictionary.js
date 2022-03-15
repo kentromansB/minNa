@@ -24,7 +24,7 @@ import { useValidation } from "react-native-form-validator";
 import { Picker } from "@react-native-picker/picker";
 
 function NewDictionary({ currentUser, route, navigation }) {
-  const [kagan, setKagan] = useState("");
+  const [word, setWord] = useState("");
   const [filipino, setFilipino] = useState("");
   const [sentence, setSentence] = useState("");
   const [classification, setClassification] = useState("");
@@ -35,7 +35,7 @@ function NewDictionary({ currentUser, route, navigation }) {
   const [loading, setLoading] = useState(null);
   const [wordID, setWordID] = useState(makeid());
   const { language } = route?.params ?? {};
-  console.log(language);
+
   function makeid() {
     var randomText = "";
     var possible =
@@ -52,7 +52,7 @@ function NewDictionary({ currentUser, route, navigation }) {
   const { validate, isFieldInError, getErrorsInField, getErrorMessages } =
     useValidation({
       state: {
-        kagan,
+        word,
         filipino,
         sentence,
         pronunciation,
@@ -77,63 +77,63 @@ function NewDictionary({ currentUser, route, navigation }) {
     }
   };
 
-  const uploadAudios = async () => {
-    // const uri = recording.getURI();
-    const uri = FileSystem.documentDirectory + audio.name;
+  // const uploadAudios = async () => {
+  //   // const uri = recording.getURI();
+  //   const uri = FileSystem.documentDirectory + audio.name;
 
-    await FileSystem.copyAsync({
-      from: audio.uri,
-      to: uri,
-    });
+  //   await FileSystem.copyAsync({
+  //     from: audio.uri,
+  //     to: uri,
+  //   });
 
-    try {
-      // const blob = await new Promise((resolve, reject) => {
-      //   const xhr = new XMLHttpRequest();
-      //   xhr.onload = () => {
-      //     try {
-      //       resolve(xhr.response);
-      //     } catch (error) {
-      //       console.log("error:12", error);
-      //     }
-      //   };
-      //   xhr.onerror = (e) => {
-      //     console.log(e);
-      //     reject(new TypeError("Network request failed"));
-      //   };
-      //   xhr.responseType = "blob";
-      //   xhr.open("GET", `file://${audio?.uri}`, true);
-      //   xhr.send(null);
-      // });
-      // console.log('file://'+audio?.uri)
-      // let u = (`file://${audio?.uri}`)
-      let res = await fetch(uri);
-      let blobs = await res.blob();
-      if (blobs != null) {
-        const uriParts = audio?.uri.split(".");
-        const fileType = uriParts[uriParts.length - 1];
-        console.log(uriParts, "0-0-0", fileType);
-        // firebase
-        //   .storage()
-        //   .ref()
-        //   .child(`nameOfTheFile.${fileType}`)
-        //   .put(blob, {
-        //     contentType: `audio/${fileType}`,
-        //   })
-        //   .then(() => {
-        //     console.log("Sent!");
-        //   })
-        //   .catch((e) => console.log("error:", e));
-      } else {
-        console.log("erroor with blob");
-      }
-    } catch (error) {
-      console.log("error:", error);
-    }
-  };
+  //   try {
+  //     // const blob = await new Promise((resolve, reject) => {
+  //     //   const xhr = new XMLHttpRequest();
+  //     //   xhr.onload = () => {
+  //     //     try {
+  //     //       resolve(xhr.response);
+  //     //     } catch (error) {
+  //     //       console.log("error:12", error);
+  //     //     }
+  //     //   };
+  //     //   xhr.onerror = (e) => {
+  //     //     console.log(e);
+  //     //     reject(new TypeError("Network request failed"));
+  //     //   };
+  //     //   xhr.responseType = "blob";
+  //     //   xhr.open("GET", `file://${audio?.uri}`, true);
+  //     //   xhr.send(null);
+  //     // });
+  //     // console.log('file://'+audio?.uri)
+  //     // let u = (`file://${audio?.uri}`)
+  //     let res = await fetch(uri);
+  //     let blobs = await res.blob();
+  //     if (blobs != null) {
+  //       const uriParts = audio?.uri.split(".");
+  //       const fileType = uriParts[uriParts.length - 1];
+  //       console.log(uriParts, "0-0-0", fileType);
+  //       // firebase
+  //       //   .storage()
+  //       //   .ref()
+  //       //   .child(`nameOfTheFile.${fileType}`)
+  //       //   .put(blob, {
+  //       //     contentType: `audio/${fileType}`,
+  //       //   })
+  //       //   .then(() => {
+  //       //     console.log("Sent!");
+  //       //   })
+  //       //   .catch((e) => console.log("error:", e));
+  //     } else {
+  //       console.log("erroor with blob");
+  //     }
+  //   } catch (error) {
+  //     console.log("error:", error);
+  //   }
+  // };
 
   const uploadAudio = async () => {
     validate({
-      kagan: { required: true },
+      word: { required: true },
       filipino: { required: true },
       pronunciation: { required: true },
       sentence: { required: true },
@@ -179,29 +179,8 @@ function NewDictionary({ currentUser, route, navigation }) {
 
     task.on("state_changed", taskProgress, taskError, taskCompleted);
   };
-  // const SavePostData = (downloadURL) => {
-  //   firebase
-  //     .firestore()
-  //     .collection("userDictionary")
-  //     .doc(firebase.auth().currentUser.uid)
-  //     .collection("userDictionary")
-  //     .doc(wordID)
-  //     .set({
-  //       wordId: wordID,
-  //       email: currentUser.email,
-  //       downloadURL,
-  //       kagan,
-  //       filipino,
-  //       classification,
-  //       sentence,
-  //       pronunciation,
-  //       filipinoSentence,
-  //       meaning,
-  //       status: "0",
-  //       upload: "1",
-  //       creation: firebase.firestore.FieldValue.serverTimestamp(),
-  //     });
-  // };
+
+  /* Saving data to the firestore*/
   const saveAllPostData = (downloadURL) => {
     firebase
       .firestore()
@@ -214,7 +193,7 @@ function NewDictionary({ currentUser, route, navigation }) {
         email: currentUser.email,
         username: currentUser.name,
         downloadURL,
-        kagan,
+        word,
         filipino,
         classification,
         pronunciation,
@@ -228,7 +207,7 @@ function NewDictionary({ currentUser, route, navigation }) {
       .then(function () {
         alert("Thanks for contribution!!");
         setLoading(null);
-        navigation.popToTop();
+        navigation.navigate("ContributeDictionary");
       });
   };
 
@@ -241,15 +220,15 @@ function NewDictionary({ currentUser, route, navigation }) {
             {" "}
             Type the word you want to contribute.{" "}
           </Text>
-          {isFieldInError("kagan") &&
-            getErrorsInField("kagan").map((errorMessage) => (
+          {isFieldInError("word") &&
+            getErrorsInField("word").map((errorMessage) => (
               <Text style={{ color: "red" }}>Please enter the word</Text>
             ))}
           <TextInput
             style={styles.input}
             multiline={true}
             autoCapitalize="none"
-            onChangeText={(kagan) => setKagan(kagan)}
+            onChangeText={(word) => setWord(word)}
           />
         </View>
 

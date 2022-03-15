@@ -27,7 +27,6 @@ const onLogout = () => {
 
 function Settings({ currentUser, navigation, route }) {
   const { language } = route?.params ?? {};
-  console.log(language);
   if (currentUser.type == "2") {
     return (
       <SafeAreaView style={styles.container}>
