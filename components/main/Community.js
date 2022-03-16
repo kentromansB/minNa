@@ -23,7 +23,7 @@ const Tab = createMaterialTopTabNavigator();
 
 function Community({ currentUser, route, navigation }) {
   const { language } = route?.params ?? {};
-
+  console.log(language);
   return (
     <NavigationContainer independent={true}>
       <View style={styles.container}>
@@ -62,7 +62,9 @@ function Community({ currentUser, route, navigation }) {
 
       <Pressable
         style={styles.button}
-        onPress={() => navigation.navigate("MainContribution")}
+        onPress={() =>
+          navigation.navigate("MainContribution", { language: language })
+        }
         //onPress={() => navigation.navigate("NewContribution")}
       >
         <MaterialCommunityIcons name="plus" color={"#ffffff"} size={40} />

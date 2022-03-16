@@ -7,53 +7,54 @@ import {
   Pressable,
   TextInput,
   FlatList,
-  RefreshControl,
+  SafeAreaView,
+  ScrollView,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { connect } from "react-redux";
 import AddButton from "./AddButton";
-
-import { Dimensions } from "react-native";
 import firebase from "firebase";
 require("firebase/firestore");
 require("firebase/firebase-storage");
-import { TouchableOpacity } from "react-native-gesture-handler";
+// import SeeMore from "react-native-see-more-inline";
 
-function Feed({ currentUser, posts, navigation, language }) {
+import { Dimensions } from "react-native";
+
+function Feed({ postsAll, navigation, route, language }) {
   const dimensions = Dimensions.get("window");
-  const imageHeight = Math.round((dimensions.width * 1) / 1);
+  //const imageHeight = Math.round(dimensions.width * 1 / 1);
   const imageWidth = dimensions.width;
-
-  const [datalist, setDatalist] = useState(posts);
+  const [datalist, setDatalist] = useState(postsAll);
 
   useEffect(() => {
-    setDatalist(posts);
-  }, [posts]);
+    setDatalist(postsAll);
+  }, [postsAll]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
       firebase
         .firestore()
+        .collection("languages")
+        .doc(language)
         .collection("posts")
         .doc(firebase.auth().currentUser.uid)
         .collection("userPosts")
         .orderBy("creation", "desc")
         .get()
         .then((snapshot) => {
-          let posts = snapshot.docs.map((doc) => {
+          console.log(snapshot, "-=-=-=-=-=-=-=-=");
+          let postsAll = snapshot.docs.map((doc) => {
             const data = doc.data();
             const id = doc.id;
             return { id, ...data };
           });
-          setDatalist(posts);
+          setDatalist(postsAll);
         });
     });
 
     return unsubscribe;
   }, [navigation]);
-
   return (
-    //no button stylesheet
     <FlatList
       nestedScrollEnabled
       numColumns={1}
@@ -63,32 +64,30 @@ function Feed({ currentUser, posts, navigation, language }) {
       renderItem={({ item }) => (
         <View style={styles.container}>
           <View style={styles.profile}>
-            {currentUser.userImage != " " ? (
+            {item.userImage != " " ? (
               <Image
                 style={styles.imageprofile}
-                source={{ uri: currentUser.userImage }}
+                source={{ uri: item.userImage }}
               />
             ) : null}
-            {currentUser.userImage == " " ? (
+            {item.userImage == " " ? (
               <Image
                 style={styles.imageprofile}
                 source={require("../../assets/blank.png")}
               />
             ) : null}
-            <Text style={styles.profilename}></Text>
+            <Text style={styles.profilename}>{item.username} </Text>
           </View>
+
           <Text style={{ fontWeight: "bold", marginLeft: 10 }}>
             {" "}
             {item.title}
           </Text>
           <View style={{ padding: 30 }}>
-            <Text numberOfLines={2} style={styles.textVocab}>
-              {" "}
-              {item.description}
-            </Text>
+            <Text style={styles.textVocab}> {item.description}</Text>
           </View>
           <Image
-            style={{ height: imageWidth, width: imageWidth }}
+            style={{ width: imageWidth, height: imageWidth }}
             source={{ uri: item.downloadURL }}
           />
         </View>
@@ -98,8 +97,8 @@ function Feed({ currentUser, posts, navigation, language }) {
 }
 
 const mapStateToProps = (store) => ({
-  posts: store.userState.posts,
   currentUser: store.userState.currentUser,
+  postsAll: store.userState.postsAll,
 });
 
 export default connect(mapStateToProps, null)(Feed);
@@ -110,10 +109,9 @@ const styles = StyleSheet.create({
     left: 10,
   },
   container: {
-    paddingTop: 20,
-    justifyContent: "flex-start",
-
+    alignItems: "flex-start",
     marginBottom: 20,
+    flex: 1,
   },
   button: {
     position: "absolute",
@@ -141,6 +139,7 @@ const styles = StyleSheet.create({
   profilename: {
     fontWeight: "bold",
   },
+
   textHead: {
     flexDirection: "row",
     fontSize: 21,
@@ -279,12 +278,11 @@ const styles = StyleSheet.create({
   },
   textVocab: {
     fontSize: 13,
-
+    margin: 10,
     fontStyle: "italic",
     //lineHeight: 21,
     letterSpacing: 0.25,
     color: "black",
-    //alignContent:"flex-start",
   },
   textVocabSub: {
     fontSize: 11,
@@ -327,8 +325,5 @@ const styles = StyleSheet.create({
     left: 130,
     height: 50,
     borderColor: "black",
-  },
-  Icon: {
-    left: 7,
   },
 });

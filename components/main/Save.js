@@ -27,6 +27,8 @@ function Save({ currentUser, route, navigation }) {
   const [image, setImage] = useState(null);
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(null);
+  const { language } = route?.params ?? {};
+  console.log(language);
 
   const { validate, isFieldInError, getErrorsInField, getErrorMessages } =
     useValidation({
@@ -42,9 +44,9 @@ function Save({ currentUser, route, navigation }) {
   };
   const uploadImage = async () => {
     const uri = route.params.image;
-    const childPath = `post/${
+    const childPath = `posts/${
       firebase.auth().currentUser.uid
-    }/${Math.random().toString(36)}`;
+    }/${language}/${Math.random().toString(36)}`;
     console.log(childPath);
     const response = await fetch(uri);
     const blob = await response.blob();
@@ -73,24 +75,14 @@ function Save({ currentUser, route, navigation }) {
     task.on("state_changed", taskProgress, taskError, taskCompleted);
   };
 
-  const savePostData = (downloadURL) => {
-    firebase
-      .firestore()
-      .collection("posts")
-      .doc(firebase.auth().currentUser.uid)
-      .collection("userPosts")
-      .add({
-        downloadURL,
-        title,
-        description,
-        tags,
-        creation: firebase.firestore.FieldValue.serverTimestamp(),
-      });
-  };
   const saveAllPostData = (downloadURL) => {
     firebase
       .firestore()
-      .collection("postsAll")
+      .collection("languages")
+      .doc(language)
+      .collection("posts")
+      .doc(firebase.auth().currentUser.uid)
+      .collection("userPosts")
       .add({
         username: currentUser.name,
         userImage: currentUser.userImage,
@@ -103,7 +95,28 @@ function Save({ currentUser, route, navigation }) {
       .then(function () {
         alert("Image Posted");
         setLoading(null);
-        navigation.popToTop();
+        navigation.navigate("Community", { language: language });
+      });
+  };
+  const savePostData = (downloadURL) => {
+    firebase
+      .firestore()
+      .collection("languages")
+      .doc(language)
+      .collection("posts")
+      .add({
+        username: currentUser.name,
+        userImage: currentUser.userImage,
+        downloadURL,
+        title,
+        description,
+        tags,
+        creation: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then(function () {
+        alert("Image Posted");
+        setLoading(null);
+        navigation.navigate("Community", { language: language });
       });
   };
 
@@ -188,7 +201,7 @@ function Save({ currentUser, route, navigation }) {
           }}
         >
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#8E2835" }]}
+            style={[styles.button, { backgroundColor: "#215A88" }]}
             onPress={() => onSubmit()}
           >
             <Text style={[styles.subtitle, { fontSize: 16, color: "white" }]}>

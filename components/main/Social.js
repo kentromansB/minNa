@@ -34,7 +34,9 @@ function Social({ postsAll, navigation, route, language }) {
     const unsubscribe = navigation.addListener("focus", () => {
       firebase
         .firestore()
-        .collection("postsAll")
+        .collection("languages")
+        .doc(language)
+        .collection("posts")
         .orderBy("creation", "desc")
         .get()
         .then((snapshot) => {

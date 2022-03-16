@@ -14,7 +14,7 @@ import * as ImagePicker from "expo-image-picker";
 
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-export default function Contribution({ navigation }) {
+export default function Contribution({ navigation, route }) {
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
@@ -24,7 +24,7 @@ export default function Contribution({ navigation }) {
   // const [cameraType, setCameraType] = useState(Camera.Constants.Type.back)
   // const [cameraFlash, setCameraFlash] = useState(Camera.Constants.FlashMode.off)
   const [isCameraReady, setIsCameraReady] = useState(false);
-
+  const { language } = route?.params ?? {};
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestPermissionsAsync();
@@ -132,7 +132,9 @@ export default function Contribution({ navigation }) {
           <TouchableOpacity
             //title="Save"
             style={styles.checkButton}
-            onPress={() => navigation.navigate("Save", { image })}
+            onPress={() =>
+              navigation.navigate("Save", { image, language: language })
+            }
           >
             <MaterialCommunityIcons name="check" color="#263238" size={100} />
           </TouchableOpacity>
