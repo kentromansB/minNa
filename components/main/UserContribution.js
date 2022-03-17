@@ -66,7 +66,7 @@ function Validation({ currentUser, route, navigation }) {
 
             <TextInput
               style={[styles.input, { color: "black" }]}
-              value={data?.kagan}
+              value={data?.word}
               multiline={true}
               editable={false}
             />
@@ -168,7 +168,7 @@ function Validation({ currentUser, route, navigation }) {
 
             <TextInput
               style={[styles.input, { color: "black" }]}
-              value={data?.kagan}
+              value={data?.word}
               multiline={true}
               editable={false}
             />
@@ -261,7 +261,7 @@ function Validation({ currentUser, route, navigation }) {
 
             <TextInput
               style={[styles.input, { color: "black" }]}
-              value={data?.kagan}
+              value={data?.word}
               multiline={true}
               editable={false}
             />

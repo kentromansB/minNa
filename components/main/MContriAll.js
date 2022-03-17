@@ -32,9 +32,10 @@ function MContriAll({ currentUser, navigation, props, language }) {
     const unsubscribe = navigation.addListener("focus", () => {
       firebase
         .firestore()
-        .collection("userDictionary")
-        .doc(firebase.auth().currentUser.uid)
-        .collection("userDictionary")
+        .collection("languages")
+        .doc(language)
+        .collection("dictionary")
+        .where("uid", "==", firebase.auth().currentUser.uid)
         .get()
         .then((snapshot) => {
           let dictionaryAll = snapshot.docs.map((doc) => {
@@ -58,7 +59,7 @@ function MContriAll({ currentUser, navigation, props, language }) {
       >
         <View style={{ flexDirection: "column", flex: 1 }}>
           <View style={styles.itemBody}>
-            <Text style={styles.itemsName}> {item?.kagan}</Text>
+            <Text style={styles.itemsName}> {item?.word}</Text>
           </View>
           <View style={styles.itemBody}>
             <Text> {item?.meaning}</Text>
