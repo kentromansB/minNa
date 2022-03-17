@@ -22,40 +22,33 @@ import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system";
 import { updateDictionary } from "../../redux/actions";
 
-function Decline({ route, navigation }) {
+function Decline({ route, navigation, currentUser }) {
   const [note, setNote] = useState("");
   const [loading, setLoading] = useState(false);
   const { data } = route?.params ?? {};
-
+  const { language } = route?.params ?? {};
+  console.log(language);
+  console.log(data?.id);
   const Reject = () => {
     setLoading(true);
-    rejectUserDictionary();
     rejectDictionaryAll();
   };
 
   const rejectDictionaryAll = () => {
     firebase
       .firestore()
-      .doc(`dictionaryAll/${data?.id}`)
+      .collection("languages")
+      .doc(language)
+      .collection("dictionary")
+      .doc(`${data?.id}`)
       .update({
         status: "2",
         note,
+        validatedBy: currentUser.name,
       })
       .then((result) => {
-        navigation.goBack();
+        navigation.navigate("ValidateWord", { language: language });
         setLoading(false);
-      })
-      .catch((err) => console.log(err, "-=error"));
-  };
-  const rejectUserDictionary = () => {
-    firebase
-      .firestore()
-      .doc(`userDictionary/${data?.uid}`)
-      .collection("userDictionary")
-      .doc(`${data?.wordId}`)
-      .update({
-        status: "2",
-        note,
       })
       .catch((err) => console.log(err, "-=error"));
   };
@@ -111,7 +104,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 1,
     width: "90%",
-    backgroundColor: "#8E2835",
+    backgroundColor: "#215A88",
     //top: 130,
     marginTop: 20,
     marginBottom: 80,
