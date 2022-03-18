@@ -61,7 +61,7 @@ function ApplicationConf({ currentUser, route, navigation }) {
   return (
     <ScrollView style={styles.container}>
       <View>
-        <Text style={[styles.text, { color: "#8E2835" }]}> {data?.name} </Text>
+        <Text style={[styles.text, { color: "#215A88" }]}> {data?.name} </Text>
       </View>
 
       <View style={(styles.bodycontainer, { marginTop: 10 })}>

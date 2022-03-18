@@ -25,7 +25,7 @@ import { Picker } from "@react-native-picker/picker";
 function Validation({ currentUser, route, navigation }) {
   const [loading, setLoading] = useState(false);
   const { data } = route?.params ?? {};
-  const [kagan, setKagan] = useState(data?.kagan);
+  const [word, setWord] = useState(data?.word);
   const [filipino, setFilipino] = useState(data?.filipino);
   const [sentence, setSentence] = useState(data?.sentence);
   const [classification, setClassification] = useState(data?.classification);
@@ -34,7 +34,8 @@ function Validation({ currentUser, route, navigation }) {
   );
   const [meaning, setMeaning] = useState(data?.meaning);
   const [pronunciation, setPronunciation] = useState(data?.pronunciation);
-
+  const { language } = route?.params ?? {};
+  console.log(language);
   const downloadAudio = async () => {
     let SoundObject = new Audio.Sound();
     try {
@@ -55,18 +56,20 @@ function Validation({ currentUser, route, navigation }) {
 
   const Accept = () => {
     setLoading(true);
-    updateUserDictionary();
     updateDictionaryAll();
   };
 
   const updateDictionaryAll = () => {
     firebase
       .firestore()
-      .doc(`dictionaryAll/${data?.id}`)
+      .collection("languages")
+      .doc(language)
+      .collection("dictionary")
+      .doc(`${data?.id}`)
       .update({
         status: "1",
         validatedBy: currentUser.name,
-        kagan,
+        word,
         filipino,
         classification,
         sentence,
@@ -81,25 +84,6 @@ function Validation({ currentUser, route, navigation }) {
       .catch((err) => console.log(err, "-=error"));
   };
 
-  const updateUserDictionary = () => {
-    firebase
-      .firestore()
-      .doc(`userDictionary/${data?.uid}`)
-      .collection("userDictionary")
-      .doc(`${data?.wordId}`)
-      .update({
-        status: "1",
-        validatedBy: currentUser.name,
-        kagan,
-        filipino,
-        classification,
-        sentence,
-        pronunciation,
-        filipinoSentence,
-        meaning,
-      })
-      .catch((err) => console.log(err, "-=error"));
-  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.center}>
@@ -108,10 +92,10 @@ function Validation({ currentUser, route, navigation }) {
 
           <TextInput
             style={styles.input}
-            placeholder={data?.kagan}
+            placeholder={data?.word}
             editable={true}
             multiline={true}
-            onChangeText={(kagan) => setKagan(kagan)}
+            onChangeText={(word) => setWord(word)}
           />
         </View>
         <View style={styles.paddingLeft}>
@@ -216,7 +200,9 @@ function Validation({ currentUser, route, navigation }) {
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate("Decline", { data: data })}
+          onPress={() =>
+            navigation.navigate("Decline", { data: data, language: language })
+          }
         >
           <Text style={styles.subtitle}>Decline</Text>
         </Pressable>

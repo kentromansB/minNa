@@ -32,8 +32,9 @@ function VWAll({ validatedDictionary, navigation, language }) {
     const unsubscribe = navigation.addListener("focus", () => {
       firebase
         .firestore()
-        .collection("dictionaryAll")
-        .orderBy("kagan", "asc")
+        .collection("languages")
+        .doc(language)
+        .collection("dictionary")
         .where("upload", "==", "1")
         .get()
         .then((snapshot) => {
@@ -65,11 +66,13 @@ function VWAll({ validatedDictionary, navigation, language }) {
       <TouchableOpacity
         key={index}
         style={styles.itemContainer}
-        onPress={() => navigation.navigate("Validation", { data: item })}
+        onPress={() =>
+          navigation.navigate("Validation", { data: item, language: language })
+        }
       >
         <View style={{ flexDirection: "column", flex: 1 }}>
           <View style={styles.itemBody}>
-            <Text style={styles.itemsName}> {item?.kagan}</Text>
+            <Text style={styles.itemsName}> {item?.word}</Text>
           </View>
           <View style={styles.itemBody}>
             <Text> {item?.meaning}</Text>
