@@ -164,7 +164,7 @@ function ValidatorApplication({ currentUser, route, navigation }) {
           }}
         >
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#bfa42a" }]}
+            style={[styles.button, { backgroundColor: "#215A88" }]}
             onPress={() => uploadPDF()}
           >
             <Text style={[styles.text, { fontSize: 16, color: "white" }]}>

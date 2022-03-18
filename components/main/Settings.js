@@ -138,14 +138,20 @@ function Settings({ currentUser, navigation, route }) {
 
         <View style={styles.menuWrapper}>
           <TouchableRipple
-            onPress={() => navigation.navigate("MyContribution")}
+            onPress={() =>
+              navigation.navigate("MyContribution", { language: language })
+            }
           >
             <View style={styles.menuItem}>
               <Icon name="folder-outline" color="#777777" size={25} />
               <Text style={styles.menuItemText}>My Contributions</Text>
             </View>
           </TouchableRipple>
-          <TouchableRipple onPress={() => navigation.navigate("Validate")}>
+          <TouchableRipple
+            onPress={() =>
+              navigation.navigate("Validate", { language: language })
+            }
+          >
             <View style={styles.menuItem}>
               <Icon
                 name="checkbox-marked-circle-outline"
@@ -190,7 +196,9 @@ function Settings({ currentUser, navigation, route }) {
 
         <View style={styles.menuWrapper}>
           <TouchableRipple
-            onPress={() => navigation.navigate("MyContribution")}
+            onPress={() =>
+              navigation.navigate("MyContribution", { language: language })
+            }
           >
             <View style={styles.menuItem}>
               <Icon name="folder-outline" color="#777777" size={25} />

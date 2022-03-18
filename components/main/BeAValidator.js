@@ -63,7 +63,7 @@ export default function BeAValidator({ navigation }) {
         <TouchableOpacity
           style={[
             styles.proceedButton,
-            { backgroundColor: toggleCheckBox ? "#004AAD" : "#BFA42A3D" },
+            { backgroundColor: toggleCheckBox ? "#215A88" : "#215A883D" },
           ]}
           disabled={!toggleCheckBox}
           onPress={() => navigation.navigate("ValAppScreen")}
