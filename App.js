@@ -81,6 +81,9 @@ import ClothingScreen from "./components/main/AboutClothing";
 import AddLanguageScreen from "./components/main/AddLanguage";
 import AddQuiz from "./components/main/AddQuiz";
 import AddQuestion from "./components/main/AddQuestion";
+import EditQuestion from "./components/main/EditQuestion";
+
+
 
 const Stack = createStackNavigator();
 
@@ -686,6 +689,21 @@ export class App extends Component {
                 },
               }}
             />
+            <Stack.Screen
+              name="EditQuestion"
+              component={EditQuestion}
+              options={{
+                title: "EditQuestion",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+            
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

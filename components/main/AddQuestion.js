@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   TextInput,
@@ -10,11 +10,45 @@ import {
   Pressable,
   ScrollView,
   Alert,
+  FlatList,
 } from "react-native";
 import { connect } from "react-redux";
+import firebase from "firebase";
+require("firebase/firestore");
+require("firebase/firebase-storage");
+
 
 
 function AddQuestion({ currentUser, route, navigation }) {
+
+  const [filteredDataSource, setFilteredDataSource] = useState("");
+  const [masterDataSource, setMasterDataSource] = useState("");
+  const [datalist, setDatalist] = useState("");
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      firebase
+        .firestore()
+        .collection("Questions")
+        .get()
+        .then((snapshot) => {
+          let masterDataSource = snapshot.docs.map((doc) => {
+            const data = doc.data();
+            const id = doc.id;
+            return { id, ...data };
+          });
+  
+          setDatalist(masterDataSource);
+          setFilteredDataSource(masterDataSource);
+          setMasterDataSource(masterDataSource);
+          console.log(masterDataSource);
+        });
+    });
+  
+    return unsubscribe;
+  }, [navigation]);
+  
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.bodycontainer}>
@@ -28,7 +62,31 @@ function AddQuestion({ currentUser, route, navigation }) {
 
         <View style={{ marginVertical: 5 }}>
           <Text style={[styles.text, { fontSize: 16 }]}>Questions:</Text>
-        </View>
+        
+          <FlatList
+        nestedScrollEnabled
+        keyExtractor={(item, index) => index.toString()}
+        numColumns={1}
+        horizontal={false}
+        data={filteredDataSource}
+        style={{ flex: 1 }}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity
+              style={styles.container}
+              onPress={() =>
+                navigation.navigate("EditQuestion", { question: item.question })
+              }
+            >
+              <View style={styles.bodycontainer}>
+                <Text style={styles.inKagan}>{item.question} </Text>
+              </View>
+            </TouchableOpacity>
+          );
+        }}
+      />
+    
+      </View>
         <View
           style={{
             flexDirection: "row",
