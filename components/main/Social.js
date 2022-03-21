@@ -11,7 +11,6 @@ import {
   ScrollView,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { connect } from "react-redux";
 import AddButton from "./AddButton";
 import firebase from "firebase";
 require("firebase/firestore");
@@ -20,15 +19,11 @@ require("firebase/firebase-storage");
 
 import { Dimensions } from "react-native";
 
-function Social({ postsAll, navigation, route, language }) {
+function Social({ navigation, route, language }) {
   const dimensions = Dimensions.get("window");
   //const imageHeight = Math.round(dimensions.width * 1 / 1);
   const imageWidth = dimensions.width;
-  const [datalist, setDatalist] = useState(postsAll);
-
-  useEffect(() => {
-    setDatalist(postsAll);
-  }, [postsAll]);
+  const [datalist, setDatalist] = useState("");
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
@@ -94,12 +89,7 @@ function Social({ postsAll, navigation, route, language }) {
   );
 }
 
-const mapStateToProps = (store) => ({
-  currentUser: store.userState.currentUser,
-  postsAll: store.userState.postsAll,
-});
-
-export default connect(mapStateToProps, null)(Social);
+export default Social;
 
 const styles = StyleSheet.create({
   title: {

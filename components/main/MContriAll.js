@@ -11,7 +11,6 @@ import {
   SafeAreaView,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { connect } from "react-redux";
 import AddButton from "./AddButton";
 
 import { Dimensions } from "react-native";
@@ -20,13 +19,9 @@ require("firebase/firestore");
 require("firebase/firebase-storage");
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-function MContriAll({ currentUser, navigation, props, language }) {
+function MContriAll({ navigation, language }) {
   const [status, setStatus] = useState("All");
   const [datalist, setDatalist] = useState("");
-
-  // useEffect(() => {
-  //   setDatalist(dictionaryAll);
-  // }, [dictionaryAll]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
@@ -127,11 +122,8 @@ function MContriAll({ currentUser, navigation, props, language }) {
     </SafeAreaView>
   );
 }
-const mapStateToProps = (store) => ({
-  currentUser: store.userState.currentUser,
-});
 
-export default connect(mapStateToProps, null)(MContriAll);
+export default MContriAll;
 
 const styles = StyleSheet.create({
   container: {

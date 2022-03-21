@@ -11,7 +11,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import { connect } from "react-redux";
+
 import firebase from "firebase";
 import { NavigationContainer } from "@react-navigation/native";
 require("firebase/firestore");
@@ -23,7 +23,7 @@ import { Audio } from "expo-av";
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system";
 
-function ValidatorApplication({ currentUser, route, navigation }) {
+function ValidatorApplication({ route, navigation }) {
   const [pdf, setPdf] = useState(null);
   const [loading, setLoading] = useState(null);
   const [note, setNote] = useState("");
@@ -177,11 +177,7 @@ function ValidatorApplication({ currentUser, route, navigation }) {
   );
 }
 
-const mapStateToProps = (store) => ({
-  currentUser: store.userState.currentUser,
-});
-
-export default connect(mapStateToProps, null)(ValidatorApplication);
+export default ValidatorApplication;
 const styles = StyleSheet.create({
   container: {
     alignContent: "center",

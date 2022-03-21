@@ -3,15 +3,7 @@ import { View, Text } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-  fetchUser,
-  fetchAllUser,
-  fetchUserPosts,
-  fetchAllUserPosts,
-  fetchFilteredDictionary,
-  fetchValidatedDictionary,
-  fetchLanguages,
-} from "../redux/actions/index";
+import { fetchUser } from "../redux/actions/index";
 import { NavigationContainer } from "@react-navigation/native";
 
 import Icon from "react-native-vector-icons/Ionicons";
@@ -47,12 +39,6 @@ import ProfileScreen from "./main/Settings";
 export class Main extends Component {
   componentDidMount() {
     this.props.fetchUser();
-    this.props.fetchAllUser();
-    // this.props.fetchUserPosts();
-    // this.props.fetchAllUserPosts();
-    // this.props.fetchFilteredDictionary();
-    // this.props.fetchValidatedDictionary();
-    // this.props.fetchLanguages();
   }
 
   render() {
@@ -226,12 +212,6 @@ const mapDispatchProps = (dispatch) =>
   bindActionCreators(
     {
       fetchUser,
-      // fetchUserPosts,
-      // fetchAllUserPosts,
-      // fetchFilteredDictionary,
-      fetchAllUser,
-      // fetchValidatedDictionary,
-      // fetchLanguages,
     },
     dispatch
   );

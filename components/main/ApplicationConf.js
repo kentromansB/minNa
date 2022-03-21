@@ -11,7 +11,6 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import { connect } from "react-redux";
 import firebase from "firebase";
 import { NavigationContainer } from "@react-navigation/native";
 require("firebase/firestore");
@@ -20,7 +19,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import * as FileSystem from "expo-file-system";
 import Hyperlink from "react-native-hyperlink";
 
-function ApplicationConf({ currentUser, route, navigation }) {
+function ApplicationConf({ route, navigation }) {
   const [loading, setLoading] = useState(false);
   const { data } = route?.params ?? {};
 
@@ -130,12 +129,7 @@ function ApplicationConf({ currentUser, route, navigation }) {
   );
 }
 
-const mapStateToProps = (store) => ({
-  currentUser: store.userState.currentUser,
-  usersAll: store.userState.usersAll,
-});
-
-export default connect(mapStateToProps, null)(ApplicationConf);
+export default ApplicationConf;
 const styles = StyleSheet.create({
   container: {
     alignContent: "center",

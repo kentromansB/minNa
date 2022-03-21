@@ -77,8 +77,6 @@ function Community({ currentUser, route, navigation }) {
 }
 
 const mapStateToProps = (store) => ({
-  postsAll: store.userState.postsAll,
-  users: store.userState.users,
   currentUser: store.userState.currentUser,
 });
 

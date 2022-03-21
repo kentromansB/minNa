@@ -20,13 +20,9 @@ require("firebase/firestore");
 require("firebase/firebase-storage");
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-function VWConf({ validatedDictionary, navigation, language }) {
+function VWConf({ navigation, language }) {
   const [status, setStatus] = useState("All");
-  const [datalist, setDatalist] = useState(validatedDictionary);
-
-  useEffect(() => {
-    setDatalist(validatedDictionary);
-  }, [validatedDictionary]);
+  const [datalist, setDatalist] = useState("");
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
@@ -140,11 +136,8 @@ function VWConf({ validatedDictionary, navigation, language }) {
     </SafeAreaView>
   );
 }
-const mapStateToProps = (store) => ({
-  validatedDictionary: store.userState.validatedDictionary,
-});
 
-export default connect(mapStateToProps, null)(VWConf);
+export default VWConf;
 
 const styles = StyleSheet.create({
   container: {

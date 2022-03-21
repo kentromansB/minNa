@@ -11,7 +11,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { connect } from "react-redux";
+
 import AddButton from "./AddButton";
 
 import { Dimensions } from "react-native";
@@ -20,7 +20,7 @@ require("firebase/firestore");
 require("firebase/firebase-storage");
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-function MContriPend({ currentUser, navigation, props, language }) {
+function MContriPend({ navigation, language }) {
   const [status, setStatus] = useState("All");
   const [datalist, setDatalist] = useState("");
 
@@ -128,11 +128,8 @@ function MContriPend({ currentUser, navigation, props, language }) {
     </SafeAreaView>
   );
 }
-const mapStateToProps = (store) => ({
-  currentUser: store.userState.currentUser,
-});
 
-export default connect(mapStateToProps, null)(MContriPend);
+export default MContriPend;
 
 const styles = StyleSheet.create({
   container: {

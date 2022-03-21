@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -10,23 +10,20 @@ import {
   RefreshControl,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { connect } from "react-redux";
 import AddButton from "./AddButton";
 
-import { Dimensions } from 'react-native';
+import { Dimensions } from "react-native";
 
-import SeeMore from 'react-native-see-more-inline';
+import SeeMore from "react-native-see-more-inline";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-
-
-function Image({ posts, navigation }) {
+function Image({ navigation }) {
   const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
   };
 
-  const dimensions = Dimensions.get('window');
-  const imageHeight = Math.round(dimensions.width * 1 / 1);
+  const dimensions = Dimensions.get("window");
+  const imageHeight = Math.round((dimensions.width * 1) / 1);
   const imageWidth = dimensions.width;
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -36,15 +33,12 @@ function Image({ posts, navigation }) {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
-  
-
   return (
-
     <View>
-        <Image
-            style={{  height: imageWidth, width: imageWidth }}
-            source={{ uri: item.downloadURL }}
-          />
+      <Image
+        style={{ height: imageWidth, width: imageWidth }}
+        source={{ uri: item.downloadURL }}
+      />
     </View>
     //no button stylesheet
     // <FlatList
@@ -63,24 +57,19 @@ function Image({ posts, navigation }) {
     //         style={{  height: imageWidth, width: imageWidth }}
     //         source={{ uri: item.downloadURL }}
     //       />
-    //       <SeeMore 
-    //           numberOfLines={2} 
+    //       <SeeMore
+    //           numberOfLines={2}
     //           style={styles.textVocab}> "{item.caption}"
     //       </SeeMore>
     //       </TouchableOpacity>
-          
+
     //     </View>
     //   )}
     // />
   );
 }
 
-const mapStateToProps = (store) => ({
-  posts: store.userState.posts,
-  postsAll: store.userState.postsAll,
-});
-
-export default connect(mapStateToProps, null)(Image);
+export default Image;
 
 const styles = StyleSheet.create({
   title: {
@@ -89,7 +78,7 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingTop: 20,
-    justifyContent:"flex-start",
+    justifyContent: "flex-start",
 
     marginBottom: 20,
   },

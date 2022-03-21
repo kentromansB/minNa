@@ -14,20 +14,15 @@ import {
   SafeAreaView,
   FlatList,
 } from "react-native";
-import { connect } from "react-redux";
 import firebase from "firebase";
 import { NavigationContainer } from "@react-navigation/native";
 require("firebase/firestore");
 require("firebase/firebase-storage");
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-function Applications({ usersAll, navigation }) {
+function Applications({ navigation }) {
   const [status, setStatus] = useState("All");
-  const [datalist, setDatalist] = useState(usersAll);
-
-  useEffect(() => {
-    setDatalist(usersAll);
-  }, [usersAll]);
+  const [datalist, setDatalist] = useState("");
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
@@ -127,11 +122,8 @@ function Applications({ usersAll, navigation }) {
     </SafeAreaView>
   );
 }
-const mapStateToProps = (store) => ({
-  usersAll: store.userState.usersAll,
-});
 
-export default connect(mapStateToProps, null)(Applications);
+export default Applications;
 
 const styles = StyleSheet.create({
   container: {

@@ -16,7 +16,6 @@ import firebase from "firebase";
 require("firebase/firestore");
 require("firebase/firebase-storage");
 
-import { connect } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { fetchDictionary } from "../../redux/actions";
@@ -70,11 +69,8 @@ function ValidateWord({ route }) {
     </SafeAreaView>
   );
 }
-const mapStateToProps = (store) => ({
-  dictionaryAll: store.userState.dictionaryAll,
-});
 
-export default connect(mapStateToProps, null)(ValidateWord);
+export default ValidateWord;
 
 const styles = StyleSheet.create({
   container: {

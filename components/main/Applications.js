@@ -56,11 +56,8 @@ function Applications() {
     </SafeAreaView>
   );
 }
-const mapStateToProps = (store) => ({
-  dictionaryAll: store.userState.dictionaryAll,
-});
 
-export default connect(mapStateToProps, null)(Applications);
+export default Applications;
 
 const styles = StyleSheet.create({
   container: {

@@ -16,7 +16,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import { Audio } from "expo-av";
-import { connect } from "react-redux";
 
 var head = require("../../assets/learning.svg");
 
@@ -82,11 +81,7 @@ const Word = ({ route }) => {
   );
 };
 
-const mapStateToProps = (store) => ({
-  dictionaryAll: store.userState.dictionaryAll,
-});
-
-export default connect(mapStateToProps, null)(Word);
+export default Word;
 
 const styles = StyleSheet.create({
   container: {

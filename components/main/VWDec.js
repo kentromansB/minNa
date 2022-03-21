@@ -11,7 +11,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { connect } from "react-redux";
+
 import AddButton from "./AddButton";
 
 import { Dimensions } from "react-native";
@@ -20,13 +20,13 @@ require("firebase/firestore");
 require("firebase/firebase-storage");
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-function VWDec({ validatedDictionary, navigation, language }) {
+function VWDec({ navigation, language }) {
   const [status, setStatus] = useState("All");
-  const [datalist, setDatalist] = useState(validatedDictionary);
+  const [datalist, setDatalist] = useState("");
 
-  useEffect(() => {
-    setDatalist(validatedDictionary);
-  }, [validatedDictionary]);
+  // useEffect(() => {
+  //   setDatalist(validatedDictionary);
+  // }, [validatedDictionary]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
@@ -140,11 +140,8 @@ function VWDec({ validatedDictionary, navigation, language }) {
     </SafeAreaView>
   );
 }
-const mapStateToProps = (store) => ({
-  validatedDictionary: store.userState.validatedDictionary,
-});
 
-export default connect(mapStateToProps, null)(VWDec);
+export default VWDec;
 
 const styles = StyleSheet.create({
   container: {

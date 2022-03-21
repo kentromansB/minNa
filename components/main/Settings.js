@@ -147,6 +147,12 @@ function Settings({ currentUser, navigation, route }) {
               <Text style={styles.menuItemText}>My Contributions</Text>
             </View>
           </TouchableRipple>
+          <TouchableRipple onPress={() => navigation.navigate("Language")}>
+            <View style={styles.menuItem}>
+              <Icon name="bookshelf" color="#777777" size={25} />
+              <Text style={styles.menuItemText}>Languages</Text>
+            </View>
+          </TouchableRipple>
           <TouchableRipple
             onPress={() =>
               navigation.navigate("Validate", { language: language })
@@ -213,7 +219,12 @@ function Settings({ currentUser, navigation, route }) {
               <Text style={styles.menuItemText}>Be A Validator</Text>
             </View>
           </TouchableRipple>
-
+          <TouchableRipple onPress={() => navigation.navigate("Language")}>
+            <View style={styles.menuItem}>
+              <Icon name="bookshelf" color="#777777" size={25} />
+              <Text style={styles.menuItemText}>Languages</Text>
+            </View>
+          </TouchableRipple>
           <TouchableRipple onPress={() => onLogout()}>
             <View style={styles.menuItem}>
               <Icon name="logout" color="#777777" size={25} />

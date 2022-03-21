@@ -11,7 +11,6 @@ import {
   SafeAreaView,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { connect } from "react-redux";
 import AddButton from "./AddButton";
 
 import { Dimensions } from "react-native";
@@ -128,11 +127,8 @@ function MContriDec({ currentUser, navigation, props, language }) {
     </SafeAreaView>
   );
 }
-const mapStateToProps = (store) => ({
-  currentUser: store.userState.currentUser,
-});
 
-export default connect(mapStateToProps, null)(MContriDec);
+export default MContriDec;
 
 const styles = StyleSheet.create({
   container: {

@@ -31,7 +31,7 @@ var head = require("../../assets/learning.svg");
 
 const Tab = createMaterialTopTabNavigator();
 
-function MyContributions({ dictionaryAll, currentUser, navigation, route }) {
+function MyContributions({ route }) {
   const { language } = route?.params ?? {};
 
   return (
