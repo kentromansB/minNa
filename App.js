@@ -9,7 +9,6 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./redux/reducers";
 import thunk from "redux-thunk";
-
 // import { LogBox } from "react-native";
 // import _ from "lodash";
 
@@ -38,8 +37,6 @@ if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
 
-import { checkConnection } from "./NetInfo";
-// import { NoConnection } from "./components/main/NoConnection";
 import LandingScreen from "./components/auth/Landing";
 import LanguageScreen from "./components/main/Language";
 import RegisterScreen from "./components/auth/Register";
@@ -86,6 +83,8 @@ import AddQuiz from "./components/main/AddQuiz";
 import AddQuestion from "./components/main/AddQuestion";
 import EditQuestion from "./components/main/EditQuestion";
 
+
+
 const Stack = createStackNavigator();
 
 // import { LogBox } from "react-native";
@@ -96,7 +95,6 @@ export class App extends Component {
     super(props);
     this.state = {
       loaded: false,
-      connectStatus: false,
     };
   }
 
@@ -115,60 +113,57 @@ export class App extends Component {
       }
     });
   }
-
   render() {
-    const { loggedIn, loaded, connectStatus } = this.state;
-
-    // checkConnection().then((res) => {
-    //   this.setState({ connectStatus: res });
-    // });
+    const { loggedIn, loaded } = this.state;
     if (!loaded) {
       return <View style={{ flex: 1, justifyContent: "center" }}></View>;
     }
     if (!loggedIn) {
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Landing">
-          <Stack.Screen
-            name="Landing"
-            component={LandingScreen}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="Register"
-            component={RegisterScreen}
-            options={{
-              headerShadowVisible: false,
-              headerTintColor: "#ffffff",
-              headerStyle: {
-                backgroundColor: "#215A88",
-                borderBottomWidth: 0,
-              },
-            }}
-          />
-          <Stack.Screen
-            name="ForgotPassword"
-            component={ForgotPasswordScreen}
-            options={{
-              title: "Forgot Password",
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{
-              headerShadowVisible: false,
-              headerTintColor: "#ffffff",
-              headerStyle: {
-                backgroundColor: "#215A88",
-                borderBottomWidth: 0,
-              },
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>;
+      return (
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Landing">
+            <Stack.Screen
+              name="Landing"
+              component={LandingScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={RegisterScreen}
+              options={{
+                headerShadowVisible: false,
+                headerTintColor: "#ffffff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+            <Stack.Screen
+              name="ForgotPassword"
+              component={ForgotPasswordScreen}
+              options={{
+                title: "Forgot Password",
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={{
+                headerShadowVisible: false,
+                headerTintColor: "#ffffff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      );
     }
     return (
       <Provider store={store}>
@@ -708,6 +703,7 @@ export class App extends Component {
                 },
               }}
             />
+            
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
