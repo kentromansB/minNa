@@ -57,18 +57,6 @@ function Social({ navigation, route, language }) {
       renderItem={({ item }) => (
         <View style={styles.container}>
           <View style={styles.profile}>
-            {item.userImage != " " ? (
-              <Image
-                style={styles.imageprofile}
-                source={{ uri: item.userImage }}
-              />
-            ) : null}
-            {item.userImage == " " ? (
-              <Image
-                style={styles.imageprofile}
-                source={require("../../assets/blank.png")}
-              />
-            ) : null}
             <Text style={styles.profilename}>{item.username} </Text>
           </View>
 
@@ -126,6 +114,9 @@ const styles = StyleSheet.create({
   },
   profilename: {
     fontWeight: "bold",
+    paddingLeft: 10,
+    paddingBottom: 20,
+    paddingTop: 10,
   },
 
   textHead: {

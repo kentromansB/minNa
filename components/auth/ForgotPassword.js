@@ -42,36 +42,34 @@ export default class ForgotPassword extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View style = {styles.container}>
-            <View style = {{alignItems:"center"}}>
-                <Text style = {styles.Text}>Trouble Logging In?</Text>
-                <Text style = {{textAlign:"center" , paddingTop:10}}> Enter your email and we'll send you a link
-                  to get back into your account.
-                </Text>
-            </View>
-            <View style = {{paddingVertical: 20}}>
-                <TextInput
-                  label="Email"
-                  activeUnderlineColor="#8E2835"
-                  keyboardType="email-address"
-                  onChangeText={(email) => this.setState({ email })}
-                 
-                />
-            </View>
-            <View>
-                <Pressable style={styles.button} onPress={() => this.onReset()}>
-                    <Text style={styles.text}>Reset Email</Text>
-                  </Pressable>
-            </View>
-            <View style = {styles.BackButton}>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("Login")}
-                >
-                  <Text style = {{color:"#8E2835"}}>Back To Log In</Text>
-                </TouchableOpacity>
-          </View>
+      <View style={styles.container}>
+        <View style={{ alignItems: "center" }}>
+          <Text style={styles.Text}>Trouble Logging In?</Text>
+          <Text style={{ textAlign: "center", paddingTop: 10 }}>
+            {" "}
+            Enter your email and we'll send you a link to get back into your
+            account.
+          </Text>
+        </View>
+        <View style={{ paddingVertical: 20 }}>
+          <TextInput
+            label="Email"
+            activeUnderlineColor="#215A88"
+            keyboardType="email-address"
+            onChangeText={(email) => this.setState({ email })}
+          />
+        </View>
+        <View>
+          <Pressable style={styles.button} onPress={() => this.onReset()}>
+            <Text style={styles.text}>Reset Email</Text>
+          </Pressable>
+        </View>
+        <View style={styles.BackButton}>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <Text style={{ color: "#215A88" }}>Back To Log In</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-     
     );
   }
 }
@@ -84,15 +82,14 @@ export default class ForgotPassword extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    paddingHorizontal:30,
-    paddingVertical:150,
-    alignContent:"center",
-    
+    flex: 1,
+    paddingHorizontal: 30,
+    paddingVertical: 150,
+    alignContent: "center",
   },
-  Text:{
-    fontSize:20,
-    fontWeight:"bold"
+  Text: {
+    fontSize: 20,
+    fontWeight: "bold",
   },
   input: {
     paddingVertical: 10,
@@ -113,9 +110,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 1,
     width: "100%",
-    backgroundColor: "#8E2835",
+    backgroundColor: "#215A88",
   },
-  
+
   text: {
     alignSelf: "center",
     fontSize: 18,
@@ -123,10 +120,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "white",
   },
-  BackButton:{
-    flex:1,
-    alignItems:"flex-end",
-    justifyContent:"center",
-    flexDirection:"row",
-  }
+  BackButton: {
+    flex: 1,
+    alignItems: "flex-end",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
 });
