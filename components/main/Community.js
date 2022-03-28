@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -14,7 +14,8 @@ import {
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { connect } from "react-redux";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-
+import firebase from "firebase";
+require("firebase/firestore");
 import FeedScreen from "./Feed";
 import SocialScreen from "./Social";
 import { NavigationContainer } from "@react-navigation/native";
@@ -22,13 +23,39 @@ import { NavigationContainer } from "@react-navigation/native";
 const Tab = createMaterialTopTabNavigator();
 
 function Community({ currentUser, route, navigation }) {
+  const [datalist, setDatalist] = useState("");
   const { language } = route?.params ?? {};
   console.log(language);
+  // console.log(datalist);
+  console.log(datalist);
+
+  useEffect(() => {
+    setDatalist(currentUser);
+  }, [currentUser]);
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(firebase.auth().currentUser.uid)
+        .get()
+        .then((snapshot) => {
+          console.log(snapshot, "-=-=-=-=-=-=-=-=");
+          if (snapshot.exists) {
+            let currentUser = snapshot.data();
+            setDatalist(currentUser);
+          } else {
+          }
+        });
+    });
+
+    return unsubscribe;
+  }, [navigation]);
   return (
     <NavigationContainer independent={true}>
       <View style={styles.container}>
         <View style={styles.innercontainer}>
-          <Text style={styles.textHead}>Welcome, {currentUser.name} </Text>
+          <Text style={styles.textHead}>Welcome, {datalist.name} </Text>
           <Text style={styles.textSubHead}>Engage in Community</Text>
           <Text style={styles.textreg}>
             Create and share your photos and stories with the community.

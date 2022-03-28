@@ -9,6 +9,7 @@ import {
   FlatList,
   SafeAreaView,
   ScrollView,
+  RefreshControl,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AddButton from "./AddButton";
@@ -24,29 +25,62 @@ function Social({ navigation, route, language }) {
   //const imageHeight = Math.round(dimensions.width * 1 / 1);
   const imageWidth = dimensions.width;
   const [datalist, setDatalist] = useState("");
+  const [refreshing, setRefreshing] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
-      firebase
-        .firestore()
-        .collection("languages")
-        .doc(language)
-        .collection("posts")
-        .orderBy("creation", "desc")
-        .get()
-        .then((snapshot) => {
-          console.log(snapshot, "-=-=-=-=-=-=-=-=");
-          let postsAll = snapshot.docs.map((doc) => {
-            const data = doc.data();
-            const id = doc.id;
-            return { id, ...data };
-          });
-          setDatalist(postsAll);
-        });
-    });
+    getData();
+  }, []);
 
-    return unsubscribe;
-  }, [navigation]);
+  const getData = () => {
+    //Service to get the data from the server to render
+    firebase
+      .firestore()
+      .collection("languages")
+      .doc(language)
+      .collection("posts")
+      .orderBy("creation", "desc")
+      .get()
+      .then((snapshot) => {
+        console.log(snapshot, "-=-=-=-=-=-=-=-=");
+        let postsAll = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          const id = doc.id;
+          return { id, ...data };
+        });
+        setDatalist(postsAll);
+        setRefreshing(false);
+      });
+  };
+
+  const ItemView = ({ item }) => {
+    return (
+      // Flat List Item
+      <View style={styles.container}>
+        <View style={styles.profile}>
+          <Text style={styles.profilename}>{item.username} </Text>
+        </View>
+
+        <Text style={{ fontWeight: "bold", marginLeft: 10 }}>
+          {" "}
+          {item.title}
+        </Text>
+        <View style={{ padding: 30 }}>
+          <Text style={styles.textVocab}> {item.description}</Text>
+        </View>
+        <Image
+          style={{ width: imageWidth, height: imageWidth }}
+          source={{ uri: item.downloadURL }}
+        />
+      </View>
+    );
+  };
+  const onRefresh = () => {
+    //Clear old data of the list
+    setDatalist([]);
+    //Call the Service to get the latest data
+    getData();
+  };
+
   return (
     <FlatList
       nestedScrollEnabled
@@ -54,25 +88,14 @@ function Social({ navigation, route, language }) {
       horizontal={false}
       data={datalist}
       style={{ flex: 1 }}
-      renderItem={({ item }) => (
-        <View style={styles.container}>
-          <View style={styles.profile}>
-            <Text style={styles.profilename}>{item.username} </Text>
-          </View>
-
-          <Text style={{ fontWeight: "bold", marginLeft: 10 }}>
-            {" "}
-            {item.title}
-          </Text>
-          <View style={{ padding: 30 }}>
-            <Text style={styles.textVocab}> {item.description}</Text>
-          </View>
-          <Image
-            style={{ width: imageWidth, height: imageWidth }}
-            source={{ uri: item.downloadURL }}
-          />
-        </View>
-      )}
+      renderItem={ItemView}
+      refreshControl={
+        <RefreshControl
+          //refresh control used for the Pull to Refresh
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      }
     />
   );
 }
