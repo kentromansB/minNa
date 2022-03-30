@@ -47,7 +47,7 @@ function Decline({ route, navigation, currentUser }) {
         validatedBy: currentUser.name,
       })
       .then((result) => {
-        navigation.navigate("ValidateWord", { language: language });
+        navigation.navigate("Validate", { language: language });
         setLoading(false);
       })
       .catch((err) => console.log(err, "-=error"));

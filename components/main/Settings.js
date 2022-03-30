@@ -32,17 +32,8 @@ function Settings({ currentUser, navigation, route }) {
       <SafeAreaView style={styles.container}>
         <View>
           <View style={styles.userInfoSelection}>
-            {currentUser.userImage != " " ? (
-              <Avatar.Image source={{ uri: currentUser.userImage }} size={80} />
-            ) : null}
-            {currentUser.userImage == " " ? (
-              <Avatar.Image
-                source={require("../../assets/blank.png")}
-                size={80}
-              />
-            ) : null}
             <View>
-              <Title style={[styles.title, { marginTop: 15, marginBottom: 5 }]}>
+              <Title style={[styles.title, { marginTop: 35, marginBottom: 5 }]}>
                 {currentUser.name}
               </Title>
             </View>
@@ -118,18 +109,8 @@ function Settings({ currentUser, navigation, route }) {
       <SafeAreaView style={styles.container}>
         <View>
           <View style={styles.userInfoSelection}>
-            {currentUser.userImage != " " ? (
-              <Avatar.Image source={{ uri: currentUser.userImage }} size={80} />
-            ) : null}
-            {currentUser.userImage == " " ? (
-              <Avatar.Image
-                source={require("../../assets/blank.png")}
-                size={80}
-              />
-            ) : null}
-
             <View>
-              <Title style={[styles.title, { marginTop: 15, marginBottom: 5 }]}>
+              <Title style={[styles.title, { marginTop: 35, marginBottom: 5 }]}>
                 {currentUser.name}
               </Title>
             </View>
@@ -182,18 +163,8 @@ function Settings({ currentUser, navigation, route }) {
       <SafeAreaView style={styles.container}>
         <View>
           <View style={styles.userInfoSelection}>
-            {currentUser.userImage != " " ? (
-              <Avatar.Image source={{ uri: currentUser.userImage }} size={80} />
-            ) : null}
-            {currentUser.userImage == " " ? (
-              <Avatar.Image
-                source={require("../../assets/blank.png")}
-                size={80}
-              />
-            ) : null}
-
             <View>
-              <Title style={[styles.title, { marginTop: 15, marginBottom: 5 }]}>
+              <Title style={[styles.title, { marginTop: 35, marginBottom: 5 }]}>
                 {currentUser.name}
               </Title>
             </View>

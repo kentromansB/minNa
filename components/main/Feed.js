@@ -95,30 +95,6 @@ function Feed({ navigation, language }) {
     getData();
   };
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
-      firebase
-        .firestore()
-        .collection("languages")
-        .doc(language)
-        .collection("posts")
-        .doc(firebase.auth().currentUser.uid)
-        .collection("userPosts")
-        .orderBy("creation", "desc")
-        .get()
-        .then((snapshot) => {
-          console.log(snapshot, "-=-=-=-=-=-=-=-=");
-          let postsAll = snapshot.docs.map((doc) => {
-            const data = doc.data();
-            const id = doc.id;
-            return { id, ...data };
-          });
-          setDatalist(postsAll);
-        });
-    });
-
-    return unsubscribe;
-  }, [navigation]);
   return (
     <FlatList
       nestedScrollEnabled
