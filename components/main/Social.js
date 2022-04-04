@@ -89,13 +89,7 @@ function Social({ navigation, route, language }) {
       data={datalist}
       style={{ flex: 1 }}
       renderItem={ItemView}
-      refreshControl={
-        <RefreshControl
-          //refresh control used for the Pull to Refresh
-          refreshing={refreshing}
-          onRefresh={onRefresh}
-        />
-      }
+      
     />
   );
 }

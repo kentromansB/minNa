@@ -13,6 +13,7 @@ import {
   Dimensions,
   SafeAreaView,
   FlatList,
+  RefreshControl,
 } from "react-native";
 import firebase from "firebase";
 import { NavigationContainer } from "@react-navigation/native";

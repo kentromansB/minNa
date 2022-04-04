@@ -28,8 +28,7 @@ function Language({ navigation }) {
   const [filteredDataSource, setFilteredDataSource] = useState("");
   const [masterDataSource, setMasterDataSource] = useState("");
   const [loading, setLoading] = useState(false);
-
-  console.log(firebase.auth().currentUser);
+  
   // const startLoading = () => {
   //   setLoading(true);
   //   setTimeout(() => {

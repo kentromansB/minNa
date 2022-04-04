@@ -9,6 +9,8 @@ import {
   FlatList,
   RefreshControl,
   SafeAreaView,
+  Dimensions,
+  TouchableOpacity,
 } from "react-native";
 import firebase from "firebase";
 import { NavigationContainer } from "@react-navigation/native";

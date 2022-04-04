@@ -18,7 +18,6 @@ import AllScreen from "./ApplyAll";
 import ConfirmScreen from "./ApplyConf";
 import PendingScreen from "./ApplyPend";
 import DeclineScreen from "./ApplyDecl";
-var head = require("../../assets/learning.svg");
 
 const Tab = createMaterialTopTabNavigator();
 

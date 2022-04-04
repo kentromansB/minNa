@@ -84,6 +84,7 @@ function Save({ currentUser, route, navigation }) {
       .doc(firebase.auth().currentUser.uid)
       .collection("userPosts")
       .add({
+        uid: firebase.auth().currentUser.uid,
         username: currentUser.name,
         userImage: currentUser.userImage,
         downloadURL,
@@ -104,7 +105,9 @@ function Save({ currentUser, route, navigation }) {
       .collection("languages")
       .doc(language)
       .collection("posts")
+      .doc(firebase.auth().currentUser.uid)
       .add({
+        uid: firebase.auth().currentUser.uid,
         username: currentUser.name,
         userImage: currentUser.userImage,
         downloadURL,
