@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   TextInput,
@@ -10,8 +10,10 @@ import {
   Pressable,
   ScrollView,
   Alert,
+  FlatList,
 } from "react-native";
-
+import { Picker } from "@react-native-picker/picker";
+import Checkbox from "expo-checkbox";
 import firebase from "firebase";
 import { NavigationContainer } from "@react-navigation/native";
 require("firebase/firestore");
@@ -27,7 +29,31 @@ function ValidatorApplication({ route, navigation }) {
   const [pdf, setPdf] = useState(null);
   const [loading, setLoading] = useState(null);
   const [note, setNote] = useState("");
+  const [datalist, setDatalist] = useState([]);
+  const [isChecked, setChecked] = useState(false);
+  const [userLanguage, setuserLanguage] = useState("");
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      firebase
+        .firestore()
+        .collection("languages")
+        .get()
+        .then((snapshot) => {
+          let masterDataSource = snapshot.docs.map((doc) => {
+            const data = doc.data();
+            const id = doc.id;
+            return { id, ...data };
+          });
+
+          setDatalist(masterDataSource);
+        });
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  console.log(datalist);
   const chooseFile = async () => {
     let result = await DocumentPicker.getDocumentAsync({
       type: "application/pdf",
@@ -92,6 +118,7 @@ function ValidatorApplication({ route, navigation }) {
         note,
         applicant: "1",
         status: "0",
+        userLanguage,
       })
       .then(function () {
         alert("Thanks for applying as a validator");
@@ -100,6 +127,11 @@ function ValidatorApplication({ route, navigation }) {
       });
   };
 
+  const renderDatalist = () => {
+    return datalist.map((languages) => (
+      <Picker.Item label={languages.language} value={languages} />
+    ));
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.bodycontainer}>
@@ -109,7 +141,7 @@ function ValidatorApplication({ route, navigation }) {
               Be an ALIMA Validator
             </Text>
           </View>
-          <Text>
+          <Text style={{ textAlign: "justify" }}>
             An ALIMA Validator must be from the Tribe, a linguists, or speaks
             the language. He/She will validate submissions and contributions of
             different words.
@@ -136,6 +168,20 @@ function ValidatorApplication({ route, navigation }) {
               </Text>
             )}
           </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={[styles.text, { fontSize: 16 }]}>
+            What language do you speak?
+          </Text>
+        </View>
+        <View style={styles.Checkbox}>
+          <Picker
+            style={styles.input}
+            selectedValue={userLanguage}
+            onValueChange={(itemValue, itemIndex) => setuserLanguage(itemValue)}
+          >
+            {renderDatalist()}
+          </Picker>
         </View>
         <View>
           <Text style={[styles.text, { fontSize: 16 }]}>
@@ -207,5 +253,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: "center",
     paddingVertical: 15,
+    marginTop: 10,
+    justifyContent: "center",
+  },
+  Checkbox: {
+    flex: 1,
+    marginTop: 5,
   },
 });

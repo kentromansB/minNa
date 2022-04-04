@@ -6,12 +6,11 @@ import {
   Image,
   Pressable,
   ScrollView,
-  CheckBox,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Unorderedlist from "react-native-unordered-list";
 import Svg, { Path, G, Rect, Polygon, Title } from "react-native-svg";
-
+import Checkbox from "expo-checkbox";
 export default function BeAValidator({ navigation }) {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
@@ -49,11 +48,11 @@ export default function BeAValidator({ navigation }) {
           will help the people from the tribe.
         </Text>
         <View style={styles.checkboxContainer}>
-          <CheckBox
-            disabled={false}
+          <Checkbox
+            style={styles.checkbox}
             value={toggleCheckBox}
             onValueChange={(newValue) => setToggleCheckBox(newValue)}
-            style={styles.checkbox}
+            color={toggleCheckBox ? "#215a88" : undefined}
           />
           <Text style={styles.description}> I agree to all conditions</Text>
         </View>

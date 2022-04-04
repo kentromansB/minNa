@@ -28,7 +28,7 @@ function Language({ navigation }) {
   const [filteredDataSource, setFilteredDataSource] = useState("");
   const [masterDataSource, setMasterDataSource] = useState("");
   const [loading, setLoading] = useState(false);
-  
+
   // const startLoading = () => {
   //   setLoading(true);
   //   setTimeout(() => {
@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
     height: 200,
     backgroundColor: "#215a88",
     padding: 10,
+    marginTop: 25,
   },
 
   title: {

@@ -15,8 +15,6 @@ import Svg, { Path, G, Rect, Polygon, Title } from "react-native-svg";
 import { connect } from "react-redux";
 
 function Course({ currentUser, navigation }) {
-
-  
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -663,6 +661,7 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 40,
     //paddingVertical: 30,
     alignContent: "center",
+    marginTop: 25,
   },
   scrollView: {
     marginHorizontal: 40,

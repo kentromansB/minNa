@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
     height: 200,
     backgroundColor: "#215a88",
     padding: 10,
+    marginTop: 20,
   },
 
   title: {

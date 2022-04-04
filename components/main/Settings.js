@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   },
   userInfoSelection: {
     // paddingHorizontal: 30,
-    // marginBottom: 25,
+    marginTop: 20,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
