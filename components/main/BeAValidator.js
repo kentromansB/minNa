@@ -11,9 +11,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import Unorderedlist from "react-native-unordered-list";
 import Svg, { Path, G, Rect, Polygon, Title } from "react-native-svg";
 import Checkbox from "expo-checkbox";
-export default function BeAValidator({ navigation }) {
+export default function BeAValidator({ navigation, route }) {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-
+  const { language } = route?.params ?? {};
   const [complianceModal, setComplianceModal] = useState(true);
 
   return (
@@ -65,7 +65,9 @@ export default function BeAValidator({ navigation }) {
             { backgroundColor: toggleCheckBox ? "#215A88" : "#215A883D" },
           ]}
           disabled={!toggleCheckBox}
-          onPress={() => navigation.navigate("ValAppScreen")}
+          onPress={() =>
+            navigation.navigate("ValAppScreen", { language: language })
+          }
         >
           <Text style={styles.subtitle}> PROCEED </Text>
         </TouchableOpacity>

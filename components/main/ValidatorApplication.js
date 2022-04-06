@@ -32,6 +32,9 @@ function ValidatorApplication({ route, navigation }) {
   const [datalist, setDatalist] = useState([]);
   const [isChecked, setChecked] = useState(false);
   const [userLanguage, setuserLanguage] = useState("");
+  const [secondLanguage, setsecondLanguage] = useState("");
+  const [thirdLanguage, setthirdLanguage] = useState("");
+  const { language } = route?.params ?? {};
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
@@ -119,6 +122,8 @@ function ValidatorApplication({ route, navigation }) {
         applicant: "1",
         status: "0",
         userLanguage,
+        secondLanguage,
+        thirdLanguage,
       })
       .then(function () {
         alert("Thanks for applying as a validator");
@@ -129,22 +134,27 @@ function ValidatorApplication({ route, navigation }) {
 
   const renderDatalist = () => {
     return datalist.map((languages) => (
-      <Picker.Item label={languages.language} value={languages} />
+      <Picker.Item label={languages.language} value={languages.id} />
+    ));
+  };
+  const renderDatalist2 = () => {
+    return datalist.map((languages) => (
+      <Picker.Item label={languages.language} value={languages.id} />
     ));
   };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.bodycontainer}>
-        <View style={{ marginVertical: 15 }}>
+        <View style={{}}>
           <View>
             <Text style={[styles.text, { color: "#000000" }]}>
               Be an ALIMA Validator
             </Text>
           </View>
           <Text style={{ textAlign: "justify" }}>
-            An ALIMA Validator must be from the Tribe, a linguists, or speaks
-            the language. He/She will validate submissions and contributions of
-            different words.
+            An ALIMA Validator must be from the Tribe, a linguist, or speaks the{" "}
+            {language} language. He/She will validate submissions and
+            contributions of different words.
           </Text>
         </View>
 
@@ -171,7 +181,7 @@ function ValidatorApplication({ route, navigation }) {
         </View>
         <View>
           <Text style={[styles.text, { fontSize: 16 }]}>
-            What language do you speak?
+            What languages do you speak?
           </Text>
         </View>
         <View style={styles.Checkbox}>
@@ -180,6 +190,31 @@ function ValidatorApplication({ route, navigation }) {
             selectedValue={userLanguage}
             onValueChange={(itemValue, itemIndex) => setuserLanguage(itemValue)}
           >
+            {renderDatalist()}
+          </Picker>
+          <View>
+            <Text style={[styles.text, { fontSize: 16 }]}>
+              Secondary Languages
+            </Text>
+          </View>
+          <Picker
+            style={styles.input}
+            selectedValue={secondLanguage}
+            onValueChange={(itemValue, itemIndex) =>
+              setsecondLanguage(itemValue)
+            }
+          >
+            <Picker.Item label={"None"} value={"None"} />
+            {renderDatalist()}
+          </Picker>
+          <Picker
+            style={styles.input}
+            selectedValue={thirdLanguage}
+            onValueChange={(itemValue, itemIndex) =>
+              setthirdLanguage(itemValue)
+            }
+          >
+            <Picker.Item label={"None"} value={"None"} />
             {renderDatalist()}
           </Picker>
         </View>

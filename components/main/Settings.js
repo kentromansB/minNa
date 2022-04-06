@@ -105,59 +105,108 @@ function Settings({ currentUser, navigation, route }) {
       </SafeAreaView>
     );
   } else if (currentUser.type == "1") {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View>
-          <View style={styles.userInfoSelection}>
-            <View>
-              <Title style={[styles.title, { marginTop: 35, marginBottom: 5 }]}>
-                {currentUser.name}
-              </Title>
+    if (
+      currentUser.userLanguage == language ||
+      currentUser.secondLanguage == language ||
+      currentUser.thirdLanguage == language
+    ) {
+      return (
+        <SafeAreaView style={styles.container}>
+          <View>
+            <View style={styles.userInfoSelection}>
+              <View>
+                <Title
+                  style={[styles.title, { marginTop: 35, marginBottom: 5 }]}
+                >
+                  {currentUser.name}
+                </Title>
+              </View>
             </View>
           </View>
-        </View>
 
-        <View style={styles.menuWrapper}>
-          <TouchableRipple
-            onPress={() =>
-              navigation.navigate("MyContribution", { language: language })
-            }
-          >
-            <View style={styles.menuItem}>
-              <Icon name="folder-outline" color="#777777" size={25} />
-              <Text style={styles.menuItemText}>My Contributions</Text>
-            </View>
-          </TouchableRipple>
-          <TouchableRipple onPress={() => navigation.navigate("Language")}>
-            <View style={styles.menuItem}>
-              <Icon name="bookshelf" color="#777777" size={25} />
-              <Text style={styles.menuItemText}>Languages</Text>
-            </View>
-          </TouchableRipple>
-          <TouchableRipple
-            onPress={() =>
-              navigation.navigate("Validate", { language: language })
-            }
-          >
-            <View style={styles.menuItem}>
-              <Icon
-                name="checkbox-marked-circle-outline"
-                color="#777777"
-                size={25}
-              />
-              <Text style={styles.menuItemText}>Check Submissions</Text>
-            </View>
-          </TouchableRipple>
+          <View style={styles.menuWrapper}>
+            <TouchableRipple
+              onPress={() =>
+                navigation.navigate("MyContribution", { language: language })
+              }
+            >
+              <View style={styles.menuItem}>
+                <Icon name="folder-outline" color="#777777" size={25} />
+                <Text style={styles.menuItemText}>My Contributions</Text>
+              </View>
+            </TouchableRipple>
+            <TouchableRipple onPress={() => navigation.navigate("Language")}>
+              <View style={styles.menuItem}>
+                <Icon name="bookshelf" color="#777777" size={25} />
+                <Text style={styles.menuItemText}>Languages</Text>
+              </View>
+            </TouchableRipple>
+            <TouchableRipple
+              onPress={() =>
+                navigation.navigate("Validate", { language: language })
+              }
+            >
+              <View style={styles.menuItem}>
+                <Icon
+                  name="checkbox-marked-circle-outline"
+                  color="#777777"
+                  size={25}
+                />
+                <Text style={styles.menuItemText}>Check Submissions</Text>
+              </View>
+            </TouchableRipple>
 
-          <TouchableRipple onPress={() => onLogout()}>
-            <View style={styles.menuItem}>
-              <Icon name="logout" color="#777777" size={25} />
-              <Text style={styles.menuItemText}>Logout</Text>
+            <TouchableRipple onPress={() => onLogout()}>
+              <View style={styles.menuItem}>
+                <Icon name="logout" color="#777777" size={25} />
+                <Text style={styles.menuItemText}>Logout</Text>
+              </View>
+            </TouchableRipple>
+          </View>
+        </SafeAreaView>
+      );
+    } else {
+      return (
+        <SafeAreaView style={styles.container}>
+          <View>
+            <View style={styles.userInfoSelection}>
+              <View>
+                <Title
+                  style={[styles.title, { marginTop: 35, marginBottom: 5 }]}
+                >
+                  {currentUser.name}
+                </Title>
+              </View>
             </View>
-          </TouchableRipple>
-        </View>
-      </SafeAreaView>
-    );
+          </View>
+
+          <View style={styles.menuWrapper}>
+            <TouchableRipple
+              onPress={() =>
+                navigation.navigate("MyContribution", { language: language })
+              }
+            >
+              <View style={styles.menuItem}>
+                <Icon name="folder-outline" color="#777777" size={25} />
+                <Text style={styles.menuItemText}>My Contributions</Text>
+              </View>
+            </TouchableRipple>
+            <TouchableRipple onPress={() => navigation.navigate("Language")}>
+              <View style={styles.menuItem}>
+                <Icon name="bookshelf" color="#777777" size={25} />
+                <Text style={styles.menuItemText}>Languages</Text>
+              </View>
+            </TouchableRipple>
+            <TouchableRipple onPress={() => onLogout()}>
+              <View style={styles.menuItem}>
+                <Icon name="logout" color="#777777" size={25} />
+                <Text style={styles.menuItemText}>Logout</Text>
+              </View>
+            </TouchableRipple>
+          </View>
+        </SafeAreaView>
+      );
+    }
   } else {
     return (
       <SafeAreaView style={styles.container}>
@@ -183,7 +232,9 @@ function Settings({ currentUser, navigation, route }) {
             </View>
           </TouchableRipple>
           <TouchableRipple
-            onPress={() => navigation.navigate("ValidatorScreen")}
+            onPress={() =>
+              navigation.navigate("ValidatorScreen", { language: language })
+            }
           >
             <View style={styles.menuItem}>
               <Icon name="account-tie" color="#777777" size={25} />
