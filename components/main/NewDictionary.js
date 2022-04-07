@@ -22,9 +22,11 @@ import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system";
 import { useValidation } from "react-native-form-validator";
 import { Picker } from "@react-native-picker/picker";
+import Checkbox from "expo-checkbox";
 
 function NewDictionary({ currentUser, route, navigation }) {
   const [word, setWord] = useState("");
+  const [name, setName] = useState("Anonymous");
   const [filipino, setFilipino] = useState("");
   const [sentence, setSentence] = useState("");
   const [classification, setClassification] = useState("");
@@ -34,8 +36,9 @@ function NewDictionary({ currentUser, route, navigation }) {
   const [audio, setAudio] = useState(null);
   const [loading, setLoading] = useState(null);
   const [wordID, setWordID] = useState(makeid());
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const { language } = route?.params ?? {};
-
+  console.log(language);
   function makeid() {
     var randomText = "";
     var possible =
@@ -164,8 +167,11 @@ function NewDictionary({ currentUser, route, navigation }) {
 
     const taskCompleted = () => {
       task.snapshot.ref.getDownloadURL().then((snapshot) => {
-        // SavePostData(snapshot);
-        saveAllPostData(snapshot);
+        if (toggleCheckBox == true) {
+          saveAllPostData(snapshot);
+        } else if (toggleCheckBox == false) {
+          savePostData(snapshot);
+        }
         setLoading(null);
         console.log(snapshot);
       });
@@ -181,6 +187,7 @@ function NewDictionary({ currentUser, route, navigation }) {
   };
 
   /* Saving data to the firestore*/
+
   const saveAllPostData = (downloadURL) => {
     firebase
       .firestore()
@@ -191,7 +198,37 @@ function NewDictionary({ currentUser, route, navigation }) {
         uid: firebase.auth().currentUser.uid,
         wordId: wordID,
         email: currentUser.email,
-        username: currentUser.name,
+        name: currentUser.name,
+        downloadURL,
+        word,
+        filipino,
+        classification,
+        pronunciation,
+        sentence,
+        filipinoSentence,
+        meaning,
+        status: "0",
+        upload: "1",
+        creation: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then(function () {
+        alert("Thanks for contribution!!");
+        setLoading(null);
+        navigation.navigate("ContributeDictionary");
+      });
+  };
+
+  const savePostData = (downloadURL) => {
+    firebase
+      .firestore()
+      .collection("languages")
+      .doc(language)
+      .collection("dictionary")
+      .add({
+        uid: firebase.auth().currentUser.uid,
+        wordId: wordID,
+        email: currentUser.email,
+        name,
         downloadURL,
         word,
         filipino,
@@ -368,6 +405,34 @@ function NewDictionary({ currentUser, route, navigation }) {
             </View>
           </TouchableOpacity>
         </View>
+        <View style={styles.paddingLeft}>
+          <Text style={styles.title_text}>Username </Text>
+          {toggleCheckBox == true ? (
+            <TextInput
+              style={styles.input}
+              multiline={true}
+              value={currentUser.name}
+              editable={false}
+            />
+          ) : null}
+          {toggleCheckBox == false ? (
+            <TextInput
+              style={styles.input}
+              multiline={true}
+              value={name}
+              editable={false}
+            />
+          ) : null}
+        </View>
+        <View style={styles.checkboxContainer}>
+          <Checkbox
+            style={styles.checkbox}
+            value={toggleCheckBox}
+            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+            color={toggleCheckBox ? "#215a88" : undefined}
+          />
+          <Text style={styles.guidelines}> I allow my name to be shown. </Text>
+        </View>
       </View>
       <Pressable style={styles.button} onPress={() => uploadAudio()}>
         <Text style={styles.subtitle}>
@@ -408,6 +473,15 @@ const styles = StyleSheet.create({
     //top: 130,
     marginTop: 20,
     marginBottom: 80,
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    marginVertical: 10,
+    alignItems: "center",
+    marginRight: 50,
+    paddingRight: 90,
+    justifyContent: "center",
+    paddingTop: 10,
   },
   audioButton: {
     alignItems: "center",
