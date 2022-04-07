@@ -434,11 +434,19 @@ function NewDictionary({ currentUser, route, navigation }) {
           <Text style={styles.guidelines}> I allow my name to be shown. </Text>
         </View>
       </View>
-      <Pressable style={styles.button} onPress={() => uploadAudio()}>
-        <Text style={styles.subtitle}>
-          {loading ? `Sharing...  ${parseInt(loading)}%` : "Share"}
-        </Text>
-      </Pressable>
+      {audio ? (
+        <Pressable style={styles.button} onPress={() => uploadAudio()}>
+          <Text style={styles.subtitle}>
+            {loading ? `Sharing...  ${parseInt(loading)}%` : "Share"}
+          </Text>
+        </Pressable>
+      ) : (
+        <Pressable style={styles.button_empty} disabled={true}>
+          <Text style={styles.subtitle}>
+            {loading ? `Sharing...  ${parseInt(loading)}%` : "Share"}
+          </Text>
+        </Pressable>
+      )}
     </ScrollView>
   );
 }
@@ -470,6 +478,18 @@ const styles = StyleSheet.create({
     elevation: 1,
     width: "90%",
     backgroundColor: "#215a88",
+    //top: 130,
+    marginTop: 20,
+    marginBottom: 80,
+  },
+  button_empty: {
+    alignSelf: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 10,
+    elevation: 1,
+    width: "90%",
+    backgroundColor: "#91B2EB",
     //top: 130,
     marginTop: 20,
     marginBottom: 80,
