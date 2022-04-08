@@ -21,6 +21,7 @@ import { NavigationEvents } from "react-navigation";
 import { Audio } from "expo-av";
 import { updateDictionary } from "../../redux/actions";
 import { Picker } from "@react-native-picker/picker";
+import * as DocumentPicker from "expo-document-picker";
 
 function Validation({ currentUser, route, navigation }) {
   const [loading, setLoading] = useState(false);
@@ -35,7 +36,22 @@ function Validation({ currentUser, route, navigation }) {
   const [meaning, setMeaning] = useState(data?.meaning);
   const [pronunciation, setPronunciation] = useState(data?.pronunciation);
   const { language } = route?.params ?? {};
-  console.log(language);
+
+  const chooseFile = async () => {
+    let result = await DocumentPicker.getDocumentAsync({
+      type: "audio/*",
+      copyToCacheDirectory: false,
+    });
+    // Alert.alert("Audio File", result.name);
+
+    console.log(result);
+    if (result.type === "success") {
+      setAudio(result);
+    } else {
+      alert("Please choose a file.");
+    }
+  };
+
   const downloadAudio = async () => {
     let SoundObject = new Audio.Sound();
     try {
@@ -168,7 +184,11 @@ function Validation({ currentUser, route, navigation }) {
         </View>
         <View style={styles.paddingLeft}>
           <Text style={styles.title_text}>Audio </Text>
-          <Text style={styles.guidelines}></Text>
+          <View>
+            <Pressable onPress={() => chooseFile()}>
+              <Text style={styles.edit_audio}> Change Audio </Text>
+            </Pressable>
+          </View>
           <TouchableOpacity
             style={styles.audioButton}
             onPress={() => downloadAudio()}
@@ -186,8 +206,8 @@ function Validation({ currentUser, route, navigation }) {
         <View style={styles.paddingLeft}>
           <Text style={styles.title_text}>Contributed by </Text>
           <TextInput
-            style={styles.input}
-            value={data?.username}
+            style={styles.contributor}
+            value={data?.name}
             editable={false}
           />
         </View>
@@ -276,6 +296,12 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
     color: "#707070",
   },
+  edit_audio: {
+    fontSize: 15,
+    fontStyle: "italic",
+    color: "#215A88",
+    marginLeft: 250,
+  },
   addAudio: {
     flex: 1,
   },
@@ -317,6 +343,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: "#707070",
+  },
+  contributor: {
+    letterSpacing: 0.25,
+    height: 50,
+    width: "95%",
+    paddingLeft: 12,
+    paddingTop: 1,
+    marginTop: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "#000000",
+    color: "#000000",
   },
   tags_input: {
     letterSpacing: 0.25,
