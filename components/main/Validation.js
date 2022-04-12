@@ -22,6 +22,7 @@ import { Audio } from "expo-av";
 import { updateDictionary } from "../../redux/actions";
 import { Picker } from "@react-native-picker/picker";
 import * as DocumentPicker from "expo-document-picker";
+import * as FileSystem from "expo-file-system";
 
 function Validation({ currentUser, route, navigation }) {
   const [loading, setLoading] = useState(false);
@@ -29,6 +30,7 @@ function Validation({ currentUser, route, navigation }) {
   const [word, setWord] = useState(data?.word);
   const [filipino, setFilipino] = useState(data?.filipino);
   const [sentence, setSentence] = useState(data?.sentence);
+  const [audio, setAudio] = useState(null);
   const [classification, setClassification] = useState(data?.classification);
   const [filipinoSentence, setFilipinoSentence] = useState(
     data?.filipinoSentence
@@ -50,6 +52,44 @@ function Validation({ currentUser, route, navigation }) {
     } else {
       alert("Please choose a file.");
     }
+  };
+  const uploadAudio = async () => {
+    const childPath = `audio/${
+      firebase.auth().currentUser.uid
+    }/${Math.random().toString(36)}`;
+    console.log(childPath);
+    const uri = FileSystem.documentDirectory + audio.name;
+
+    await FileSystem.copyAsync({
+      from: audio.uri,
+      to: uri,
+    });
+
+    let res = await fetch(uri);
+    let blob = await res.blob();
+
+    const task = firebase.storage().ref().child(childPath).put(blob);
+
+    const taskProgress = (snapshot) => {
+      setLoading((snapshot.bytesTransferred / audio?.size) * 100);
+      console.log(`transferred: ${snapshot.bytesTransferred}`);
+    };
+
+    const taskCompleted = () => {
+      task.snapshot.ref.getDownloadURL().then((snapshot) => {
+        updateDictionaryAudio(snapshot);
+        setLoading(null);
+        console.log(snapshot);
+      });
+    };
+
+    const taskError = (snapshot) => {
+      setLoading(null);
+      alert(snapshot);
+      console.log(snapshot);
+    };
+
+    task.on("state_changed", taskProgress, taskError, taskCompleted);
   };
 
   const downloadAudio = async () => {
@@ -92,6 +132,31 @@ function Validation({ currentUser, route, navigation }) {
         pronunciation,
         filipinoSentence,
         meaning,
+      })
+      .then((result) => {
+        navigation.goBack();
+        setLoading(false);
+      })
+      .catch((err) => console.log(err, "-=error"));
+  };
+  const updateDictionaryAudio = (downloadURL) => {
+    firebase
+      .firestore()
+      .collection("languages")
+      .doc(language)
+      .collection("dictionary")
+      .doc(`${data?.id}`)
+      .update({
+        status: "1",
+        validatedBy: currentUser.name,
+        word,
+        filipino,
+        classification,
+        sentence,
+        pronunciation,
+        filipinoSentence,
+        meaning,
+        downloadURL,
       })
       .then((result) => {
         navigation.goBack();
@@ -194,12 +259,16 @@ function Validation({ currentUser, route, navigation }) {
             onPress={() => downloadAudio()}
           >
             <View>
-              <MaterialCommunityIcons
-                style={styles.addAudio}
-                name="volume-high"
-                color={"#707070"}
-                size={26}
-              />
+              {audio ? (
+                <TextInput>{audio?.name}</TextInput>
+              ) : (
+                <MaterialCommunityIcons
+                  style={styles.addAudio}
+                  name="volume-high"
+                  color={"#707070"}
+                  size={26}
+                />
+              )}
             </View>
           </TouchableOpacity>
         </View>
@@ -212,12 +281,22 @@ function Validation({ currentUser, route, navigation }) {
           />
         </View>
       </View>
+
       <View style={styles.row}>
-        <Pressable style={styles.buttonAccept} onPress={() => Accept()}>
-          <Text style={styles.subtitle}>
-            {loading ? "Accepting..." : "Accept"}
-          </Text>
-        </Pressable>
+        {audio ? (
+          <Pressable style={styles.buttonAccept} onPress={() => uploadAudio()}>
+            <Text style={styles.subtitle}>
+              {loading ? "Accepting..." : "Accept"}
+            </Text>
+          </Pressable>
+        ) : (
+          <Pressable style={styles.buttonAccept} onPress={() => Accept()}>
+            <Text style={styles.subtitle}>
+              {loading ? "Accepting..." : "Accept"}
+            </Text>
+          </Pressable>
+        )}
+
         <Pressable
           style={styles.button}
           onPress={() =>
@@ -300,7 +379,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontStyle: "italic",
     color: "#215A88",
-    marginLeft: 250,
+    marginLeft: 220,
   },
   addAudio: {
     flex: 1,
