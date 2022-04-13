@@ -25,7 +25,7 @@ export default function Course({ navigation, route }) {
           Community language champions, linguistic scholars, and others involved
           in language revitalization work are invited to help build and improve
           the mobile application. Here, we can add new content relevant to the{" "}
-          {language} language.{" "}
+          language.{" "}
         </Text>
       </View>
 
