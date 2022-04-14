@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   View,
   TextInput,
@@ -10,169 +9,238 @@ import {
   Pressable,
   ScrollView,
   Alert,
+  FlatList,
+  KeyboardAvoidingView,
+  ToastAndroid,
 } from "react-native";
-import { connect } from "react-redux";
+import React, {useState, useEffect} from 'react'
 import firebase from "firebase";
 require("firebase/firestore");
 require("firebase/firebase-storage");
 
-function AddQuiz({navigation }) {
+
+
+{/* Form Input */}
+export const FormInput = ({
+  labelText = '',
+  placeholderText = '',
+  onChangeText = null,
+  value = null,
+  ...more
+}) => {
+  return (
+    <View style={{width: '100%', marginBottom: 20}}>
+      <Text>{labelText}</Text>
+      <TextInput
+        style={{
+          padding: 10,
+          borderColor: COLORS.black + '20',
+          borderWidth: 1,
+          width: '100%',
+          borderRadius: 5,
+          marginTop: 10,
+        }}
+        placeholder={placeholderText}
+        onChangeText={onChangeText}
+        value={value}
+        {...more}
+      />
+    </View>
+  );
+};
+
+{/*Button Form */}
+export const FormButton = ({
+  labelText = '',
+  handleOnPress = null,
+  style,
+  isPrimary = true,
+  ...more
+}) => {
+  return (
+    <TouchableOpacity
+      style={{
+        paddingVertical: 10,
+        backgroundColor: isPrimary ? COLORS.primary : COLORS.white,
+        borderWidth: 1,
+        borderColor: COLORS.primary,
+        borderRadius: 5,
+        ...style,
+      }}
+      activeOpacity={0.9}
+      onPress={handleOnPress}
+      {...more}>
+      <Text
+        style={{
+          textAlign: 'center',
+          fontSize: 18,
+          color: isPrimary ? COLORS.white : COLORS.primary,
+        }}>
+        {labelText}
+      </Text>
+    </TouchableOpacity>
+  );
+};
+
+
+const AddQuestion = ({navigation, route}) => {
+
+  const [currentQuizId, setcurrentQuizId] =useState(route.params.currentQuizId)
+  const [currentQuizTitle, setcurrentQuizTitle] =useState(route.params.currentQuizId)
+
+  const [question, setQuestion] = useState('')
+
+  const [correctAnswer, setCorrectAnswer] = useState('')
+  const [OptionTwo, setOptionTwo] = useState('')
+  const [OptionThree, setOptionThree] = useState('')
+  const [OptionFour, setOptionFour] = useState('')
+
+  const handleQuestionSave = async () => {
+    if (
+      question == '' ||
+      correctAnswer == '' ||
+      OptionTwo == '' ||
+      OptionThree == '' ||
+      OptionFour == ''
+    ) {
+      return;
+    }
+
+    let currentQuestionId = Math.floor(
+      100000 + Math.random() * 9000,
+    ).toString();
+
+      // Add question to db
+    await createQuestion(currentQuizId, currentQuestionId, {
+      question: question,
+      correct_answer: correctAnswer,
+      incorrect_answers: [OptionTwo, OptionThree, OptionFour],
+    });
+    
+
+    // Reset
+    setQuestion('');
+    setCorrectAnswer('');
+    setOptionTwo('');
+    setOptionThree('');
+    setOptionFour('');
+    
+
+  }
   
-  const [question,setQuestion] = useState("")
-  const [choice, setChoice] = useState("")
-  const [choice2, setChoice2] = useState("")
-  const [choice3, setChoice3] = useState("")
-  const [choice4, setChoice4] = useState("")
-  const [answer, setAnswer] = useState("")
 
-  const saveData = () => {
-    firebase
-    .firestore()
-    .collection('Questions')
-    .add({
-    question,
-    choice,
-    choice2,
-    choice3,
-    choice4
-  })
-  .then(() => {
-    console.log('Added!');
-  });
+
+  const createQuiz = (currentQuizId, title, description) => {
+    return firebase.firestore().collection('Quzzies').doc(currentQuizId).set({
+      title,
+      description,
+    });
   };
 
-  const onSubmit = () => {
-    saveData();
+  const createQuestion = (currentQuizId, currentQuestionId, question) => {
+    return firebase.firestore()
+      .collection('Quzzies')
+      .doc(currentQuizId)
+      .collection('QNA')
+      .doc(currentQuestionId)
+      .set(question);
   };
+
+
+
+
+
 
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.bodycontainer}>
-        <View style={{ marginVertical: 15 }}>
-          <View>
-            <Text style={[styles.text, { color: "#000000" }]}>
-              New Question
-            </Text>
-          </View>
+    <KeyboardAvoidingView
+    style={{
+      flex: 1,
+    }}>
+    <ScrollView
+      style={{
+        flex: 1,
+        backgroundColor: COLORS.white,
+      }}>
+      <View style={{padding: 20}}>
+        <Text
+          style={{fontSize: 20, textAlign: 'center', color: COLORS.black}}>
+          Add Question
+        </Text>
+        <Text style={{textAlign: 'center', marginBottom: 20}}>
+          For {currentQuizTitle}
+        </Text>
+
+        <FormInput
+          labelText="Question"
+          placeholderText="enter question"
+          onChangeText={val => setQuestion(val)}
+          value={question}
+        />
+
+        {/* Image upload */}
+
+       
+
+        {/* Options */}
+        <View style={{marginTop: 30}}>
+          <FormInput
+            labelText="Correct Answer"
+            onChangeText={val => setCorrectAnswer(val)}
+            value={correctAnswer}
+          />
+          <FormInput
+            labelText="Option 2"
+            onChangeText={val => setOptionTwo(val)}
+            value={OptionTwo}
+          />
+          <FormInput
+            labelText="Option 3"
+            onChangeText={val => setOptionThree(val)}
+            value={OptionThree}
+          />
+          <FormInput
+            labelText="Option 4"
+            onChangeText={val => setOptionFour(val)}
+            value={OptionFour}
+          />
         </View>
-
-        <View style={{ marginVertical: 5 }}>
-          <Text style={[styles.text, { fontSize: 16 }]}>Question</Text>
-          <TextInput
-            style={styles.input}
-            multiline={true}
-            autoCapitalize="none"
-            onChangeText={(question) => setQuestion(question)}
-          />
-        </View>
-        <View>
-          <Text style={[styles.text, { fontSize: 16 }]}>
-            Add New Choices
-          </Text>
-          <TextInput
-            style={styles.input}
-            multiline={true}
-            autoCapitalize="none"
-            onChangeText={(choice) => setChoice(choice)}
-          />
-
-        <TextInput
-            style={styles.input}
-            multiline={true}
-            autoCapitalize="none"
-            onChangeText={(choice2) => setChoice2(choice2)}
-          />
-
-        <TextInput
-            style={styles.input}
-            multiline={true}
-            autoCapitalize="none"
-            onChangeText={(choice3) => setChoice3(choice3)}
-          />
-
-        <TextInput
-            style={styles.input}
-            multiline={true}
-            autoCapitalize="none"
-            onChangeText={(choice4) => setChoice4(choice4)}
-          />
-        </View>
-
-        <View>
-          <Text style={[styles.text, { fontSize: 16 }]}>
-            Add Correct Answer
-          </Text>
-          <TextInput
-            style={styles.input}
-            multiline={true}
-            autoCapitalize="none"
-            onChangeText={(answer) => setAnswer(answer)}
-          />
-          </View>
-        <View
-          style={{
-            flexDirection: "row",
-            flex: 1,
-            justifyContent: "center",
-            marginVertical: 25,
+        <FormButton
+          labelText="Save Question"
+          handleOnPress={handleQuestionSave}
+        />
+        <FormButton
+          labelText="Done & Go Home"
+          isPrimary={false}
+          handleOnPress={() => {
+            setCurrentQuizId('');
+            navigation.navigate('HomeScreen');
           }}
-        >
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#bfa42a" }]}
-            
-          >
-            <Text style={[styles.text, { fontSize: 16, color: "white" }]} onPress={() => onSubmit()}>
-              Submit
-            </Text>
-          </TouchableOpacity>
-        </View>
+          style={{
+            marginVertical: 20,
+          }}
+        />
       </View>
     </ScrollView>
-  );
-}
+  </KeyboardAvoidingView>
+);
+};
 
+export default AddQuestion;
+const COLORS = {
+  primary: '#4630EB',
+  secondary: '#000020',
 
-export default connect()(AddQuiz);
-const styles = StyleSheet.create({
-  container: {
-    alignContent: "center",
-    top: 1,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-  },
-  input: {
-    letterSpacing: 0.25,
-    height: 50,
-    width: "95%",
-    paddingLeft: 12,
-    paddingTop: 1,
-    marginTop: 10,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: "#707070",
-  },
-  text: {
-    fontWeight: "bold",
-    fontSize: 20,
-    letterSpacing: 0.5,
-  },
-  bodycontainer: {
-    paddingVertical: 5,
-    paddingHorizontal: 15,
-  },
-  addButton: {
-    borderColor: "#70707033",
-    borderWidth: 1.5,
-    marginVertical: 10,
-    borderRadius: 7,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  button: {
-    flex: 1,
-    borderRadius: 5,
-    alignItems: "center",
-    paddingVertical: 15,
-  },
-});
+  success: '#00C851',
+  error: '#ff4444',
+
+  black: '#171717',
+  white: '#FFFFFF',
+  background: '#f4f4f4',
+  border: '#F5F5F7',
+};
+
+export const SIZES = {
+  base: 10,
+  
+};

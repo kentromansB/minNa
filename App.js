@@ -82,6 +82,12 @@ import AddLanguageScreen from "./components/main/AddLanguage";
 import AddQuiz from "./components/main/AddQuiz";
 import AddQuestion from "./components/main/AddQuestion";
 import EditQuestion from "./components/main/EditQuestion";
+<<<<<<< Updated upstream
+=======
+import Testpage from "./components/main/Testpage";
+import PlayQuizScreen from "./components/main/PlayQuizScreen";
+
+>>>>>>> Stashed changes
 
 const Stack = createStackNavigator();
 
@@ -701,6 +707,41 @@ export class App extends Component {
                 },
               }}
             />
+<<<<<<< Updated upstream
+=======
+
+        <Stack.Screen
+              name="Testpage"
+              component={Testpage}
+              options={{
+                title: "Testpage",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            /> 
+
+        <Stack.Screen
+              name="PlayQuizScreen"
+              component={PlayQuizScreen}
+              options={{
+                title: "PlayQuizScreen",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            /> 
+
+            
+>>>>>>> Stashed changes
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

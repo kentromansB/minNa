@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   View,
   TextInput,
@@ -10,17 +10,16 @@ import {
   Pressable,
   ScrollView,
   Alert,
+  FlatList,
 } from "react-native";
-import { connect } from "react-redux";
 import firebase from "firebase";
 require("firebase/firestore");
 require("firebase/firebase-storage");
 
-function EditQuestion({route}) {
+function EditQuestion({route,navigation}) {
 
-    const {question} = route.params;
-    console.log(question)
-
+    const {id} = route.params;
+    console.log(id)
 
     const [choice, setChoice] = useState("")
     const [choice2, setChoice2] = useState("")
@@ -28,29 +27,31 @@ function EditQuestion({route}) {
     const [choice4, setChoice4] = useState("")
     const [answer, setAnswer] = useState("")
 
+    
 
     const editData = () => {
         firebase
         .firestore()
-        .collection('Questions')
-        .doc(question)
+        .collection("question")
+        .doc(id)
         .update({
         choice,
-        choice1,
         choice2,
         choice3,
-        choice4
+        choice4,
+        answer
       })
       .then(() => {
-        console.log('Added!');
+        console.log('Updated!');
       });
       };
     
       const onSubmit = () => {
         editData();
       };
-    
 
+    
+      
 
   return (
     <ScrollView style={styles.container}>
@@ -125,6 +126,8 @@ function EditQuestion({route}) {
         </View>
       </View>
     </ScrollView>
+
+        
   )
 }
 

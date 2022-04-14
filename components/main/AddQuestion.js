@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import {
   View,
   TextInput,
@@ -11,145 +10,178 @@ import {
   ScrollView,
   Alert,
   FlatList,
+  KeyboardAvoidingView,
+  ToastAndroid,
+  SafeAreaView,
 } from "react-native";
-import { connect } from "react-redux";
+import React, {useState, useEffect} from 'react'
 import firebase from "firebase";
 require("firebase/firestore");
 require("firebase/firebase-storage");
 
 
+{/* Form Input */}
+export const FormInput = ({
+  labelText = '',
+  placeholderText = '',
+  onChangeText = null,
+  value = null,
+  ...more
+}) => {
+  return (
+    <View style={{width: '100%', marginBottom: 20}}>
+      <Text>{labelText}</Text>
+      <TextInput
+        style={{
+          padding: 10,
+          borderColor: COLORS.black + '20',
+          borderWidth: 1,
+          width: '100%',
+          borderRadius: 5,
+          marginTop: 10,
+        }}
+        placeholder={placeholderText}
+        onChangeText={onChangeText}
+        value={value}
+        {...more}
+      />
+    </View>
+  );
+};
 
-function AddQuestion({ currentUser, route, navigation }) {
+{/*Button Form */}
+export const FormButton = ({
+  labelText = '',
+  handleOnPress = null,
+  style,
+  isPrimary = true,
+  ...more
+}) => {
+  return (
+    <TouchableOpacity
+      style={{
+        paddingVertical: 10,
+        backgroundColor: isPrimary ? COLORS.primary : COLORS.white,
+        borderWidth: 1,
+        borderColor: COLORS.primary,
+        borderRadius: 5,
+        ...style,
+      }}
+      activeOpacity={0.9}
+      onPress={handleOnPress}
+      {...more}>
+      <Text
+        style={{
+          textAlign: 'center',
+          fontSize: 18,
+          color: isPrimary ? COLORS.white : COLORS.primary,
+        }}>
+        {labelText}
+      </Text>
+    </TouchableOpacity>
+  );
+};
 
-  const [filteredDataSource, setFilteredDataSource] = useState("");
-  const [masterDataSource, setMasterDataSource] = useState("");
-  const [datalist, setDatalist] = useState("");
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
-      firebase
-        .firestore()
-        .collection("Questions")
-        .get()
-        .then((snapshot) => {
-          let masterDataSource = snapshot.docs.map((doc) => {
-            const data = doc.data();
-            const id = doc.id;
-            return { id, ...data };
-          });
-  
-          setDatalist(masterDataSource);
-          setFilteredDataSource(masterDataSource);
-          setMasterDataSource(masterDataSource);
-          console.log(masterDataSource);
-        });
+
+
+
+
+const AddQuestion = ({navigation}) => {
+
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  const createQuiz = (currentQuizId, title, description) => {
+    return firebase.firestore().collection('Quzzies').doc(currentQuizId).set({
+      title,
+      description,
     });
-  
-    return unsubscribe;
-  }, [navigation]);
-  
+  };
+
+  const handleQuizSave = async () => {
+    const currentQuizId = Math.floor(100000 + Math.random() * 9000).toString();
+    // Save to firestore
+    await createQuiz(currentQuizId, title, description);
+
+    // Navigate to Add Question string
+    navigation.navigate('AddQuiz', {
+      currentQuizId: currentQuizId,
+      currentQuisTitle: title,
+    });
+
+    // Reset
+    setTitle('');
+    setDescription('');
+    
+  };
+
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.bodycontainer}>
-        <View style={{ marginVertical: 15 }}>
-          <View>
-            <Text style={[styles.text, { color: "#000000" }]}>
-              Add a New Questions
-            </Text>
-          </View>
-        </View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: COLORS.white,
+        padding: 20,
+      }}>
+      <Text
+        style={{
+          fontSize: 20,
+          textAlign: 'center',
+          marginVertical: 20,
+          fontWeight: 'bold',
+          color: COLORS.black,
+        }}>
+        Create Quiz
+      </Text>
 
-        <View style={{ marginVertical: 5 }}>
-          <Text style={[styles.text, { fontSize: 16 }]}>Questions:</Text>
-        
-          <FlatList
-        nestedScrollEnabled
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={1}
-        horizontal={false}
-        data={filteredDataSource}
-        style={{ flex: 1 }}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              style={styles.container}
-              onPress={() =>
-                navigation.navigate("EditQuestion", { question: item.question })
-              }
-            >
-              <View style={styles.bodycontainer}>
-                <Text style={styles.inKagan}>{item.question} </Text>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
+      <FormInput
+        labelText="Title"
+        placeholderText="enter quiz title"
+        onChangeText={val => setTitle(val)}
+        value={title}
       />
-    
-      </View>
-        <View
-          style={{
-            flexDirection: "row",
-            flex: 1,
-            justifyContent: "center",
-            marginVertical: 25,
-          }}
-        >
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#bfa42a" }]}
-            onPress={() => navigation.navigate("AddQuiz")}
-          >
-            <Text style={[styles.text, { fontSize: 16, color: "white" }]}>
-              Add New Questions
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </ScrollView>
-  );
+      <FormInput
+        labelText="Description"
+        placeholderText="enter quiz description"
+        onChangeText={val => setDescription(val)}
+        value={description}
+      />
+
+      <FormButton labelText="Save Quiz" handleOnPress={handleQuizSave} />
+
+      {/* Temporary button - navigate without saving quiz*/}
+      {/* <FormButton
+        labelText="Navigate to AddQuestionScreen"
+        style={{
+          marginVertical: 20,
+        }}
+        handleOnPress={() => {
+          navigation.navigate('AddQuestionScreen', {
+            currentQuizId: '103404',
+            currentQuizTitle: 'Demo quiz',
+          });
+        }}
+      /> */}
+    </SafeAreaView>
+  )
 }
 
+export default AddQuestion;
+const COLORS = {
+  primary: '#4630EB',
+  secondary: '#000020',
 
-export default connect()(AddQuestion);
-const styles = StyleSheet.create({
-  container: {
-    alignContent: "center",
-    top: 1,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-  },
-  input: {
-    letterSpacing: 0.25,
-    height: 50,
-    width: "95%",
-    paddingLeft: 12,
-    paddingTop: 1,
-    marginTop: 10,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: "#707070",
-  },
-  text: {
-    fontWeight: "bold",
-    fontSize: 20,
-    letterSpacing: 0.5,
-  },
-  bodycontainer: {
-    paddingVertical: 5,
-    paddingHorizontal: 15,
-  },
-  addButton: {
-    borderColor: "#70707033",
-    borderWidth: 1.5,
-    marginVertical: 10,
-    borderRadius: 7,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  button: {
-    flex: 1,
-    borderRadius: 5,
-    alignItems: "center",
-    paddingVertical: 15,
-  },
-});
+  success: '#00C851',
+  error: '#ff4444',
+
+  black: '#171717',
+  white: '#FFFFFF',
+  background: '#f4f4f4',
+  border: '#F5F5F7',
+};
+
+export const SIZES = {
+  base: 10,
+  
+};
