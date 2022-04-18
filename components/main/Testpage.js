@@ -16,15 +16,16 @@ import firebase from "firebase";
 require("firebase/firestore");
 require("firebase/firebase-storage");
 
-const Testpage = ({navigation}) => {
+const Testpage = ({navigation, route}) => {
   
-  
+  const {language} = route.params;
+  console.log(language)
 
   const [allQuizzes, setAllQuizzes] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
   const getQuizzes = () => {
-    return firebase.firestore().collection('Quzzies').get();
+    return firebase.firestore().collection('languages').doc(language).collection('Quizzes').get();
   };
 
   const getAllQuizzes = async () => {

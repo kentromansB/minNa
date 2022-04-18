@@ -14,6 +14,9 @@ require("firebase/firebase-storage");
 
 const PlayQuizScreen = ({navigation,route}) => {
 
+    const {language} = route.params;
+    console.log(language)
+
     const [currentQuizId, setCurrentQuizId] = useState(route.params.quizId);
     const [title, setTitle] = useState('');
     const [questions, setQuestions] = useState([]);
@@ -71,13 +74,15 @@ const PlayQuizScreen = ({navigation,route}) => {
 
       // Get Quiz Details by id
      const getQuizById = currentQuizId => {
-    return firebase.firestore().collection('Quzzies').doc(currentQuizId).get();
+    return firebase.firestore().collection('languages').doc(language).collection('Quizzes').doc(currentQuizId).get();
   };
   
     // Get Questions by currentQuizId
      const getQuestionsByQuizId = currentQuizId => {
     return firebase.firestore()
-      .collection('Quzzies')
+      .collection('languages')
+      .doc(language)
+      .collection('Quizzes')
       .doc(currentQuizId)
       .collection('QNA')
       .get();

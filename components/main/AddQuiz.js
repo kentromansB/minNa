@@ -85,8 +85,12 @@ export const FormButton = ({
 
 const AddQuestion = ({navigation, route}) => {
 
+  const {language} = route.params;
+  console.log(language)
+
   const [currentQuizId, setcurrentQuizId] =useState(route.params.currentQuizId)
   const [currentQuizTitle, setcurrentQuizTitle] =useState(route.params.currentQuizId)
+  
 
   const [question, setQuestion] = useState('')
 
@@ -130,16 +134,13 @@ const AddQuestion = ({navigation, route}) => {
   
 
 
-  const createQuiz = (currentQuizId, title, description) => {
-    return firebase.firestore().collection('Quzzies').doc(currentQuizId).set({
-      title,
-      description,
-    });
-  };
+
 
   const createQuestion = (currentQuizId, currentQuestionId, question) => {
     return firebase.firestore()
-      .collection('Quzzies')
+      .collection('languages')
+      .doc(language)
+      .collection('Quizzes')
       .doc(currentQuizId)
       .collection('QNA')
       .doc(currentQuestionId)
