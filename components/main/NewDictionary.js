@@ -75,6 +75,7 @@ function NewDictionary({ currentUser, route, navigation }) {
     console.log(result);
     if (result.type === "success") {
       setAudio(result);
+      // console.log(result);
     } else {
       alert("something went wrong!!");
     }

@@ -13,30 +13,30 @@ import {
   KeyboardAvoidingView,
   ToastAndroid,
 } from "react-native";
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 require("firebase/firestore");
 require("firebase/firebase-storage");
 
-
-
-{/* Form Input */}
+{
+  /* Form Input */
+}
 export const FormInput = ({
-  labelText = '',
-  placeholderText = '',
+  labelText = "",
+  placeholderText = "",
   onChangeText = null,
   value = null,
   ...more
 }) => {
   return (
-    <View style={{width: '100%', marginBottom: 20}}>
+    <View style={{ width: "100%", marginBottom: 20 }}>
       <Text>{labelText}</Text>
       <TextInput
         style={{
           padding: 10,
-          borderColor: COLORS.black + '20',
+          borderColor: COLORS.black + "20",
           borderWidth: 1,
-          width: '100%',
+          width: "100%",
           borderRadius: 5,
           marginTop: 10,
         }}
@@ -49,9 +49,11 @@ export const FormInput = ({
   );
 };
 
-{/*Button Form */}
+{
+  /*Button Form */
+}
 export const FormButton = ({
-  labelText = '',
+  labelText = "",
   handleOnPress = null,
   style,
   isPrimary = true,
@@ -69,179 +71,170 @@ export const FormButton = ({
       }}
       activeOpacity={0.9}
       onPress={handleOnPress}
-      {...more}>
+      {...more}
+    >
       <Text
         style={{
-          textAlign: 'center',
+          textAlign: "center",
           fontSize: 18,
           color: isPrimary ? COLORS.white : COLORS.primary,
-        }}>
+        }}
+      >
         {labelText}
       </Text>
     </TouchableOpacity>
   );
 };
 
+const AddQuestion = ({ navigation, route }) => {
+  const { language } = route.params;
+  console.log(language);
 
-const AddQuestion = ({navigation, route}) => {
+  const [currentQuizId, setcurrentQuizId] = useState(
+    route.params.currentQuizId
+  );
+  const [currentQuizTitle, setcurrentQuizTitle] = useState(
+    route.params.currentQuizTitle
+  );
 
-  const {language} = route.params;
-  console.log(language)
+  const [question, setQuestion] = useState("");
 
-  const [currentQuizId, setcurrentQuizId] =useState(route.params.currentQuizId)
-  const [currentQuizTitle, setcurrentQuizTitle] =useState(route.params.currentQuizId)
-  
-
-  const [question, setQuestion] = useState('')
-
-  const [correctAnswer, setCorrectAnswer] = useState('')
-  const [OptionTwo, setOptionTwo] = useState('')
-  const [OptionThree, setOptionThree] = useState('')
-  const [OptionFour, setOptionFour] = useState('')
+  const [correctAnswer, setCorrectAnswer] = useState("");
+  const [OptionTwo, setOptionTwo] = useState("");
+  const [OptionThree, setOptionThree] = useState("");
+  const [OptionFour, setOptionFour] = useState("");
 
   const handleQuestionSave = async () => {
     if (
-      question == '' ||
-      correctAnswer == '' ||
-      OptionTwo == '' ||
-      OptionThree == '' ||
-      OptionFour == ''
+      question == "" ||
+      correctAnswer == "" ||
+      OptionTwo == "" ||
+      OptionThree == "" ||
+      OptionFour == ""
     ) {
       return;
     }
 
     let currentQuestionId = Math.floor(
-      100000 + Math.random() * 9000,
+      100000 + Math.random() * 9000
     ).toString();
 
-      // Add question to db
+    // Add question to db
     await createQuestion(currentQuizId, currentQuestionId, {
       question: question,
       correct_answer: correctAnswer,
       incorrect_answers: [OptionTwo, OptionThree, OptionFour],
     });
-    
 
     // Reset
-    setQuestion('');
-    setCorrectAnswer('');
-    setOptionTwo('');
-    setOptionThree('');
-    setOptionFour('');
-    
-
-  }
-  
-
-
-
+    setQuestion("");
+    setCorrectAnswer("");
+    setOptionTwo("");
+    setOptionThree("");
+    setOptionFour("");
+  };
 
   const createQuestion = (currentQuizId, currentQuestionId, question) => {
-    return firebase.firestore()
-      .collection('languages')
+    return firebase
+      .firestore()
+      .collection("languages")
       .doc(language)
-      .collection('Quizzes')
+      .collection("Quizzes")
       .doc(currentQuizId)
-      .collection('QNA')
+      .collection("QNA")
       .doc(currentQuestionId)
       .set(question);
   };
 
-
-
-
-
-
-
   return (
     <KeyboardAvoidingView
-    style={{
-      flex: 1,
-    }}>
-    <ScrollView
       style={{
         flex: 1,
-        backgroundColor: COLORS.white,
-      }}>
-      <View style={{padding: 20}}>
-        <Text
-          style={{fontSize: 20, textAlign: 'center', color: COLORS.black}}>
-          Add Question
-        </Text>
-        <Text style={{textAlign: 'center', marginBottom: 20}}>
-          For {currentQuizTitle}
-        </Text>
+      }}
+    >
+      <ScrollView
+        style={{
+          flex: 1,
+          backgroundColor: COLORS.white,
+        }}
+      >
+        <View style={{ padding: 20 }}>
+          <Text
+            style={{ fontSize: 20, textAlign: "center", color: COLORS.black }}
+          >
+            Add Question
+          </Text>
+          <Text style={{ textAlign: "center", marginBottom: 20 }}>
+            For {currentQuizTitle}
+          </Text>
 
-        <FormInput
-          labelText="Question"
-          placeholderText="enter question"
-          onChangeText={val => setQuestion(val)}
-          value={question}
-        />
-
-        {/* Image upload */}
-
-       
-
-        {/* Options */}
-        <View style={{marginTop: 30}}>
           <FormInput
-            labelText="Correct Answer"
-            onChangeText={val => setCorrectAnswer(val)}
-            value={correctAnswer}
+            labelText="Question"
+            placeholderText="enter question"
+            onChangeText={(val) => setQuestion(val)}
+            value={question}
           />
-          <FormInput
-            labelText="Option 2"
-            onChangeText={val => setOptionTwo(val)}
-            value={OptionTwo}
+
+          {/* Image upload */}
+
+          {/* Options */}
+          <View style={{ marginTop: 30 }}>
+            <FormInput
+              labelText="Correct Answer"
+              onChangeText={(val) => setCorrectAnswer(val)}
+              value={correctAnswer}
+            />
+            <FormInput
+              labelText="Option 2"
+              onChangeText={(val) => setOptionTwo(val)}
+              value={OptionTwo}
+            />
+            <FormInput
+              labelText="Option 3"
+              onChangeText={(val) => setOptionThree(val)}
+              value={OptionThree}
+            />
+            <FormInput
+              labelText="Option 4"
+              onChangeText={(val) => setOptionFour(val)}
+              value={OptionFour}
+            />
+          </View>
+          <FormButton
+            labelText="Save Question"
+            handleOnPress={handleQuestionSave}
           />
-          <FormInput
-            labelText="Option 3"
-            onChangeText={val => setOptionThree(val)}
-            value={OptionThree}
-          />
-          <FormInput
-            labelText="Option 4"
-            onChangeText={val => setOptionFour(val)}
-            value={OptionFour}
+          <FormButton
+            labelText="Done & Go Home"
+            isPrimary={false}
+            handleOnPress={() => {
+              setcurrentQuizId("");
+              navigation.navigate("Course");
+            }}
+            style={{
+              marginVertical: 20,
+            }}
           />
         </View>
-        <FormButton
-          labelText="Save Question"
-          handleOnPress={handleQuestionSave}
-        />
-        <FormButton
-          labelText="Done & Go Home"
-          isPrimary={false}
-          handleOnPress={() => {
-            setCurrentQuizId('');
-            navigation.navigate('HomeScreen');
-          }}
-          style={{
-            marginVertical: 20,
-          }}
-        />
-      </View>
-    </ScrollView>
-  </KeyboardAvoidingView>
-);
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
 };
 
 export default AddQuestion;
 const COLORS = {
-  primary: '#4630EB',
-  secondary: '#000020',
+  primary: "#4630EB",
+  secondary: "#000020",
 
-  success: '#00C851',
-  error: '#ff4444',
+  success: "#00C851",
+  error: "#ff4444",
 
-  black: '#171717',
-  white: '#FFFFFF',
-  background: '#f4f4f4',
-  border: '#F5F5F7',
+  black: "#171717",
+  white: "#FFFFFF",
+  background: "#f4f4f4",
+  border: "#F5F5F7",
 };
 
 export const SIZES = {
   base: 10,
-  
 };

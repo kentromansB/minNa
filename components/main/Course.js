@@ -14,7 +14,8 @@ import {
 import Svg, { Path, G, Rect, Polygon, Title } from "react-native-svg";
 import { connect } from "react-redux";
 
-function Course({ currentUser, navigation }) {
+function Course({ currentUser, navigation, language }) {
+  console.log(language);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -545,7 +546,9 @@ function Course({ currentUser, navigation }) {
           {/* Vocabulary.js */}
           <TouchableOpacity
             style={styles.buttonVocab}
-            onPress={() => navigation.navigate("Vocabulary")}
+            onPress={() =>
+              navigation.navigate("Testpage", { language: language })
+            }
           >
             <View style={styles.contextButton}>
               <Image
@@ -556,26 +559,6 @@ function Course({ currentUser, navigation }) {
               <View style={styles.text_Context}>
                 <Text style={styles.textVocab}> Vocabulary</Text>
                 <Text style={styles.textVocabSub}> Translate words</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-
-          {/* Grammar.js */}
-          <TouchableOpacity
-            style={styles.buttonVocab}
-            onPress={() => navigation.navigate("Grammar")}
-          >
-            <View style={styles.contextButton}>
-              <Image
-                style={{ width: 40, height: 40 }}
-                source={require("../../assets/grammar.png")}
-              />
-              <View style={styles.text_Context}>
-                <Text style={styles.textVocab}> Phrases</Text>
-                <Text style={styles.textVocabSub}>
-                  {" "}
-                  Select and Translate Phrases
-                </Text>
               </View>
             </View>
           </TouchableOpacity>

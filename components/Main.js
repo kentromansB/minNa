@@ -55,7 +55,6 @@ export class Main extends Component {
       >
         <Tab.Screen
           name="Course"
-          component={CourseScreen}
           listeners={({ navigation }) => ({
             tabPress: (event) => {
               event.preventDefault();
@@ -67,6 +66,7 @@ export class Main extends Component {
               <MaterialCommunityIcons name="home" color={color} size={26} />
             ),
           }}
+          children={(props) => <CourseScreen language={language} {...props} />}
         />
         <Tab.Screen
           name="Dictionary"
