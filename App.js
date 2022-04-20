@@ -84,6 +84,8 @@ import AddQuestion from "./components/main/AddQuestion";
 import EditQuestion from "./components/main/EditQuestion";
 import Testpage from "./components/main/Testpage";
 import PlayQuizScreen from "./components/main/PlayQuizScreen";
+import Edit from "./components/main/Edit";
+import Edits from "./components/main/Edits";
 
 
 const Stack = createStackNavigator();
@@ -725,6 +727,36 @@ export class App extends Component {
               component={PlayQuizScreen}
               options={{
                 title: "PlayQuizScreen",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            /> 
+
+          <Stack.Screen
+              name="Edit"
+              component={Edit}
+              options={{
+                title: "Edit",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            /> 
+
+          <Stack.Screen
+              name="Edits"
+              component={Edits}
+              options={{
+                title: "Edits",
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {

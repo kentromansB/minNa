@@ -1,177 +1,156 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
-  TextInput,
-  Image,
-  Button,
-  TouchableOpacity,
   Text,
   StyleSheet,
+  Image,
   Pressable,
-  ScrollView,
-  Alert,
+  TextInput,
   FlatList,
+  TouchableOpacity,
 } from "react-native";
 import firebase from "firebase";
 require("firebase/firestore");
 require("firebase/firebase-storage");
 
-function EditQuestion({route,navigation}) {
+const EditQuestion = ({ route,navigation}) => {
 
-    const {id} = route.params;
-    console.log(id)
+  const { language } = route?.params ?? {};
 
-    const [choice, setChoice] = useState("")
-    const [choice2, setChoice2] = useState("")
-    const [choice3, setChoice3] = useState("")
-    const [choice4, setChoice4] = useState("")
-    const [answer, setAnswer] = useState("")
+  const [filteredDataSource, setFilteredDataSource] = useState("");
+  const [masterDataSource, setMasterDataSource] = useState("");
+  const [datalist, setDatalist] = useState("");
 
-    
-
-    const editData = () => {
-        firebase
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      firebase
         .firestore()
-        .collection("question")
-        .doc(id)
-        .update({
-        choice,
-        choice2,
-        choice3,
-        choice4,
-        answer
-      })
-      .then(() => {
-        console.log('Updated!');
-      });
-      };
-    
-      const onSubmit = () => {
-        editData();
-      };
+        .collection("languages")
+        .doc(language)
+        .collection('Quizzes')
+        .get()
+        .then((snapshot) => {
+          let masterDataSource = snapshot.docs.map((doc) => {
+            const data = doc.data();
+            const id = doc.id;
+            return { id, ...data };
+          });
 
-    
-      
+          setDatalist(masterDataSource);
+          setFilteredDataSource(masterDataSource);
+          setMasterDataSource(masterDataSource);
+          console.log(masterDataSource);
+        });
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.bodycontainer}>
-        <View style={{ marginVertical: 15 }}>
-          <View>
-            <Text style={[styles.text, { color: "#000000" }]}>
-              New Choices
-            </Text>
-          </View>
-        </View>
-        <View>
-          <Text style={[styles.text, { fontSize: 16 }]}>
-            Add New Choices
-          </Text>
-          <TextInput
-            style={styles.input}
-            multiline={true}
-            autoCapitalize="none"
-            onChangeText={(choice) => setChoice(choice)}
-          />
-
-        <TextInput
-            style={styles.input}
-            multiline={true}
-            autoCapitalize="none"
-            onChangeText={(choice2) => setChoice2(choice2)}
-          />
-
-        <TextInput
-            style={styles.input}
-            multiline={true}
-            autoCapitalize="none"
-            onChangeText={(choice3) => setChoice3(choice3)}
-          />
-
-        <TextInput
-            style={styles.input}
-            multiline={true}
-            autoCapitalize="none"
-            onChangeText={(choice4) => setChoice4(choice4)}
-          />
-        </View>
-
-        <View>
-          <Text style={[styles.text, { fontSize: 16 }]}>
-            Add Correct Answer
-          </Text>
-          <TextInput
-            style={styles.input}
-            multiline={true}
-            autoCapitalize="none"
-            onChangeText={(answer) => setAnswer(answer)}
-          />
-          </View>
-        <View
-          style={{
-            flexDirection: "row",
-            flex: 1,
-            justifyContent: "center",
-            marginVertical: 25,
-          }}
-        >
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#bfa42a" }]}
-            
-          >
-            <Text style={[styles.text, { fontSize: 16, color: "white" }]} onPress={() => onSubmit()}>
-              Submit
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </ScrollView>
-
-        
+     <FlatList
+        nestedScrollEnabled
+        keyExtractor={(item, index) => index.toString()}
+        numColumns={1}
+        horizontal={false}
+        data={filteredDataSource}
+        style={{ flex: 1 }}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity
+              style={styles.container}
+              onPress={() => navigation.navigate("Edit", { data: item.id , language: language})}
+            >
+              <View style={styles.bodycontainer}>
+                <Text style={styles.inKagan}>{item.title} </Text>
+                <Text style={styles.meaning}>{item.description}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+        }}
+      />
   )
 }
 
 export default EditQuestion;
+
 const styles = StyleSheet.create({
-    container: {
-      alignContent: "center",
-      top: 1,
-      paddingVertical: 15,
-      paddingHorizontal: 20,
-    },
-    input: {
-      letterSpacing: 0.25,
-      height: 50,
-      width: "95%",
-      paddingLeft: 12,
-      paddingTop: 1,
-      marginTop: 10,
-      borderWidth: 1,
-      borderRadius: 5,
-      borderColor: "#707070",
-    },
-    text: {
-      fontWeight: "bold",
-      fontSize: 20,
-      letterSpacing: 0.5,
-    },
-    bodycontainer: {
-      paddingVertical: 5,
-      paddingHorizontal: 15,
-    },
-    addButton: {
-      borderColor: "#70707033",
-      borderWidth: 1.5,
-      marginVertical: 10,
-      borderRadius: 7,
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    button: {
-      flex: 1,
-      borderRadius: 5,
-      alignItems: "center",
-      paddingVertical: 15,
-    },
-  });
-  
+  container: {
+    alignContent: "center",
+    top: 1,
+    paddingVertical: 20,
+    paddingHorizontal: 20,
+  },
+  bodycontainer: {
+    paddingVertical: 3,
+    paddingHorizontal: 15,
+  },
+  headLine: {
+    flexDirection: "column",
+    width: "100%",
+    height: 200,
+    backgroundColor: "#215a88",
+    padding: 10,
+  },
+
+  title: {
+    paddingHorizontal: 20,
+    paddingVertical: 50,
+    alignItems: "center",
+  },
+  textHead: {
+    flexDirection: "row",
+    fontSize: 22,
+    fontWeight: "bold",
+    lineHeight: 21,
+    letterSpacing: 0.25,
+    color: "#91B2EB",
+  },
+  textSubHead: {
+    flexDirection: "row",
+    fontSize: 15,
+    lineHeight: 21,
+    letterSpacing: 0,
+    color: "white",
+  },
+
+  input: {
+    height: 45,
+    width: "90%",
+    backgroundColor: "white",
+    margin: 12,
+    paddingLeft: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+  },
+  input1: {
+    height: 45,
+    width: "50%",
+    backgroundColor: "white",
+    margin: 12,
+    paddingLeft: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+  },
+  inKagan: {
+    fontSize: 20,
+    fontWeight: "bold",
+    letterSpacing: 0.3,
+  },
+  inFilipino: {
+    fontSize: 11,
+    color: "#215a88",
+    fontStyle: "italic",
+  },
+  meaning: {
+    fontSize: 13,
+    letterSpacing: 0.25,
+    color: "black",
+    textAlign: "justify",
+  },
+});

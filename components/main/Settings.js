@@ -94,11 +94,19 @@ function Settings({ currentUser, navigation, route }) {
               <Text style={styles.menuItemText}>Questions</Text>
             </View>
           </TouchableRipple>
-          {/* TestPage */}
+          {/* TestPage 
           <TouchableRipple onPress={() => navigation.navigate("Testpage", { language: language })}>
             <View style={styles.menuItem}>
               <Icon name="bookshelf" color="#777777" size={25} />
               <Text style={styles.menuItemText}>TestPage</Text>
+            </View>
+          </TouchableRipple>
+          */}
+
+          <TouchableRipple onPress={() => navigation.navigate("EditQuestion", { language: language })}>
+            <View style={styles.menuItem}>
+              <Icon name="bookshelf" color="#777777" size={25} />
+              <Text style={styles.menuItemText}>Edit</Text>
             </View>
           </TouchableRipple>
 
