@@ -145,6 +145,8 @@ const Edits = ({route}) => {
       .doc(currentData)
       .update({
         question,
+        correct_answer: correctAnswer,
+        incorrect_answers: [OptionTwo, OptionThree, OptionFour],
       })
 
       .then(() => {

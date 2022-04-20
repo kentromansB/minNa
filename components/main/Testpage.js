@@ -97,22 +97,7 @@ const Testpage = ({ navigation, route }) => {
             <Text style={{ color: COLORS.primary }}>Play</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={{
-              paddingVertical: 10,
-              paddingHorizontal: 30,
-              borderRadius: 50,
-              backgroundColor: COLORS.primary + "20",
-            }}
-            onPress={() => {
-              navigation.navigate("EditQuestion", {
-                quizId: quiz.id,
-                language: language,
-              });
-            }}
-          >
-            <Text style={{ color: COLORS.primary }}>Edit</Text>
-          </TouchableOpacity>
+          
         </View>
       )}
     />
