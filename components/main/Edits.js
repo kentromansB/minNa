@@ -95,8 +95,9 @@ const Edits = ({route}) => {
     const { language } = route?.params ?? {};
     const { currentData } = route?.params ?? {};
     const { data } = route?.params ?? {};
-    console.log(currentData)
-    console.log(data)
+    
+
+    
 
 
     const [question, setQuestion] = useState("");
@@ -105,6 +106,13 @@ const Edits = ({route}) => {
   const [OptionTwo, setOptionTwo] = useState("");
   const [OptionThree, setOptionThree] = useState("");
   const [OptionFour, setOptionFour] = useState("");
+
+    const [questions, setQuestions] = useState(currentData?.question);
+    const [CorrectAnswers, setAnswer] = useState(currentData?.correct_answer);
+    const [options1, setOptions1] = useState(currentData?.incorrect_answers[0])
+    const [options2, setOptions2] = useState(currentData?.incorrect_answers[1])
+    const [options3, setOptions3] = useState(currentData?.incorrect_answers[2])
+
 
 
   const handleQuestionSave = async () => {
@@ -142,7 +150,7 @@ const Edits = ({route}) => {
       .collection("Quizzes")
       .doc(data)
       .collection("QNA")
-      .doc(currentData)
+      .doc(`${currentData?.id}`)
       .update({
         question,
         correct_answer: correctAnswer,
@@ -176,12 +184,12 @@ const Edits = ({route}) => {
             Edit Question
           </Text>
           <Text style={{ textAlign: "center", marginBottom: 20 }}>
-            For {currentData}
+            For {currentData.question}
           </Text>
 
           <FormInput
             labelText="Question"
-            placeholderText="enter question"
+            placeholderText={questions}
             onChangeText={(val) => setQuestion(val)}
             value={question}
           />
@@ -192,21 +200,25 @@ const Edits = ({route}) => {
           <View style={{ marginTop: 30 }}>
             <FormInput
               labelText="Correct Answer"
+              placeholderText={CorrectAnswers}
               onChangeText={(val) => setCorrectAnswer(val)}
               value={correctAnswer}
             />
             <FormInput
               labelText="Option 2"
+              placeholderText={options1}
               onChangeText={(val) => setOptionTwo(val)}
               value={OptionTwo}
             />
             <FormInput
               labelText="Option 3"
+              placeholder={options2}
               onChangeText={(val) => setOptionThree(val)}
               value={OptionThree}
             />
             <FormInput
               labelText="Option 4"
+              placeholder={options3}
               onChangeText={(val) => setOptionFour(val)}
               value={OptionFour}
             />
