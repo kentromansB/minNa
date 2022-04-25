@@ -86,6 +86,10 @@ import Testpage from "./components/main/Testpage";
 import PlayQuizScreen from "./components/main/PlayQuizScreen";
 import Edit from "./components/main/Edit";
 import Edits from "./components/main/Edits";
+import Add from "./components/main/Add";
+import AddEdit from "./components/main/AddEdit";
+import AddQuestions from "./components/main/AddQuestions";
+import AddQuest from "./components/AddQuest";
 
 
 const Stack = createStackNavigator();
@@ -757,6 +761,67 @@ export class App extends Component {
               component={Edits}
               options={{
                 title: "Edits",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            /> 
+
+          <Stack.Screen
+              name="Add"
+              component={Add}
+              options={{
+                title: "Add",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            /> 
+
+          <Stack.Screen
+              name="AddEdit"
+              component={AddEdit}
+              options={{
+                title: "Add&Edit",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            /> 
+
+
+          <Stack.Screen
+              name="AddQuestions"
+              component={AddQuestions}
+              options={{
+                title: "AddQuestions",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            /> 
+
+          <Stack.Screen
+              name="AddQuest"
+              component={AddQuest}
+              options={{
+                title: "AddQuestions",
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {

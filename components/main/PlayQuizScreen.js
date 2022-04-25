@@ -301,16 +301,7 @@ const PlayQuizScreen = ({ navigation, route }) => {
             })}
           </View>
         )}
-        ListFooterComponent={() => (
-          <FormButton
-            labelText="Submit"
-            style={{ margin: 10 }}
-            handleOnPress={() => {
-              // Show Result modal
-              setIsResultModalVisible(true);
-            }}
-          />
-        )}
+        
       />
 
       {/* Result Modal */}

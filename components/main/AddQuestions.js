@@ -13,7 +13,7 @@ import firebase from "firebase";
 require("firebase/firestore");
 require("firebase/firebase-storage");
 
-const EditQuestion = ({ route,navigation}) => {
+const AddQuestions = ({ route,navigation}) => {
 
   const { language } = route?.params ?? {};
 
@@ -60,7 +60,7 @@ const EditQuestion = ({ route,navigation}) => {
           return (
             <TouchableOpacity
               style={styles.container}
-              onPress={() => navigation.navigate("Edit", { data: item , language: language})}
+              onPress={() => navigation.navigate("AddQuest", { data: item , language: language})}
             >
               <View style={styles.bodycontainer}>
                 <Text style={styles.inKagan}>{item.title} </Text>
@@ -73,7 +73,7 @@ const EditQuestion = ({ route,navigation}) => {
   )
 }
 
-export default EditQuestion;
+export default AddQuestions;
 
 const styles = StyleSheet.create({
   container: {

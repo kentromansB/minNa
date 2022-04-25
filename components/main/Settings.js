@@ -103,10 +103,10 @@ function Settings({ currentUser, navigation, route }) {
           </TouchableRipple>
           */}
 
-          <TouchableRipple onPress={() => navigation.navigate("EditQuestion", { language: language })}>
+          <TouchableRipple onPress={() => navigation.navigate("AddEdit", { language: language })}>
             <View style={styles.menuItem}>
               <Icon name="bookshelf" color="#777777" size={25} />
-              <Text style={styles.menuItemText}>Edit</Text>
+              <Text style={styles.menuItemText}>Add&Edit</Text>
             </View>
           </TouchableRipple>
 
