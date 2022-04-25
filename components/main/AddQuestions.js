@@ -60,7 +60,7 @@ const AddQuestions = ({ route,navigation}) => {
           return (
             <TouchableOpacity
               style={styles.container}
-              onPress={() => navigation.navigate("AddQuest", { data: item , language: language})}
+              onPress={() => navigation.navigate("Add", { data: item , language: language})}
             >
               <View style={styles.bodycontainer}>
                 <Text style={styles.inKagan}>{item.title} </Text>
