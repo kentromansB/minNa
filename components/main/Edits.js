@@ -101,12 +101,12 @@ const Edits = ({route}) => {
     
 
 
-    const [question, setQuestion] = useState("");
+    const [question, setQuestion] = useState(currentData?.question);
 
-  const [correctAnswer, setCorrectAnswer] = useState("");
-  const [OptionTwo, setOptionTwo] = useState("");
-  const [OptionThree, setOptionThree] = useState("");
-  const [OptionFour, setOptionFour] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState(currentData?.correct_answer);
+  const [OptionTwo, setOptionTwo] = useState(currentData?.incorrect_answers[0]);
+  const [OptionThree, setOptionThree] = useState(currentData?.incorrect_answers[1]);
+  const [OptionFour, setOptionFour] = useState(currentData?.incorrect_answers[2]);
 
     const [questions, setQuestions] = useState(currentData?.question);
     const [CorrectAnswers, setAnswer] = useState(currentData?.correct_answer);
@@ -116,32 +116,32 @@ const Edits = ({route}) => {
 
 
 
-  const handleQuestionSave = async () => {
-    if (
-      question == "" ||
-      correctAnswer == "" ||
-      OptionTwo == "" ||
-      OptionThree == "" ||
-      OptionFour == ""
-    ) {
-      return;
-    }
-
-    // Add question to db
-    await createQuestion( {
-      question: question,
-      correct_answer: correctAnswer,
-      incorrect_answers: [OptionTwo, OptionThree, OptionFour],
-    });
-
-    // Reset
-    setQuestion("");
-    setCorrectAnswer("");
-    setOptionTwo("");
-    setOptionThree("");
-    setOptionFour("");
-  };
-
+    const handleQuestionSave = async () => {
+        if (
+          question == "" ||
+          correctAnswer == "" ||
+          OptionTwo == "" ||
+          OptionThree == "" ||
+          OptionFour == ""
+        ) {
+          return;
+        }
+    
+    
+        // Add question to db
+        await createQuestion({
+          question: question,
+          correct_answer: correctAnswer,
+          incorrect_answers: [OptionTwo, OptionThree, OptionFour],
+        });
+    
+        // Reset
+        setQuestion("");
+        setCorrectAnswer("");
+        setOptionTwo("");
+        setOptionThree("");
+        setOptionFour("");
+      };
 
   const createQuestion = () => {
     return firebase
@@ -182,15 +182,15 @@ const Edits = ({route}) => {
           <Text
             style={{ fontSize: 20, textAlign: "center", color: COLORS.black }}
           >
-            Edit Question
+            Add Question
           </Text>
           <Text style={{ textAlign: "center", marginBottom: 20 }}>
-            For {currentData.question}
+            For
           </Text>
 
           <FormInput
             labelText="Question"
-            placeholderText={questions}
+            placeholderText="enter question"
             onChangeText={(val) => setQuestion(val)}
             value={question}
           />
@@ -201,25 +201,22 @@ const Edits = ({route}) => {
           <View style={{ marginTop: 30 }}>
             <FormInput
               labelText="Correct Answer"
-              placeholderText={CorrectAnswers}
+              placeholderText={correctAnswer}
               onChangeText={(val) => setCorrectAnswer(val)}
               value={correctAnswer}
             />
             <FormInput
               labelText="Option 2"
-              placeholderText={options1}
               onChangeText={(val) => setOptionTwo(val)}
               value={OptionTwo}
             />
             <FormInput
               labelText="Option 3"
-              placeholder={options2}
               onChangeText={(val) => setOptionThree(val)}
               value={OptionThree}
             />
             <FormInput
               labelText="Option 4"
-              placeholder={options3}
               onChangeText={(val) => setOptionFour(val)}
               value={OptionFour}
             />
