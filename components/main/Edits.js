@@ -102,46 +102,21 @@ const Edits = ({route}) => {
 
 
     const [question, setQuestion] = useState(currentData?.question);
-
   const [correctAnswer, setCorrectAnswer] = useState(currentData?.correct_answer);
   const [OptionTwo, setOptionTwo] = useState(currentData?.incorrect_answers[0]);
   const [OptionThree, setOptionThree] = useState(currentData?.incorrect_answers[1]);
   const [OptionFour, setOptionFour] = useState(currentData?.incorrect_answers[2]);
 
-    const [questions, setQuestions] = useState(currentData?.question);
-    const [CorrectAnswers, setAnswer] = useState(currentData?.correct_answer);
-    const [options1, setOptions1] = useState(currentData?.incorrect_answers[0])
-    const [options2, setOptions2] = useState(currentData?.incorrect_answers[1])
-    const [options3, setOptions3] = useState(currentData?.incorrect_answers[2])
 
 
 
-    const handleQuestionSave = async () => {
-        if (
-          question == "" ||
-          correctAnswer == "" ||
-          OptionTwo == "" ||
-          OptionThree == "" ||
-          OptionFour == ""
-        ) {
-          return;
-        }
+    const handleQuestionSave = () => {
+        createQuestion();
+    }
+    const save = () => {
+        createQuestion();
+    }
     
-    
-        // Add question to db
-        await createQuestion({
-          question: question,
-          correct_answer: correctAnswer,
-          incorrect_answers: [OptionTwo, OptionThree, OptionFour],
-        });
-    
-        // Reset
-        setQuestion("");
-        setCorrectAnswer("");
-        setOptionTwo("");
-        setOptionThree("");
-        setOptionFour("");
-      };
 
   const createQuestion = () => {
     return firebase
@@ -149,7 +124,7 @@ const Edits = ({route}) => {
       .collection("languages")
       .doc(language)
       .collection("Quizzes")
-      .doc(data)
+      .doc(`${data?.id}`)
       .collection("QNA")
       .doc(`${currentData?.id}`)
       .update({
@@ -168,37 +143,37 @@ const Edits = ({route}) => {
 
   return (
     <KeyboardAvoidingView
+    style={{
+      flex: 1,
+    }}
+  >
+    <ScrollView
       style={{
         flex: 1,
+        backgroundColor: COLORS.white,
       }}
     >
-      <ScrollView
-        style={{
-          flex: 1,
-          backgroundColor: COLORS.white,
-        }}
-      >
-        <View style={{ padding: 20 }}>
-          <Text
-            style={{ fontSize: 20, textAlign: "center", color: COLORS.black }}
-          >
-            Add Question
-          </Text>
-          <Text style={{ textAlign: "center", marginBottom: 20 }}>
-            For
-          </Text>
+      <View style={{ padding: 20 }}>
+        <Text
+          style={{ fontSize: 20, textAlign: "center", color: COLORS.black }}
+        >
+          Edit Question
+        </Text>
+        <Text style={{ textAlign: "center", marginBottom: 20 }}>
+          For {data?.title}
+        </Text>
 
-          <FormInput
-            labelText="Question"
-            placeholderText="enter question"
-            onChangeText={(val) => setQuestion(val)}
-            value={question}
-          />
+        <FormInput
+          labelText="Question"
+          placeholderText={question}
+          onChangeText={(val) => setQuestion(val)}
+          value={question}
+        />
 
-          {/* Image upload */}
+        {/* Image upload */}
 
-          {/* Options */}
-          <View style={{ marginTop: 30 }}>
+        {/* Options */}
+        <View style={{ marginTop: 30 }}>
             <FormInput
               labelText="Correct Answer"
               placeholderText={correctAnswer}
@@ -207,38 +182,43 @@ const Edits = ({route}) => {
             />
             <FormInput
               labelText="Option 2"
+              placeholderText={OptionTwo}
               onChangeText={(val) => setOptionTwo(val)}
               value={OptionTwo}
             />
             <FormInput
               labelText="Option 3"
+              placeholderText={OptionThree}
               onChangeText={(val) => setOptionThree(val)}
               value={OptionThree}
             />
             <FormInput
               labelText="Option 4"
+              placeholderText={OptionFour}
               onChangeText={(val) => setOptionFour(val)}
               value={OptionFour}
             />
+            
           </View>
-          <FormButton
-            labelText="Save Question"
-            handleOnPress={handleQuestionSave}
-          />
-          <FormButton
-            labelText="Done & Go Home"
-            isPrimary={false}
-            handleOnPress={() => {
-              setcurrentQuizId("");
-              navigation.navigate("Course");
-            }}
-            style={{
-              marginVertical: 20,
-            }}
-          />
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+       
+        <FormButton
+          labelText="Save Question"
+          handleOnPress={handleQuestionSave}
+        />
+        <FormButton
+          labelText="Done & Go Home"
+          isPrimary={false}
+          handleOnPress={() => {
+            setcurrentQuizId("");
+            navigation.navigate("Course");
+          }}
+          style={{
+            marginVertical: 20,
+          }}
+        />
+      </View>
+    </ScrollView>
+  </KeyboardAvoidingView>
   )
 }
 
