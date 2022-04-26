@@ -109,6 +109,7 @@ export default class Login extends Component {
               />
             ) : null}
           </View>
+          {/* Forgot Password Button that will redirect you the ForgotPassword.js */}
           <TouchableOpacity
             onPress={() => navigation.navigate("ForgotPassword")}
           >

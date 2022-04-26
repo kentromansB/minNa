@@ -26,6 +26,7 @@ export default class ForgotPassword extends Component {
     this.onReset = this.onReset.bind(this);
   }
 
+  // Function for resetting password, it will be sent to their email
   onReset() {
     const { email } = this.state;
     firebase

@@ -29,7 +29,7 @@ export default class Register extends ValidationComponent {
     this.state = {
       email: "",
       password: "",
-      name: "",
+      name: "Anonymous",
       type: "",
       userImage: "",
       secureTextEntry: true,
@@ -37,15 +37,18 @@ export default class Register extends ValidationComponent {
     this.onSignUp = this.onSignUp.bind(this);
   }
 
+  //Function for signing up
   onSignUp() {
     const { email, password, name, type } = this.state;
-
+    // Validation
     this.validate({
       email: { email: true },
       name: { required: true },
       password: { required: true },
     });
 
+    // Firebase function for sign up
+    //User type is default as 0. (0 = basic user)
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -72,6 +75,7 @@ export default class Register extends ValidationComponent {
     const { navigation } = this.props;
     const { secureTextEntry } = this.state;
     const { password } = this.state;
+    const { name } = this.state;
 
     return (
       <ScrollView style={styles.container}>
@@ -90,6 +94,7 @@ export default class Register extends ValidationComponent {
             <TextInput
               label="Name"
               activeUnderlineColor="#215a88"
+              placeholder={name}
               onChangeText={(name) => this.setState({ name })}
             />
           </View>
