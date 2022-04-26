@@ -29,6 +29,8 @@ function VWConf({ navigation, language }) {
 
   const getData = () => {
     //Service to get the data from the server to render
+    //Upload == 1 , data from the dictionary that was contributed by the user
+    //Status == 1, the word data that has been accepted by the validator
     firebase
       .firestore()
       .collection("languages")

@@ -29,6 +29,7 @@ function VWAll({ navigation, language }) {
 
   const getData = () => {
     //Service to get the data from the server to render
+    //Upload == 1 , data from the dictionary that was contributed by the user
     firebase
       .firestore()
       .collection("languages")

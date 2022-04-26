@@ -28,6 +28,8 @@ function VWPend({ navigation, language }) {
 
   const getData = () => {
     //Service to get the data from the server to render
+    //Upload == 1 , data from the dictionary that was contributed by the user
+    //Status == 0, the word data that is pending and yet to be accepted/declined
     firebase
       .firestore()
       .collection("languages")
