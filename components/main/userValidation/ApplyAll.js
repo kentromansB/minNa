@@ -29,6 +29,7 @@ function ApplyAll({ navigation }) {
 
   const getData = () => {
     //Service to get the data from the server to render
+    //Applicant == 1 , basic user that has applied to be a validator
     firebase
       .firestore()
       .collection("users")

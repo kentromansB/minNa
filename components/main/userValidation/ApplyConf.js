@@ -32,6 +32,8 @@ function Applications({ navigation }) {
 
   const getData = () => {
     //Service to get the data from the server to render
+    //Applicant == 1 , basic user that has applied to be a validator
+    //Status == 1, basic user that has been approved as a validator
     firebase
       .firestore()
       .collection("users")

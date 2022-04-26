@@ -32,6 +32,8 @@ function Applications({ navigation }) {
 
   const getData = () => {
     //Service to get the data from the server to render
+    //Applicant == 1 , basic user that has applied to be a validator
+    //Status == 0, basic user that has a pending application yet to be approve/declined
     firebase
       .firestore()
       .collection("users")
