@@ -43,18 +43,13 @@ import RegisterScreen from "./components/auth/Register";
 import ForgotPasswordScreen from "./components/auth/ForgotPassword";
 import LoginScreen from "./components/auth/Login";
 import MainScreen from "./components/Main";
-import Landing from "./components/auth/Landing";
+// import Landing from "./components/auth/Landing";
 import ContributionScreen from "./components/main/Contribution";
 import VocabularyScreen from "./components/main/Vocabulary";
 import GrammarScreen from "./components/main/Grammar";
 import WordScreen from "./components/main/Word";
 import SaveScreen from "./components/main/Save";
 import NewDictionaryScreen from "./components/main/NewDictionary";
-import Vocabulary1Screen from "./components/main/coursepacks/screens/Vocabulary/Vocabulary1";
-import Vocabulary2Screen from "./components/main/coursepacks/screens/Vocabulary/Vocabulary2";
-import Vocabulary3Screen from "./components/main/coursepacks/screens/Vocabulary/Vocabulary3";
-import Vocabulary4Screen from "./components/main/coursepacks/screens/Vocabulary/Vocabulary4";
-import newDReviewScreen from "./components/main/newDReview";
 import MyContributionsScreen from "./components/main/userContributions/MyContributions";
 import BeAValidatorScreen from "./components/main/BeAValidator";
 import ValidatorAppScreen from "./components/main/ValidatorApplication";
@@ -64,15 +59,7 @@ import DeclineScreen from "./components/main/Decline";
 import ApplicationsScreen from "./components/main/userValidation/Applications";
 import ApplicationConfScreen from "./components/main/ApplicationConf";
 import SpeechScreen from "./components/main/Speech";
-// import SpeechScreen1 from "./components/main/coursepacks/screens/Speech/Speech1";
 import UserContributionScreen from "./components/main/UserContribution";
-import PronunciationScreen from "./components/main/coursepacks/screens/Speech/Pronunciation";
-import Pronunciation2Screen from "./components/main/coursepacks/screens/Speech/Pronunciation2";
-import Pronunciation3Screen from "./components/main/coursepacks/screens/Speech/Pronunciation3";
-import Pronunciation4Screen from "./components/main/coursepacks/screens/Speech/Pronunciation4";
-import PhrasesScreen1 from "./components/main/coursepacks/screens/Phrases/Phrases1";
-import PhrasesScreen2 from "./components/main/coursepacks/screens/Phrases/Phrases2";
-import PhrasesScreen3 from "./components/main/coursepacks/screens/Phrases/Phrases3";
 import CultureScreen from "./components/main/AboutCulture";
 import FoodScreen from "./components/main/AboutFood";
 import EventsScreen from "./components/main/AboutEvents";
@@ -90,7 +77,6 @@ import Add from "./components/main/Add";
 import AddEdit from "./components/main/AddEdit";
 import AddQuestions from "./components/main/AddQuestions";
 import AddQuest from "./components/AddQuest";
-
 
 const Stack = createStackNavigator();
 
@@ -310,7 +296,7 @@ export class App extends Component {
               }}
             />
 
-            <Stack.Screen
+            {/* <Stack.Screen
               name="NewWord"
               component={newDReviewScreen}
               options={{
@@ -323,7 +309,7 @@ export class App extends Component {
                   borderBottomWidth: 0,
                 },
               }}
-            />
+            /> */}
 
             <Stack.Screen
               name="Save"
@@ -355,62 +341,7 @@ export class App extends Component {
                 },
               }}
             />
-            <Stack.Screen
-              name="Vocabulary1"
-              component={Vocabulary1Screen}
-              options={{
-                title: "Pronouns",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            />
-            <Stack.Screen
-              name="Vocabulary2"
-              component={Vocabulary2Screen}
-              options={{
-                title: "Adjective",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            />
-            <Stack.Screen
-              name="Vocabulary3"
-              component={Vocabulary3Screen}
-              options={{
-                title: "Verbs",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            />
-            <Stack.Screen
-              name="Vocabulary4"
-              component={Vocabulary4Screen}
-              options={{
-                title: "Conjuctions & Prepositions",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            />
+
             <Stack.Screen
               name="MyContribution"
               component={MyContributionsScreen}
@@ -541,119 +472,7 @@ export class App extends Component {
                 },
               }}
             />
-            <Stack.Screen
-              name="Pronunciation1"
-              component={PronunciationScreen}
-              options={{
-                title: "Pronunciation",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            />
-            <Stack.Screen
-              name="Pronunciation2"
-              component={Pronunciation2Screen}
-              options={{
-                title: "Pronunciation",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            />
-            <Stack.Screen
-              name="Pronunciation3"
-              component={Pronunciation3Screen}
-              options={{
-                title: "Pronunciation",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            />
-            <Stack.Screen
-              name="Pronunciation4"
-              component={Pronunciation4Screen}
-              options={{
-                title: "Pronunciation",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            />
-            {/* <Stack.Screen
-              name="Speach1"
-              component={SpeechScreen1}
-              options={{
-                title: "Introduction",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            /> */}
 
-            <Stack.Screen
-              name="Phrases1"
-              component={PhrasesScreen1}
-              options={{
-                title: "Greetings",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            />
-            <Stack.Screen
-              name="Phrases2"
-              component={PhrasesScreen2}
-              options={{
-                title: "Introduction",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            />
-            <Stack.Screen
-              name="Phrases3"
-              component={PhrasesScreen3}
-              options={{
-                title: "Conversation",
-                headerShadowVisible: false,
-                headerTintColor: "#fff",
-                headerStyle: {
-                  backgroundColor: "#215A88",
-                  elevation: 0,
-                  borderBottomWidth: 0,
-                },
-              }}
-            />
             <Stack.Screen
               name="AddLanguageScreen"
               component={AddLanguageScreen}
@@ -711,7 +530,7 @@ export class App extends Component {
               }}
             />
 
-        <Stack.Screen
+            <Stack.Screen
               name="Testpage"
               component={Testpage}
               options={{
@@ -724,9 +543,9 @@ export class App extends Component {
                   borderBottomWidth: 0,
                 },
               }}
-            /> 
+            />
 
-        <Stack.Screen
+            <Stack.Screen
               name="PlayQuizScreen"
               component={PlayQuizScreen}
               options={{
@@ -739,9 +558,9 @@ export class App extends Component {
                   borderBottomWidth: 0,
                 },
               }}
-            /> 
+            />
 
-          <Stack.Screen
+            <Stack.Screen
               name="Edit"
               component={Edit}
               options={{
@@ -754,9 +573,9 @@ export class App extends Component {
                   borderBottomWidth: 0,
                 },
               }}
-            /> 
+            />
 
-          <Stack.Screen
+            <Stack.Screen
               name="Edits"
               component={Edits}
               options={{
@@ -769,9 +588,9 @@ export class App extends Component {
                   borderBottomWidth: 0,
                 },
               }}
-            /> 
+            />
 
-          <Stack.Screen
+            <Stack.Screen
               name="Add"
               component={Add}
               options={{
@@ -784,9 +603,9 @@ export class App extends Component {
                   borderBottomWidth: 0,
                 },
               }}
-            /> 
+            />
 
-          <Stack.Screen
+            <Stack.Screen
               name="AddEdit"
               component={AddEdit}
               options={{
@@ -799,10 +618,9 @@ export class App extends Component {
                   borderBottomWidth: 0,
                 },
               }}
-            /> 
+            />
 
-
-          <Stack.Screen
+            <Stack.Screen
               name="AddQuestions"
               component={AddQuestions}
               options={{
@@ -815,9 +633,9 @@ export class App extends Component {
                   borderBottomWidth: 0,
                 },
               }}
-            /> 
+            />
 
-          <Stack.Screen
+            <Stack.Screen
               name="AddQuest"
               component={AddQuest}
               options={{
@@ -830,9 +648,7 @@ export class App extends Component {
                   borderBottomWidth: 0,
                 },
               }}
-            /> 
-
-            
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
