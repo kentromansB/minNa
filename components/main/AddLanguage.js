@@ -24,36 +24,12 @@ import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system";
 
 function AddLanguage({ currentUser, route, navigation }) {
-  //   const [pdf, setPdf] = useState(null);
-  //   c, setLoading] = useState(null);
   const [language, setLanguage] = useState("");
   const [convertedLanguage, setConvertedLanguage] = useState("");
   const [history, setHistory] = useState("");
-
-  const chooseFile = async () => {
-    let result = await DocumentPicker.getDocumentAsync({
-      type: "application/pdf",
-      copyToCacheDirectory: false,
-    });
-    // Alert.alert("Audio File", result.name);
-    console.log(result);
-    if (result.type === "success") {
-      Alert.alert("PDF File", result.name);
-      setPdf(result);
-    } else {
-      alert("something went wrong!!");
-    }
-  };
-
-  const convertTextToLowerCase = () => {
-    // To convert Lower Case
-    let lowerCaseText = language.toLowerCase();
-    setConvertedLanguage(lowerCaseText);
-  };
+  const [note, setNote] = useState("");
 
   const submit = async () => {
-    convertTextToLowerCase();
-    console.log(convertedLanguage);
     saveUserData();
   };
 
@@ -64,6 +40,7 @@ function AddLanguage({ currentUser, route, navigation }) {
       .doc(language)
       .set({
         language: language,
+        description: note,
         creation: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .then(function () {
@@ -126,10 +103,7 @@ function AddLanguage({ currentUser, route, navigation }) {
           <Text style={[styles.text, { fontSize: 16 }]}>
             About the Language
           </Text>
-          <Text>
-            Brief history of the language and the culture of the tribes that are
-            using the application.
-          </Text>
+          <Text>Brief introduction/description about the language.</Text>
           <TextInput
             multiline={true}
             style={[

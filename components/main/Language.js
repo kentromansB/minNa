@@ -117,7 +117,8 @@ function Language({ navigation }) {
               }
             >
               <View style={styles.bodycontainer}>
-                <Text style={styles.inKagan}>{item.language} </Text>
+                <Text style={styles.language}>{item.language} </Text>
+                <Text style={styles.description}>{item.description}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -201,20 +202,16 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
   },
-  inKagan: {
+  language: {
     fontSize: 20,
     fontWeight: "bold",
     letterSpacing: 0.3,
   },
-  inFilipino: {
-    fontSize: 11,
-    color: "#8E2835",
-    fontStyle: "italic",
-  },
-  meaning: {
+  description: {
     fontSize: 13,
     letterSpacing: 0.25,
     color: "black",
     textAlign: "justify",
+    marginTop: 5,
   },
 });
