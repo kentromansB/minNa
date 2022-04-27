@@ -30,7 +30,7 @@ function NewDictionary({ currentUser, route, navigation }) {
   const [filipino, setFilipino] = useState("");
   const [sentence, setSentence] = useState("");
   const [classification, setClassification] = useState("");
-  const [filipinoSentence, setFilipinoSentence] = useState("");
+  const [englishMeaning, setEnglishMeaning] = useState("");
   const [meaning, setMeaning] = useState("");
   const [pronunciation, setPronunciation] = useState("");
   const [audio, setAudio] = useState(null);
@@ -59,7 +59,7 @@ function NewDictionary({ currentUser, route, navigation }) {
         filipino,
         sentence,
         pronunciation,
-        filipinoSentence,
+        englishMeaning,
         meaning,
         audio,
       },
@@ -141,7 +141,7 @@ function NewDictionary({ currentUser, route, navigation }) {
       filipino: { required: true },
       pronunciation: { required: true },
       sentence: { required: true },
-      filipinoSentence: { required: true },
+      englishMeaning: { required: true },
       meaning: { required: true },
       audio: { required: true },
     });
@@ -206,7 +206,7 @@ function NewDictionary({ currentUser, route, navigation }) {
         classification,
         pronunciation,
         sentence,
-        filipinoSentence,
+        englishMeaning,
         meaning,
         status: "0",
         upload: "1",
@@ -236,7 +236,7 @@ function NewDictionary({ currentUser, route, navigation }) {
         classification,
         pronunciation,
         sentence,
-        filipinoSentence,
+        englishMeaning,
         meaning,
         status: "0",
         upload: "1",
@@ -347,18 +347,16 @@ function NewDictionary({ currentUser, route, navigation }) {
           <Text style={styles.guidelines}>
             Define the word you have suggested in English.
           </Text>
-          {isFieldInError("filipinoSentence") &&
-            getErrorsInField("filipinoSentence").map((errorMessage) => (
+          {isFieldInError("englishMeaning") &&
+            getErrorsInField("englishMeaning").map((errorMessage) => (
               <Text style={{ color: "red" }}>
                 Please enter the english meaning
               </Text>
             ))}
           <TextInput
-            style={styles.input}
+            style={styles.description_input}
             multiline={true}
-            onChangeText={(filipinoSentence) =>
-              setFilipinoSentence(filipinoSentence)
-            }
+            onChangeText={(englishMeaning) => setEnglishMeaning(englishMeaning)}
           />
         </View>
 

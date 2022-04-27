@@ -201,7 +201,7 @@ const AddQuestion = ({ navigation, route }) => {
             />
           </View>
           <FormButton
-            labelText="Save Question"
+            labelText="Add Question"
             handleOnPress={handleQuestionSave}
           />
           <FormButton
@@ -223,7 +223,7 @@ const AddQuestion = ({ navigation, route }) => {
 
 export default AddQuestion;
 const COLORS = {
-  primary: "#4630EB",
+  primary: "#215a88",
   secondary: "#000020",
 
   success: "#00C851",

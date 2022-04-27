@@ -29,6 +29,8 @@ function MContriConf({ navigation, language }) {
 
   const getData = () => {
     //Service to get the data from the server to render
+    //uid == currentUser.uid , data from the dictionary that was contributed by current user
+    // status == 1, Confirmed contribution
     firebase
       .firestore()
       .collection("languages")
@@ -55,28 +57,6 @@ function MContriConf({ navigation, language }) {
     //Call the Service to get the latest data
     getData();
   };
-  // useEffect(() => {
-  //   const unsubscribe = navigation.addListener("focus", () => {
-  //     firebase
-  //       .firestore()
-  //       .collection("languages")
-  //       .doc(language)
-  //       .collection("dictionary")
-  //       .where("uid", "==", firebase.auth().currentUser.uid)
-  //       .where("status", "==", "1")
-  //       .get()
-  //       .then((snapshot) => {
-  //         let dictionaryAll = snapshot.docs.map((doc) => {
-  //           const data = doc.data();
-  //           const id = doc.id;
-  //           return { id, ...data };
-  //         });
-  //         setDatalist(dictionaryAll);
-  //       });
-  //   });
-
-  //   return unsubscribe;
-  // }, [navigation]);
 
   const renderItem = ({ item, index }) => {
     return (

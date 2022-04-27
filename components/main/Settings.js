@@ -28,6 +28,7 @@ const onLogout = () => {
 function Settings({ currentUser, navigation, route }) {
   const { language } = route?.params ?? {};
   if (currentUser.type == "2") {
+    // This will render all of the functions available for the superuser
     return (
       <SafeAreaView style={styles.container}>
         <View>
@@ -39,7 +40,7 @@ function Settings({ currentUser, navigation, route }) {
             </View>
           </View>
         </View>
-
+        {/* Active user contribution (start)*/}
         <View style={styles.menuWrapper}>
           <TouchableRipple
             onPress={() =>
@@ -51,6 +52,9 @@ function Settings({ currentUser, navigation, route }) {
               <Text style={styles.menuItemText}>My Contributions</Text>
             </View>
           </TouchableRipple>
+          {/* Active user contribution (end)*/}
+
+          {/* Validator Application screen (start)*/}
           <TouchableRipple
             onPress={() => navigation.navigate("ApplicationScreen")}
           >
@@ -59,6 +63,9 @@ function Settings({ currentUser, navigation, route }) {
               <Text style={styles.menuItemText}>Applications</Text>
             </View>
           </TouchableRipple>
+          {/* Validator Application screen (end)*/}
+
+          {/* Word Validation screen (start)*/}
           <TouchableRipple
             onPress={() =>
               navigation.navigate("Validate", { language: language })
@@ -73,6 +80,9 @@ function Settings({ currentUser, navigation, route }) {
               <Text style={styles.menuItemText}>Check Submissions</Text>
             </View>
           </TouchableRipple>
+          {/* Word Validation screen (end)*/}
+
+          {/* Add Language screen (start)*/}
           <TouchableRipple
             onPress={() => navigation.navigate("AddLanguageScreen")}
           >
@@ -81,12 +91,17 @@ function Settings({ currentUser, navigation, route }) {
               <Text style={styles.menuItemText}>Add New Language</Text>
             </View>
           </TouchableRipple>
+          {/* Add Language screen (end)*/}
+
+          {/* Language List screen (start)*/}
           <TouchableRipple onPress={() => navigation.navigate("Language")}>
             <View style={styles.menuItem}>
               <Icon name="bookshelf" color="#777777" size={25} />
               <Text style={styles.menuItemText}>Languages</Text>
             </View>
           </TouchableRipple>
+          {/* Language List screen (end)*/}
+
           {/*Add Quiz */}
           <TouchableRipple
             onPress={() =>
@@ -98,6 +113,7 @@ function Settings({ currentUser, navigation, route }) {
               <Text style={styles.menuItemText}>Questions</Text>
             </View>
           </TouchableRipple>
+          {/*Add Quiz (end)*/}
           {/* TestPage 
           <TouchableRipple onPress={() => navigation.navigate("Testpage", { language: language })}>
             <View style={styles.menuItem}>
@@ -107,6 +123,7 @@ function Settings({ currentUser, navigation, route }) {
           </TouchableRipple>
           */}
 
+          {/* Edit Quiz screen (start)*/}
           <TouchableRipple
             onPress={() =>
               navigation.navigate("AddEdit", { language: language })
@@ -117,6 +134,7 @@ function Settings({ currentUser, navigation, route }) {
               <Text style={styles.menuItemText}>Edit Questions</Text>
             </View>
           </TouchableRipple>
+          {/* Edit Quiz screen (end)*/}
 
           <TouchableRipple onPress={() => onLogout()}>
             <View style={styles.menuItem}>
@@ -133,6 +151,8 @@ function Settings({ currentUser, navigation, route }) {
       currentUser.secondLanguage == language ||
       currentUser.thirdLanguage == language
     ) {
+      // This will render all of the functions available for the validator user and;
+      // has a secondary conditionthat if satisfied will render Check Submissions button
       return (
         <SafeAreaView style={styles.container}>
           <View>
@@ -189,6 +209,8 @@ function Settings({ currentUser, navigation, route }) {
         </SafeAreaView>
       );
     } else {
+      // This will render all of the functions available for the validator user and;
+      // secondary condtion not satisfied therefore check submissions will not render
       return (
         <SafeAreaView style={styles.container}>
           <View>
@@ -231,6 +253,7 @@ function Settings({ currentUser, navigation, route }) {
       );
     }
   } else {
+    // This will render the Basic users functions
     return (
       <SafeAreaView style={styles.container}>
         <View>

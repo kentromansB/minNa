@@ -34,6 +34,8 @@ function MContriDec({ currentUser, navigation, props, language }) {
 
   const getData = () => {
     //Service to get the data from the server to render
+    //uid == currentUser.uid , data from the dictionary that was contributed by current user
+    // status == 2, Declined contribution
     firebase
       .firestore()
       .collection("languages")

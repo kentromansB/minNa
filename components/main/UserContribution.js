@@ -82,6 +82,16 @@ function Validation({ currentUser, route, navigation }) {
             />
           </View>
           <View style={styles.paddingLeft}>
+            <Text style={styles.title_text}>Classification </Text>
+
+            <TextInput
+              style={[styles.input, { color: "black" }]}
+              value={data?.classification}
+              multiline={true}
+              editable={false}
+            />
+          </View>
+          <View style={styles.paddingLeft}>
             <Text style={styles.title_text}>Pronunciation </Text>
 
             <TextInput
@@ -93,7 +103,7 @@ function Validation({ currentUser, route, navigation }) {
           </View>
 
           <View style={styles.paddingLeft}>
-            <Text style={styles.title_text}>Kinagan Sentence Example </Text>
+            <Text style={styles.title_text}>Sentence Example </Text>
 
             <TextInput
               style={[styles.input, { color: "black" }]}
@@ -105,8 +115,8 @@ function Validation({ currentUser, route, navigation }) {
           <View style={styles.paddingLeft}>
             <Text style={styles.title_text}>English Meaning </Text>
             <TextInput
-              style={[styles.input, { color: "black" }]}
-              value={data?.filipinoSentence}
+              style={[styles.description_input, { color: "black" }]}
+              value={data?.englishMeaning}
               multiline={true}
               editable={false}
             />
@@ -184,6 +194,16 @@ function Validation({ currentUser, route, navigation }) {
             />
           </View>
           <View style={styles.paddingLeft}>
+            <Text style={styles.title_text}>Classification </Text>
+
+            <TextInput
+              style={[styles.input, { color: "black" }]}
+              value={data?.classification}
+              multiline={true}
+              editable={false}
+            />
+          </View>
+          <View style={styles.paddingLeft}>
             <Text style={styles.title_text}>Pronunciation </Text>
 
             <TextInput
@@ -195,7 +215,7 @@ function Validation({ currentUser, route, navigation }) {
           </View>
 
           <View style={styles.paddingLeft}>
-            <Text style={styles.title_text}>Kinagan Sentence Example </Text>
+            <Text style={styles.title_text}>Sentence Example </Text>
 
             <TextInput
               style={[styles.input, { color: "black" }]}
@@ -207,8 +227,8 @@ function Validation({ currentUser, route, navigation }) {
           <View style={styles.paddingLeft}>
             <Text style={styles.title_text}>English Meaning </Text>
             <TextInput
-              style={[styles.input, { color: "black" }]}
-              value={data?.filipinoSentence}
+              style={[styles.description_input, { color: "black" }]}
+              value={data?.englishMeaning}
               multiline={true}
               editable={false}
             />
@@ -277,6 +297,16 @@ function Validation({ currentUser, route, navigation }) {
             />
           </View>
           <View style={styles.paddingLeft}>
+            <Text style={styles.title_text}>Classification </Text>
+
+            <TextInput
+              style={[styles.input, { color: "black" }]}
+              value={data?.classification}
+              multiline={true}
+              editable={false}
+            />
+          </View>
+          <View style={styles.paddingLeft}>
             <Text style={styles.title_text}>Pronunciation </Text>
 
             <TextInput
@@ -288,7 +318,7 @@ function Validation({ currentUser, route, navigation }) {
           </View>
 
           <View style={styles.paddingLeft}>
-            <Text style={styles.title_text}>Kinagan Sentence Example </Text>
+            <Text style={styles.title_text}>Sentence Example </Text>
 
             <TextInput
               style={[styles.input, { color: "black" }]}
@@ -300,8 +330,8 @@ function Validation({ currentUser, route, navigation }) {
           <View style={styles.paddingLeft}>
             <Text style={styles.title_text}>English Meaning </Text>
             <TextInput
-              style={[styles.input, { color: "black" }]}
-              value={data?.filipinoSentence}
+              style={[styles.description_input, { color: "black" }]}
+              value={data?.englishMeaning}
               multiline={true}
               editable={false}
             />

@@ -157,7 +157,7 @@ const AddQuestion = ({ navigation, route }) => {
         value={description}
       />
 
-      <FormButton labelText="Save Quiz" handleOnPress={handleQuizSave} />
+      <FormButton labelText="Create Quiz" handleOnPress={handleQuizSave} />
 
       {/* Temporary button - navigate without saving quiz*/}
       {/* <FormButton
@@ -178,7 +178,7 @@ const AddQuestion = ({ navigation, route }) => {
 
 export default AddQuestion;
 const COLORS = {
-  primary: "#4630EB",
+  primary: "#215a88",
   secondary: "#000020",
 
   success: "#00C851",

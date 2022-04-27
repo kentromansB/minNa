@@ -35,7 +35,7 @@ export default function Contribution({ navigation, route }) {
 
   useEffect(() => {
     (async () => {
-      const cameraStatus = await Camera.requestPermissionsAsync();
+      const cameraStatus = await Camera.requestCameraPermissionsAsync();
       setHasCameraPermission(cameraStatus.status === "granted");
 
       const galleryStatus =
@@ -115,19 +115,6 @@ export default function Contribution({ navigation, route }) {
 
         {!image && (
           <View>
-            {/* <TouchableOpacity 
-                  style = {styles.cameraButton}
-                  //onPress={handleAddPhoto}
-                  activeOpacity={0.7}
-                  onPress={() => setUploadModal(true)}
-            >
-                    
-              <MaterialCommunityIcons
-                  style = {styles.center} 
-                  name="image-plus" 
-                  color="#8E2835" 
-                  size={45} />
-            </TouchableOpacity> */}
             <TouchableOpacity
               style={{
                 ...styles.upload__containerInsideCol,
@@ -148,41 +135,6 @@ export default function Contribution({ navigation, route }) {
             </TouchableOpacity>
           </View>
         )}
-
-        {/* <Modal
-          animationType="slide"
-          transparent={true}
-          visible={uploadModal}
-          onRequestClose={closeUploadModal}
-          
-        >
-          <TouchableOpacity
-            style={styles.upload__containerOutside}
-            onPress={closeUploadModal}
-            activeOpacity={1}
-          >
-            <View style={styles.upload__containerInside}>
-              <TouchableOpacity
-                style={{
-                  ...styles.upload__containerInsideCol,
-                  borderRightColor: "lightgray",
-                  borderRightWidth: 1,
-                }}
-                onPress={takePicture}
-              >
-                <MaterialCommunityIcons name="camera" color="#8E2835" size={32} />
-                <Text style={styles.buttontext}>Camera</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.upload__containerInsideCol}
-                onPress={pickImage}
-              >
-                <MaterialCommunityIcons name="image" color="#8E2835" size={32} />
-                <Text style={styles.buttontext}>Gallery</Text>
-              </TouchableOpacity>
-            </View>
-          </TouchableOpacity>
-        </Modal> */}
       </View>
     </ScrollView>
   );

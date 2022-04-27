@@ -124,7 +124,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    margin: 50,
+    marginTop: 30,
+    marginLeft: 20,
+    marginRight: 15,
     //backgroundColor: '#FFFFFF',
   },
   button: {

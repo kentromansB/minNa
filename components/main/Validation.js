@@ -32,9 +32,7 @@ function Validation({ currentUser, route, navigation }) {
   const [sentence, setSentence] = useState(data?.sentence);
   const [audio, setAudio] = useState(null);
   const [classification, setClassification] = useState(data?.classification);
-  const [filipinoSentence, setFilipinoSentence] = useState(
-    data?.filipinoSentence
-  );
+  const [englishMeaning, setEnglishMeaning] = useState(data?.englishMeaning);
   const [meaning, setMeaning] = useState(data?.meaning);
   const [pronunciation, setPronunciation] = useState(data?.pronunciation);
   const { language } = route?.params ?? {};
@@ -130,7 +128,7 @@ function Validation({ currentUser, route, navigation }) {
         classification,
         sentence,
         pronunciation,
-        filipinoSentence,
+        englishMeaning,
         meaning,
       })
       .then((result) => {
@@ -154,7 +152,7 @@ function Validation({ currentUser, route, navigation }) {
         classification,
         sentence,
         pronunciation,
-        filipinoSentence,
+        englishMeaning,
         meaning,
         downloadURL,
       })
@@ -173,10 +171,11 @@ function Validation({ currentUser, route, navigation }) {
 
           <TextInput
             style={styles.input}
-            placeholder={data?.word}
+            placeholder={word}
             editable={true}
             multiline={true}
             onChangeText={(word) => setWord(word)}
+            value={word}
           />
         </View>
         <View style={styles.paddingLeft}>
@@ -184,7 +183,7 @@ function Validation({ currentUser, route, navigation }) {
 
           <TextInput
             style={styles.input}
-            placeholder={data?.filipino}
+            value={filipino}
             multiline={true}
             onChangeText={(filipino) => setFilipino(filipino)}
           />
@@ -194,7 +193,7 @@ function Validation({ currentUser, route, navigation }) {
 
           <Picker
             style={styles.input}
-            selectedValue={data?.classification}
+            selectedValue={classification}
             onValueChange={(itemValue, itemIndex) =>
               setClassification(itemValue)
             }
@@ -210,18 +209,18 @@ function Validation({ currentUser, route, navigation }) {
 
           <TextInput
             style={styles.input}
-            placeholder={data?.pronunciation}
+            value={pronunciation}
             multiline={true}
             onChangeText={(pronunciation) => setPronunciation(pronunciation)}
           />
         </View>
 
         <View style={styles.paddingLeft}>
-          <Text style={styles.title_text}>Kinagan Sentence Example </Text>
+          <Text style={styles.title_text}>{language} Sentence Example </Text>
 
           <TextInput
             style={styles.input}
-            placeholder={data?.sentence}
+            value={sentence}
             multiline={true}
             onChangeText={(sentence) => setSentence(sentence)}
           />
@@ -229,20 +228,24 @@ function Validation({ currentUser, route, navigation }) {
         <View style={styles.paddingLeft}>
           <Text style={styles.title_text}>English Meaning </Text>
           <TextInput
-            style={styles.input}
-            placeholder={data?.filipinoSentence}
+            style={[
+              styles.description_input,
+              { paddingHorizontal: 10, flexDirection: "row" },
+            ]}
+            value={englishMeaning}
             multiline={true}
-            onChangeText={(filipinoSentence) =>
-              setFilipinoSentence(filipinoSentence)
-            }
+            onChangeText={(englishMeaning) => setEnglishMeaning(englishMeaning)}
           />
         </View>
 
         <View style={styles.paddingLeft}>
           <Text style={styles.title_text}>Filipino Meaning </Text>
           <TextInput
-            style={styles.description_input}
-            placeholder={data?.meaning}
+            style={[
+              styles.description_input,
+              { paddingHorizontal: 10, flexDirection: "row" },
+            ]}
+            value={meaning}
             multiline={true}
             onChangeText={(meaning) => setMeaning(meaning)}
           />
