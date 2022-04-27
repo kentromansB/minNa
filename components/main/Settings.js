@@ -88,9 +88,13 @@ function Settings({ currentUser, navigation, route }) {
             </View>
           </TouchableRipple>
           {/*Add Quiz */}
-          <TouchableRipple onPress={() => navigation.navigate("AddQuestion", { language: language })}>
+          <TouchableRipple
+            onPress={() =>
+              navigation.navigate("AddQuestion", { language: language })
+            }
+          >
             <View style={styles.menuItem}>
-              <Icon name="bookshelf" color="#777777" size={25} />
+              <Icon name="head-question" color="#777777" size={25} />
               <Text style={styles.menuItemText}>Questions</Text>
             </View>
           </TouchableRipple>
@@ -103,10 +107,14 @@ function Settings({ currentUser, navigation, route }) {
           </TouchableRipple>
           */}
 
-          <TouchableRipple onPress={() => navigation.navigate("AddEdit", { language: language })}>
+          <TouchableRipple
+            onPress={() =>
+              navigation.navigate("AddEdit", { language: language })
+            }
+          >
             <View style={styles.menuItem}>
-              <Icon name="bookshelf" color="#777777" size={25} />
-              <Text style={styles.menuItemText}>Add&Edit</Text>
+              <Icon name="pencil" color="#777777" size={25} />
+              <Text style={styles.menuItemText}>Edit Questions</Text>
             </View>
           </TouchableRipple>
 
