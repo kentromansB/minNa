@@ -52,6 +52,18 @@ function NewDictionary({ currentUser, route, navigation }) {
     return randomText;
   }
 
+  const Capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
+  const filteredWord = Capitalize(word);
+  const filteredFilipino = Capitalize(filipino);
+  const filteredSentence = Capitalize(sentence);
+  const filteredClassification = Capitalize(classification);
+  const filteredEnglishMeaning = Capitalize(englishMeaning);
+  const filteredMeaning = Capitalize(meaning);
+  const filteredPronunciation = Capitalize(pronunciation);
+
   const { validate, isFieldInError, getErrorsInField, getErrorMessages } =
     useValidation({
       state: {
@@ -201,13 +213,13 @@ function NewDictionary({ currentUser, route, navigation }) {
         email: currentUser.email,
         name: currentUser.name,
         downloadURL,
-        word,
-        filipino,
-        classification,
-        pronunciation,
-        sentence,
-        englishMeaning,
-        meaning,
+        word: filteredWord,
+        filipino: filteredFilipino,
+        classification: filteredClassification,
+        pronunciation: filteredPronunciation,
+        sentence: filteredSentence,
+        englishMeaning: filteredEnglishMeaning,
+        meaning: filteredMeaning,
         status: "0",
         upload: "1",
         creation: firebase.firestore.FieldValue.serverTimestamp(),
@@ -231,13 +243,13 @@ function NewDictionary({ currentUser, route, navigation }) {
         email: currentUser.email,
         name,
         downloadURL,
-        word,
-        filipino,
-        classification,
-        pronunciation,
-        sentence,
-        englishMeaning,
-        meaning,
+        word: filteredWord,
+        filipino: filteredFilipino,
+        classification: filteredClassification,
+        pronunciation: filteredPronunciation,
+        sentence: filteredSentence,
+        englishMeaning: filteredEnglishMeaning,
+        meaning: filteredMeaning,
         status: "0",
         upload: "1",
         creation: firebase.firestore.FieldValue.serverTimestamp(),

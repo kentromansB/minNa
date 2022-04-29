@@ -29,6 +29,13 @@ function AddLanguage({ currentUser, route, navigation }) {
   const [history, setHistory] = useState("");
   const [note, setNote] = useState("");
 
+  const Capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
+  const filteredLanguage = Capitalize(language);
+  const filteredNote = Capitalize(note);
+
   const submit = async () => {
     saveUserData();
   };
@@ -37,10 +44,10 @@ function AddLanguage({ currentUser, route, navigation }) {
     firebase
       .firestore()
       .collection("languages")
-      .doc(language)
+      .doc(filteredLanguage)
       .set({
-        language: language,
-        description: note,
+        language: filteredLanguage,
+        description: filteredNote,
         creation: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .then(function () {
