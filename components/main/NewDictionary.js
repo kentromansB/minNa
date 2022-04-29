@@ -181,8 +181,10 @@ function NewDictionary({ currentUser, route, navigation }) {
     const taskCompleted = () => {
       task.snapshot.ref.getDownloadURL().then((snapshot) => {
         if (toggleCheckBox == true) {
+          //If the textbox is ticked then it will include the name of the user.
           saveAllPostData(snapshot);
         } else if (toggleCheckBox == false) {
+          //If the textbox is not ticked then it will not include the name of the user, instead it will be anonymous.
           savePostData(snapshot);
         }
         setLoading(null);

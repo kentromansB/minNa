@@ -25,9 +25,12 @@ export default function Contribution({ navigation, route }) {
   // const [cameraFlash, setCameraFlash] = useState(Camera.Constants.FlashMode.off)
   const [isCameraReady, setIsCameraReady] = useState(false);
   const { language } = route?.params ?? {};
+
   useEffect(() => {
+    //ask permission for user to gain access using camera and
+    //gain access in phones library
     (async () => {
-      const cameraStatus = await Camera.requestPermissionsAsync();
+      const cameraStatus = await Camera.requestCameraPermissionsAsync();
       setHasCameraPermission(cameraStatus.status === "granted");
 
       const galleryStatus =
@@ -43,6 +46,7 @@ export default function Contribution({ navigation, route }) {
     //   })
     //   setImage(data.uri);
     // }
+    //Function for camera to take picture
     if (camera) {
       const data = await camera.takePictureAsync(null);
 
@@ -51,6 +55,7 @@ export default function Contribution({ navigation, route }) {
   };
 
   const pickImage = async () => {
+    //Function to select and image in the library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,

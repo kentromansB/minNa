@@ -29,19 +29,9 @@ function Language({ navigation }) {
   const [masterDataSource, setMasterDataSource] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const startLoading = () => {
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 3000);
-  // };
-  // useEffect(() => {
-  //   setDatalist(filteredDictionary);
-  //   setMasterDataSource(filteredDictionary);
-  //   setFilteredDataSource(filteredDictionary);
-  // }, [filteredDictionary]);
-
   useEffect(() => {
+    //Service to get the data from the server to render
+    // Fetch the data that are being stored in the languages
     const unsubscribe = navigation.addListener("focus", () => {
       firebase
         .firestore()
@@ -54,6 +44,7 @@ function Language({ navigation }) {
             return { id, ...data };
           });
 
+          //Preparation for the searchFilterFunction
           setDatalist(masterDataSource);
           setFilteredDataSource(masterDataSource);
           setMasterDataSource(masterDataSource);

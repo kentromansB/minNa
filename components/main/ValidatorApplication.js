@@ -58,6 +58,7 @@ function ValidatorApplication({ route, navigation }) {
 
   console.log(datalist);
   const chooseFile = async () => {
+    //function for getting the pdf files within the phone library
     let result = await DocumentPicker.getDocumentAsync({
       type: "application/pdf",
       copyToCacheDirectory: false,
@@ -73,6 +74,7 @@ function ValidatorApplication({ route, navigation }) {
   };
 
   const uploadPDF = async () => {
+    //function for uploading the files to the firebase storage
     const childPath = `pdf/${
       firebase.auth().currentUser.uid
     }/${Math.random().toString(36)}`;
@@ -112,6 +114,7 @@ function ValidatorApplication({ route, navigation }) {
   };
 
   const saveUserData = (downloadURL) => {
+    //function for saving the data
     firebase
       .firestore()
       .collection("users")

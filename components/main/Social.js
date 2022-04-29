@@ -33,6 +33,7 @@ function Social({ navigation, route, language }) {
 
   const getData = () => {
     //Service to get the data from the server to render
+    // Fetch the data that are posted by all of the users.
     firebase
       .firestore()
       .collection("languages")

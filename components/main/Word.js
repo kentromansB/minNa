@@ -23,6 +23,7 @@ const Word = ({ route }) => {
   const { data } = route?.params ?? {};
 
   const downloadAudio = async () => {
+    //function for playing the audio of the dictionary data
     let SoundObject = new Audio.Sound();
     try {
       await SoundObject.loadAsync({ uri: data.downloadURL });

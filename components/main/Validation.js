@@ -91,6 +91,7 @@ function Validation({ currentUser, route, navigation }) {
   };
 
   const downloadAudio = async () => {
+    //function for playing the audio of the dictionary data
     let SoundObject = new Audio.Sound();
     try {
       await SoundObject.loadAsync({ uri: data.downloadURL });
@@ -114,6 +115,8 @@ function Validation({ currentUser, route, navigation }) {
   };
 
   const updateDictionaryAll = () => {
+    //function will be called if the is accepted
+    // status == 1 the contribution has been accepted
     firebase
       .firestore()
       .collection("languages")
@@ -138,6 +141,8 @@ function Validation({ currentUser, route, navigation }) {
       .catch((err) => console.log(err, "-=error"));
   };
   const updateDictionaryAudio = (downloadURL) => {
+    //function will be called if the is accepted and the audio data has been changed
+    // status == 1 the contribution has been accepted
     firebase
       .firestore()
       .collection("languages")

@@ -43,20 +43,6 @@ function Validation({ currentUser, route, navigation }) {
 
   const retryPlaySound = () => downloadAudio();
 
-  const Accept = () => {
-    setLoading(true);
-    firebase
-      .firestore()
-      .doc(`dictionaryAll/${data?.id}`)
-      .update({
-        status: "1",
-      })
-      .then((result) => {
-        navigation.goBack();
-        setLoading(false);
-      })
-      .catch((err) => console.log(err, "-=error"));
-  };
   if (data?.status == "2") {
     return (
       <ScrollView style={styles.container}>

@@ -45,6 +45,7 @@ function Dictionary({ route, navigation }) {
   // }, [filteredDictionary]);
 
   useEffect(() => {
+    //used for fetching the dictionary data from the firestore
     const unsubscribe = navigation.addListener("focus", () => {
       firebase
         .firestore()
@@ -52,6 +53,7 @@ function Dictionary({ route, navigation }) {
         .doc(language)
         .collection("dictionary")
         .where("status", "==", "1")
+        //filtering all of the data from the cloud and only accepting status == 1, meaning only the accepted words
         .get()
         .then((snapshot) => {
           let masterDataSource = snapshot.docs.map((doc) => {
@@ -59,7 +61,7 @@ function Dictionary({ route, navigation }) {
             const id = doc.id;
             return { id, ...data };
           });
-
+          //Preparing the states for the searchFilterFunction
           setDatalist(masterDataSource);
           setFilteredDataSource(masterDataSource);
           setMasterDataSource(masterDataSource);

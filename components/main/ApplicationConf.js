@@ -23,10 +23,10 @@ function ApplicationConf({ route, navigation }) {
   const [loading, setLoading] = useState(false);
   const { data } = route?.params ?? {};
 
-  // const makeDownload = () => {
-
-  // };
   const Accept = () => {
+    //If the applicant is accepted then:
+    // status == 1, Confirmed
+    // type == 1, user type will be changed to Validator
     setLoading(true);
     firebase
       .firestore()
@@ -42,6 +42,9 @@ function ApplicationConf({ route, navigation }) {
       .catch((err) => console.log(err, "-=error"));
   };
   const Decline = () => {
+    //If the applicant is Declined then:
+    // status == 2, Declined
+    // type == 0, user type will remain as basic user
     setLoading(true);
     firebase
       .firestore()

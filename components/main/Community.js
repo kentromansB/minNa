@@ -33,6 +33,7 @@ function Community({ currentUser, route, navigation }) {
     setDatalist(currentUser);
   }, [currentUser]);
   useEffect(() => {
+    //used to fetch the name of the current user.
     const unsubscribe = navigation.addListener("focus", () => {
       firebase
         .firestore()

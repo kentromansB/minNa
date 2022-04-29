@@ -23,6 +23,7 @@ require("firebase/firestore");
 require("firebase/firebase-storage");
 import { connect } from "react-redux";
 
+//FUNCTION CURRENTLY NOT ACTIVE
 const EditProfileScreen = ({ currentUser, navigation }) => {
   const [image, setImage] = useState(null);
   const [fullname, setFullName] = useState("");
