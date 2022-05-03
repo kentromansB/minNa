@@ -77,7 +77,9 @@ import Add from "./components/main/Add";
 import AddEdit from "./components/main/AddEdit";
 import AddQuestions from "./components/main/AddQuestions";
 import AddQuest from "./components/AddQuest";
-
+import EditAbout from "./components/main/EditAbout";
+import EditEvent from "./components/main/EditEvent";
+import EditEvents from "./components/main/EditEvents";
 const Stack = createStackNavigator();
 
 // import { LogBox } from "react-native";
@@ -640,6 +642,51 @@ export class App extends Component {
               component={AddQuest}
               options={{
                 title: "AddQuestions",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="EditAbout"
+              component={EditAbout}
+              options={{
+                title: "EditAbout",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="EditEvent"
+              component={EditEvent}
+              options={{
+                title: "EditEvent",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="EditEvents"
+              component={EditEvents}
+              options={{
+                title: "EditEvents",
                 headerShadowVisible: false,
                 headerTintColor: "#fff",
                 headerStyle: {

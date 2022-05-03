@@ -136,6 +136,21 @@ function Settings({ currentUser, navigation, route }) {
           </TouchableRipple>
           {/* Edit Quiz screen (end)*/}
 
+          {/* Edit About screen (start)*/}
+          <TouchableRipple
+            onPress={() =>
+              navigation.navigate("EditAbout", { language: language })
+            }
+          >
+            <View style={styles.menuItem}>
+              <Icon name="book" color="#777777" size={25} />
+              <Text style={styles.menuItemText}>Edit About</Text>
+            </View>
+          </TouchableRipple>
+          {/* Edit About screen (end)*/}
+
+
+
           <TouchableRipple onPress={() => onLogout()}>
             <View style={styles.menuItem}>
               <Icon name="logout" color="#777777" size={25} />

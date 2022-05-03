@@ -101,7 +101,7 @@ function Course({ currentUser, navigation, language }) {
           {/* AboutCulture.js */}
           <TouchableOpacity
             style={styles.buttonVocab}
-            onPress={() => navigation.navigate("Event")}
+            onPress={() => navigation.navigate("Event", { language: language })}
           >
             <View style={styles.contextButton}>
               <Image
