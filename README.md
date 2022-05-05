@@ -1,21 +1,21 @@
 Alima v1
- New Version
-Requirements and Installation
-System Setup
+ New Version <br>
+<h1>Requirements and Installation</h1>
+<h3>System Setup</h3>
 Install packages/tools below
 Node.js https://nodejs.org/en/
 Expo https://docs.expo.dev/workflow/expo-cli/
 Npm
-Step 1: Clone Repository
+<h3>Step 1: Clone Repository</h3>
 To begin, clone this repository to a local directory of your choice:
 git clone https://github.com/kentromansB/minNa/
 cd (folder)
-Step 2: Install Dependencies
+<h3>Step 2: Install Dependencies</h3>
 To install all the dependencies that the application uses just follow the command below.
 npm install
 If error occurs due to expo sdk 44
 npm install --legacy-peer-deps
-Step 3: Run Expo
+<h3>Step 3: Run Expo</h3>
 After installing all the dependencies run the expo in the command line or powershell follow the line below.
 	expo start
 
