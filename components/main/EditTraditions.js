@@ -14,7 +14,7 @@ import {
 import Svg, { Path, G, Rect, Polygon, Title } from "react-native-svg";
 import { connect } from "react-redux";
 
-function Traditions({ currentUser, navigation, route }) {
+function EditTraditions({ currentUser, navigation, route }) {
 
   const { language } = route?.params ?? {};
   console.log(language);
@@ -31,7 +31,7 @@ function Traditions({ currentUser, navigation, route }) {
                  {/* AboutCulture.js */}
                 <TouchableOpacity
                   style={styles.buttonVocab}
-                  onPress={() => navigation.navigate("Culture", {language: language})}
+                  onPress={() => navigation.navigate("EditCulture", {language: language})}
                 >
                   <View style={styles.contextButton}>
                     <Image
@@ -49,7 +49,7 @@ function Traditions({ currentUser, navigation, route }) {
                 {/* AboutFoods.js */}
                 <TouchableOpacity
                   style={styles.buttonVocab}
-                  onPress={() => navigation.navigate("Food", {language: language})}
+                  onPress={() => navigation.navigate("EditFood", {language: language})}
                 >
                   <View style={styles.contextButton}>
                     <Image
@@ -67,7 +67,7 @@ function Traditions({ currentUser, navigation, route }) {
                 {/* AboutFoods.js */}
                 <TouchableOpacity
                   style={styles.buttonVocab}
-                  onPress={() => navigation.navigate("Clothing", {language: language})}
+                  onPress={() => navigation.navigate("EditClothing", {language: language})}
                 >
                   <View style={styles.contextButton}>
                     <Image
@@ -94,7 +94,7 @@ const mapStateToProps = (store) => ({
   currentUser: store.userState.currentUser,
 });
 
-export default connect(mapStateToProps, null)(Traditions);
+export default connect(mapStateToProps, null)(EditTraditions);
 
 const styles = StyleSheet.create({
   container: {

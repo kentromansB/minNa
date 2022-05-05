@@ -80,6 +80,21 @@ import AddQuest from "./components/AddQuest";
 import EditAbout from "./components/main/EditAbout";
 import EditEvent from "./components/main/EditEvent";
 import EditEvents from "./components/main/EditEvents";
+import AddAbout from "./components/main/AddAbout";
+import EditTraditions from "./components/main/EditTraditions";
+import EditFood from "./components/main/EditFood";
+import AddFood from "./components/main/AddFood";
+import EditFoods from "./components/main/EditFoods";
+import EditClothing from "./components/main/EditClothing";
+import EditClothings from "./components/main/EditClothings";
+import AddClothings from "./components/main/AddClothings";
+import EditCulture from "./components/main/EditCulture";
+import EditCultures from "./components/main/EditCultures";
+import AddCulture from "./components/main/AddCulture";
+
+
+
+
 const Stack = createStackNavigator();
 
 // import { LogBox } from "react-native";
@@ -696,6 +711,172 @@ export class App extends Component {
                 },
               }}
             />
+
+            <Stack.Screen
+              name="AddAbout"
+              component={AddAbout}
+              options={{
+                title: "About",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="EditTraditions"
+              component={EditTraditions}
+              options={{
+                title: "EditTradition",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="EditFood"
+              component={EditFood}
+              options={{
+                title: "Food",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="AddFood"
+              component={AddFood}
+              options={{
+                title: "Food",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="EditFoods"
+              component={EditFoods}
+              options={{
+                title: "Food",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="EditClothing"
+              component={EditClothing}
+              options={{
+                title: "Clothings",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="EditClothings"
+              component={EditClothings}
+              options={{
+                title: "Clothings",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="AddClothings"
+              component={AddClothings}
+              options={{
+                title: "Clothing",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+<Stack.Screen
+              name="EditCulture"
+              component={EditCulture}
+              options={{
+                title: "Culture",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="EditCultures"
+              component={EditCultures}
+              options={{
+                title: "Culture",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name="AddCulture"
+              component={AddCulture}
+              options={{
+                title: "Culture",
+                headerShadowVisible: false,
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#215A88",
+                  elevation: 0,
+                  borderBottomWidth: 0,
+                },
+              }}
+            />
+            
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

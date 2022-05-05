@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { 
     View, 
     Text, 
@@ -8,261 +8,166 @@ import {
     ScrollView,
     Touchable,
     SafeAreaView,
-    StatusBar
+    StatusBar,
+    FlatList,
+    RefreshControl,
    } from "react-native";
-
+import firebase from "firebase";
+require("firebase/firestore");
+require("firebase/firebase-storage");
 import { Dimensions } from "react-native";
 
-const AboutClothing = ({ navigation }) => {
+function AboutClothing ({ navigation,route }) {
+
+  const { language } = route?.params ?? {};
+  console.log(language)
 
   const dimensions = Dimensions.get("window");
   const imageHeight = Math.round((dimensions.width * 1) / 1);
   const imageWidth = dimensions.width;
 
+  const [datalist, setDatalist] = useState("");
+  const [refreshing, setRefreshing] = useState(true);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+    //Service to get the data from the server to render
+    // Fetch the data that are posted by all of the users.
+    firebase
+      .firestore()
+      .collection("languages")
+      .doc(language)
+      .collection("Clothing")
+      .get()
+      .then((snapshot) => {
+        console.log(snapshot, "-=-=-=-=-=-=-=-=");
+        let postsAll = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          const id = doc.id;
+          return { id, ...data };
+        });
+        setDatalist(postsAll);
+        setRefreshing(false);
+      });
+  };
+
+ 
+
+  
+  const ItemView = ({ item }) => {
+    return (
+      // Flat List Item
+      <View style={styles.container}>
+        <Text style={styles.textKagan}>
+          {" "} 
+          {item.title}
+        </Text>
+        {/*<Image
+          style={{ width: imageWidth, height: imageWidth }}
+          source={{ uri: item.image }}
+        />*/}
+       <Image
+          style={{ width: imageWidth, height: imageWidth }}
+          source={{ uri: item.image }}/>
+        <View style={{ padding: 30 }}>
+          <Text style={styles.textVocab}> {item.desc}</Text>
+        </View>
+        
+      </View>
+    );
+  };
+  const onRefresh = () => {
+    //Clear old data of the list
+    setDatalist([]);
+    //Call the Service to get the latest data
+    getData();
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
-    <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-       <View style = {{paddingVertical:30}}>
-          <Text style={styles.textKagan}>CLOTHING</Text>
-            <Image
-                      style={{ width: imageHeight, height: imageWidth }}
-                      source={require("../../assets/1-men.jpg")}
-            />
-            <Text style={{paddingLeft:15}}>Credits from: My Cebu Photo Blog</Text>
-          
-            <View style = {{paddingHorizontal:15, paddingVertical:10}}>
-            <Text style={styles.paragraph}>"Men from the Kagan Tribe wearing their traditional garb - 
-            dressed in a distinctive clothing of the Kagan Tribe." </Text>
-
-            </View>
-        </View>
-
-        <View style = {{paddingVertical:5}}>
-          
-            <Image
-                      style={{ width: imageHeight, height: imageWidth }}
-                      source={require("../../assets/1-clothewoman.jpg")}
-                      accessibility={true}
-                      accessibilityLabel="Kagan Clothing"
-            />
-            <Text style={{paddingLeft:15}}>Credits from: My Cebu Photo Blog</Text>
-          
-            <View style = {{paddingHorizontal:15, paddingVertical:10}}>
-            <Text style={styles.paragraph}>"A woman from the Kagan Tribe wearing their traditional garb - 
-            dressed in a distinctive clothing of the Kagan Tribe during the Kadayawan sa Dabaw 2017 "</Text>
-
-            </View>
-        </View>
-
-        <View style = {{paddingVertical:5}}>
-          
-            <Image
-                      style={{ width: imageHeight, height: imageWidth }}
-                      source={require("../../assets/1-binubay.jpg")}
-                      accessibility={true}
-                      accessibilityLabel="Kagan Clothing"
-            />
-            <Text style={{paddingLeft:15}}>Credits from: Bai Halila Sudagar</Text>
-          
-            <View style = {{paddingHorizontal:15, paddingVertical:10}}>
-            <Text style={styles.paragraph}>BINUBAY - a blouse or a clothing of any color, usually bright colors, 
-            worn by Kagan women. Instead of using buttons, this unique clothing uses safety pins. </Text>
-
-            </View>
-        </View>
-
-        <View style = {{paddingVertical:5}}>
-          
-            <Image
-                      style={{ width: imageHeight, height: imageWidth }}
-                      source={require("../../assets/1-dagmay.jpg")}
-                      accessibility={true}
-                      accessibilityLabel="Kagan Clothing"
-            />
-            <Text style={{paddingLeft:15}}>Credits from: Bai Halila Sudagar</Text>
-          
-            <View style = {{paddingHorizontal:15, paddingVertical:10}}>
-            <Text style={styles.paragraph}>DAGMAY, a tube skirt or  a traditional garment
-             made of handwoven (Yabuwan) multi-colored cloth used by Kagan women. </Text>
-
-            </View>
-        </View>
-
-        <View style = {{paddingVertical:5}}>
-          
-            <Image
-                      style={{ width: imageHeight, height: imageWidth }}
-                      source={require("../../assets/1-mosa.jpg")}
-                      accessibility={true}
-                      accessibilityLabel="Kagan Clothing"
-            />
-            <Text style={{paddingLeft:15}}>Credits from: Bai Halila Sudagar</Text>
-          
-            <View style = {{paddingHorizontal:15, paddingVertical:10}}>
-            <Text style={styles.paragraph}>MOSA, a head scarf or a head garment usually
-             worn by Kagan men as a recognition of social or cultural distinction. 
-             The head scarf is usually styled as Pinarot (instead of knotting at 
-             the back of the head, it is knotted at the front) and also made by 
-             weaving (Yabuwan).
- </Text>
-
-            </View>
-        </View>
-
-        <View style = {{paddingVertical:5}}>
-          
-            <Image
-                      style={{ width: imageHeight, height: imageWidth }}
-                      source={require("../../assets/1-sawwa.jpg")}
-                      accessibility={true}
-                      accessibilityLabel="Kagan Clothing"
-            />
-            <Text style={{paddingLeft:15}}>Credits from: Bai Halila Sudagar</Text>
-          
-            <View style = {{paddingHorizontal:15, paddingVertical:10}}>
-            <Text style={styles.paragraph}>SAWWA,  a fine clothing worn from the waist 
-            down to the ankles, covering both the legs separately. The trousers 
-            of Kagan men do not use garters, instead, it uses cord-like cloth to tighten it. 
-            Also, it is designed as slim-fit at the lower part, from the knee to the ankle. </Text>
-
-            </View>
-        </View>
-
-        <View style = {{paddingVertical:5}}>
-          
-            <Image
-                      style={{ width: imageHeight, height: imageWidth }}
-                      source={require("../../assets/1-siniban.jpg")}
-                      accessibility={true}
-                      accessibilityLabel="Kagan Clothing"
-            />
-            <Text style={{paddingLeft:15}}>Credits from: Bai Halila Sudagar</Text>
-          
-            <View style = {{paddingHorizontal:15, paddingVertical:10}}>
-            <Text style={styles.paragraph}>SINIBAN, a clothing of any color worn by 
-            the Kagan men, usually loosely made so that it is comfortable to wear.
- </Text>
-
-            </View>
-        </View>
-
-        <View style = {{paddingVertical:5}}>
-          
-            <Image
-                      style={{ width: imageHeight, height: imageWidth }}
-                      source={require("../../assets/1-todong.jpg")}
-                      accessibility={true}
-                      accessibilityLabel="Kagan Clothing"
-            />
-            <Text style={{paddingLeft:15}}>Credits from: Bai Halila Sudagar</Text>
-          
-            <View style = {{paddingHorizontal:15, paddingVertical:10}}>
-            <Text style={styles.paragraph}>TONDONG, a piece of fine material used 
-            by Kagan women to cover their head as a symbol of modesty and privacy. 
-            What is distinct in this particular type of veil is that it is 
-            designed with “Barabudde”, meaning, it is designed with rectangular 
-            shapes having different colors on the edge part of the veil.
- </Text>
-
-            </View>
-        </View>
-
-
-
-
-      </ScrollView>
-    </SafeAreaView>
+    <FlatList
+      nestedScrollEnabled
+      numColumns={1}
+      horizontal={false}
+      data={datalist}
+      style={{ flex: 1 }}
+      renderItem={ItemView}
+      refreshControl={
+        <RefreshControl
+          //refresh control used for the Pull to Refresh
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      }
+    />
   );
-};
+}
 
 export default AboutClothing;
 
 const styles = StyleSheet.create({
+  title: {
+    top: 20,
+    left: 10,
+  },
   container: {
+    alignItems: "flex-start",
+    marginBottom: 20,
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
-    // paddingHorizontal: 40,
-    //paddingVertical: 30,
-    alignContent: "center",
   },
-    scrollView: {
-      
-      marginHorizontal: 0,
-      //paddingVertical: 30
-    },
-  header: {
-    top: 40,
-    left: 30,
+  button: {
+    position: "absolute",
+    width: 60,
+    height: 60,
+    borderRadius: 60 / 2,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowRadius: 10,
+    shadowColor: "#F02A4B",
+    shadowOpacity: 0.3,
+    shadowOffset: { height: 10 },
+    backgroundColor: "#8E2835",
   },
-
-  paragraph:{
+  imageprofile: {
+    height: 45,
+    width: 45,
+    borderRadius: 100,
+    margin: 10,
+  },
+  profile: {
     flexDirection: "row",
-    fontSize: 16,
-    marginHorizontal: 10,
-    paddingVertical:5,
-    letterSpacing: 0.25,
-    color: "black",
-    alignSelf: "center",
-    textAlign:"justify"
-  },
-
-  headline: {
-    width: "78%",
-    height: 200,
-    backgroundColor: "#dadada",
-    top: 70,
-    left: 40,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 10,
-  },
-  contextButton: {
-    padding: 20,
-    flexDirection: "row",
-    left: 20,
     alignItems: "center",
   },
-  text_Context: {
-    flexDirection: "column",
-    marginLeft: 30,
-  },
-  buttonVocab: {
-    alignSelf: "center",
-    alignItems: "flex-start",
-    elevation: 0.7,
-    width: '100%',
-    backgroundColor: "#EBEBEB",
-    borderRadius: 10,
-  },
-  textKagan: {
-    flexDirection: "row",
-    fontSize: 25,
+  profilename: {
     fontWeight: "bold",
-    paddingVertical:5,
-    letterSpacing: 0.25,
-    color: "#8E2835",
-    alignSelf: "center",
+    paddingLeft: 10,
+    paddingBottom: 20,
+    paddingTop: 10,
   },
+
   textHead: {
     flexDirection: "row",
-    fontSize: 15,
+    fontSize: 21,
     fontWeight: "bold",
     lineHeight: 21,
     letterSpacing: 0.25,
-    color: "black",
+    color: "white",
   },
   textSubHead: {
     flexDirection: "row",
-    fontSize: 13,
+    fontSize: 15,
     // fontWeight: "bold",
     lineHeight: 21,
     letterSpacing: 0.25,
-    color: "grey",
+    color: "white",
   },
   headLine: {
-    top: 15,
-    left: 10,
+    flexDirection: "row",
+    width: "100%",
+    height: 110,
+    backgroundColor: "#8E2835",
   },
   textHeadline: {
     flexDirection: "row",
@@ -272,27 +177,32 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "black",
   },
+  searchBar: {
+    top: 40,
+    left: -120,
+    width: "100%",
+  },
   Kagan: {
-    top: 20,
-    left: 20,
-    alignItems: "center",
+    top: 90,
+    left: 40,
   },
   grammar: {
-    top: 10,
+    top: 70,
     left: 40,
   },
   pronun: {
-    top: 40,
+    top: 100,
     left: 40,
   },
-  shit: {
-    top: 30,
+  textKagan: {
+    flexDirection: "row",
+    fontSize: 15,
+    fontWeight: "bold",
+    lineHeight: 21,
+    letterSpacing: 0.25,
+    color: "black",
   },
-  shit1: {
-    top: 60,
-  },
-
-  button: {
+  Abutton: {
     justifyContent: "center",
     paddingVertical: 8,
     paddingHorizontal: 32,
@@ -306,7 +216,24 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
   },
-
+  buttonVocab: {
+    alignSelf: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    width: "90%",
+    backgroundColor: "#dadada",
+    top: -70,
+    left: -40,
+    height: 280,
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
+    borderBottomRightRadius: 7,
+    borderBottomLeftRadius: 7,
+    borderColor: "black",
+  },
   buttonGrammar: {
     alignSelf: "center",
     justifyContent: "center",
@@ -314,11 +241,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    width: "78%",
+    width: "90%",
     backgroundColor: "#dadada",
-    top: 60,
+    top: -30,
     left: -40,
-    height: 80,
+    height: 300,
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
     borderBottomRightRadius: 7,
@@ -332,11 +259,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    width: "78%",
+    width: "90%",
     backgroundColor: "#dadada",
-    top: 60,
+    top: -40,
     left: -40,
-    height: 80,
+    height: 105,
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
     borderBottomRightRadius: 7,
@@ -344,16 +271,23 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
   Vocab: {
-    top: -20,
-    left: 40,
+    top: 10,
+    left: -20,
+    paddingBottom: 20,
+  },
+  VocabSubSub: {
+    top: 5,
+    left: -10,
   },
   VocabSub: {
-    top: -22,
-    left: 40,
+    top: 5,
+    left: -10,
   },
   textVocab: {
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 13,
+    margin: 10,
+    fontStyle: "italic",
+    //lineHeight: 21,
     letterSpacing: 0.25,
     color: "black",
   },
@@ -361,7 +295,13 @@ const styles = StyleSheet.create({
     fontSize: 11,
     lineHeight: 21,
     letterSpacing: 0.25,
-    color: "grey",
+    color: "black",
+  },
+  textVocabSubSub: {
+    fontSize: 11,
+    lineHeight: 21,
+    letterSpacing: 0.25,
+    color: "#8E2835",
   },
   text: {
     fontSize: 15,
@@ -370,4 +310,39 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "white",
   },
+  input: {
+    height: 45,
+    width: "90%",
+    backgroundColor: "white",
+    margin: 12,
+    borderWidth: 1,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+  },
+  buttonAudio: {
+    alignSelf: "center",
+    justifyContent: "center",
+    borderRadius: 50,
+    elevation: 3,
+    width: 50,
+    backgroundColor: "#79222D",
+    top: 300,
+    left: 130,
+    height: 50,
+    borderColor: "black",
+  },
+  textKagan: {
+    flexDirection: "row",
+    fontSize: 25,
+    fontWeight: "bold",
+    paddingVertical:5,
+    letterSpacing: 0.25,
+    color: "#8E2835",
+    alignSelf: "center",
+  },
+
+
+
 });

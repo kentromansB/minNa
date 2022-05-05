@@ -17,7 +17,7 @@ require("firebase/firestore");
 require("firebase/firebase-storage");
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-const EditEvent = ({navigation, route}) => {
+const EditClothing = ({navigation, route}) => {
 
     const { language } = route?.params ?? {};
 
@@ -31,7 +31,7 @@ const EditEvent = ({navigation, route}) => {
           .firestore()
           .collection("languages")
           .doc(language)
-          .collection('About')
+          .collection('Clothing')
           .get()
           .then((snapshot) => {
             let masterDataSource = snapshot.docs.map((doc) => {
@@ -65,7 +65,7 @@ const EditEvent = ({navigation, route}) => {
             return (
               <TouchableOpacity
                 style={styles.buttonVocab}
-                onPress={() => navigation.navigate("EditEvents", { data: item , language: language})}
+                onPress={() => navigation.navigate("EditClothings", { data: item , language: language})}
               >
                 <View style={styles.contextButton}>
                   <Text style={styles.inKagan}>{item.title} </Text>
@@ -77,7 +77,7 @@ const EditEvent = ({navigation, route}) => {
         <Pressable
         style={styles.buttonss}
         onPress={() =>
-          navigation.navigate("AddAbout", { language: language })
+          navigation.navigate("AddClothings", { language: language })
         }
         //onPress={() => navigation.navigate("NewContribution")}
       >
@@ -88,7 +88,7 @@ const EditEvent = ({navigation, route}) => {
     )
 }
 
-export default EditEvent;
+export default EditClothing;
 const styles = StyleSheet.create({
     container: {
       alignContent: "center",

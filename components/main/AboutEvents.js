@@ -67,12 +67,11 @@ function AboutEvents  ({ navigation,route }) {
         </Text>
         {/*<Image
           style={{ width: imageWidth, height: imageWidth }}
-          source={{ uri: item.downloadURL }}
+          source={{ uri: item.image }}
         />*/}
        <Image
-          style={{ width: imageHeight, height: imageWidth }}
-          source={require("../../assets/1-angkagan.jpg")}
-            />
+          style={{ width: imageWidth, height: imageWidth }}
+          source={{ uri: item.image }}/>
         <View style={{ padding: 30 }}>
           <Text style={styles.textVocab}> {item.desc}</Text>
         </View>

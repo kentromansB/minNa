@@ -60,7 +60,7 @@ const EditAbout = ({navigation, route}) => {
           {/* AboutCulture.js */}
           <TouchableOpacity
             style={styles.buttonVocab}
-            onPress={() => navigation.navigate("Traditions")}
+            onPress={() => navigation.navigate("EditTraditions", {language: language})}
           >
             <View style={styles.contextButton}>
               <Image

@@ -19,7 +19,7 @@ import "firebase/firestore";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 
-const EditEvents = ({navigation,route}) => {
+const EditFoods = ({navigation,route}) => {
     const { language } = route.params;
     const { data } = route.params;
   console.log(language);
@@ -61,7 +61,7 @@ const EditEvents = ({navigation,route}) => {
         <View style={{ marginVertical: 15 }}>
           <View>
             <Text style={[styles.text, { color: "#000000" }]}>
-              Title
+              Food
             </Text>
           </View>
         </View>
@@ -89,7 +89,7 @@ const EditEvents = ({navigation,route}) => {
           <Text style={[styles.text, { fontSize: 16 }]}>
             About
           </Text>
-          <Text>Brief introduction/description about the language.</Text>
+          <Text>Brief introduction/description about the Food.</Text>
           <TextInput
             multiline={true}
             style={[
@@ -125,7 +125,7 @@ const EditEvents = ({navigation,route}) => {
   )
 }
 
-export default EditEvents;
+export default EditFoods;
 const styles = StyleSheet.create({
     container: {
       alignContent: "center",

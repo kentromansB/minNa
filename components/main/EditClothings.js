@@ -19,7 +19,7 @@ import "firebase/firestore";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 
-const EditEvents = ({navigation,route}) => {
+const EditClothings = ({navigation,route}) => {
     const { language } = route.params;
     const { data } = route.params;
   console.log(language);
@@ -40,7 +40,7 @@ const EditEvents = ({navigation,route}) => {
           .firestore()
           .collection("languages")
           .doc(language)
-          .collection("About")
+          .collection("Clothing")
           .doc(`${data?.id}`)
           .update({
             title,
@@ -125,7 +125,7 @@ const EditEvents = ({navigation,route}) => {
   )
 }
 
-export default EditEvents;
+export default EditClothings;
 const styles = StyleSheet.create({
     container: {
       alignContent: "center",
