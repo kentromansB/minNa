@@ -2,9 +2,9 @@ Alima v1
  New Version <br>
 <h1>Requirements and Installation</h1>
 <h3>System Setup</h3>
-Install packages/tools below
-Node.js https://nodejs.org/en/
-Expo https://docs.expo.dev/workflow/expo-cli/
+Install packages/tools below<br>
+Node.js https://nodejs.org/en/<br>
+Expo https://docs.expo.dev/workflow/expo-cli/<br>
 Npm
 <h3>Step 1: Clone Repository</h3>
 To begin, clone this repository to a local directory of your choice:<br>
