@@ -171,5 +171,10 @@ const styles = StyleSheet.create({
         elevation: 9,
         
       },
+      inKagan: {
+        fontSize: 20,
+        fontWeight: "bold",
+        letterSpacing: 0.3,
+      },
   });
   

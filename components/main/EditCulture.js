@@ -96,6 +96,11 @@ const styles = StyleSheet.create({
       paddingVertical: 15,
       paddingHorizontal: 20,
     },
+    inKagan: {
+        fontSize: 20,
+        fontWeight: "bold",
+        letterSpacing: 0.3,
+      },
     input: {
       letterSpacing: 0.25,
       height: 50,

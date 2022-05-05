@@ -124,6 +124,11 @@ const styles = StyleSheet.create({
       marginLeft: 50,
       marginTop: 15,
     },
+    inKagan: {
+        fontSize: 20,
+        fontWeight: "bold",
+        letterSpacing: 0.3,
+      },
     headline_box: {
       backgroundColor: "#EBEBEB",
       alignItems: "center",
