@@ -53,7 +53,7 @@ const EditClothing = ({navigation, route}) => {
   
   
     return (
-      <View>
+        <View>
        <FlatList
           nestedScrollEnabled
           keyExtractor={(item, index) => index.toString()}
@@ -63,28 +63,30 @@ const EditClothing = ({navigation, route}) => {
           style={{ flex: 1 }}
           renderItem={({ item }) => {
             return (
+            <View>
               <TouchableOpacity
-                style={styles.buttonVocab}
+              style={styles.container}
                 onPress={() => navigation.navigate("EditClothings", { data: item , language: language})}
               >
                 <View style={styles.contextButton}>
                   <Text style={styles.inKagan}>{item.title} </Text>
                 </View>
               </TouchableOpacity>
+              </View>
             );
           }}
         />
         <Pressable
         style={styles.buttonss}
         onPress={() =>
-          navigation.navigate("AddClothings", { language: language })
+          navigation.navigate("AddClothing", { language: language })
         }
         //onPress={() => navigation.navigate("NewContribution")}
       >
         <MaterialCommunityIcons name="plus" color={"#ffffff"} size={40} />
       </Pressable>
-      </View>
-      
+        </View>
+    
     )
 }
 
@@ -95,7 +97,12 @@ const styles = StyleSheet.create({
       top: 1,
       paddingVertical: 15,
       paddingHorizontal: 20,
+      
     },
+    containers: {
+       flex: 1,
+        
+      },
     input: {
       letterSpacing: 0.25,
       height: 50,
@@ -169,6 +176,7 @@ const styles = StyleSheet.create({
         top: 100,
         right: 30,
         elevation: 9,
+        flex: 1,
         
       },
       inKagan: {
@@ -176,5 +184,29 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         letterSpacing: 0.3,
       },
+      fab: { 
+        position: 'absolute', 
+        width: 56, 
+        height: 56, 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        right: 20, 
+        bottom: 20, 
+        backgroundColor: '#03A9F4', 
+        borderRadius: 30, 
+        elevation: 8 
+        }, 
+        fabIcon: { 
+          fontSize: 40, 
+          color: 'white' 
+        },
+        list: { 
+            margin: 5, 
+            backgroundColor: 'white', 
+            height: 80, 
+            justifyContent: 'space-around', 
+            paddingLeft: 10, 
+            elevation: 1 
+            },
   });
   

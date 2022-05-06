@@ -85,10 +85,34 @@ export default function Contribution({ navigation, route }) {
             ratio={"1:1"}
             onCameraReady={() => setIsCameraReady(true)}
           />
+
+          <View style={styles.button1}>
+            <TouchableOpacity
+              style={styles.flipCam}
+              onPress={() => {
+                setType(
+                  type === Camera.Constants.Type.back
+                    ? Camera.Constants.Type.front
+                    : Camera.Constants.Type.back
+                );
+              }}
+            >
+              <MaterialCommunityIcons
+                name="camera-party-mode"
+                color="#ffffff"
+                size={32}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       )}
 
       <View style={styles.centered_Buttons}>
+        <TouchableOpacity
+          style={styles.capture}
+          title="Take Picture"
+          onPress={() => takePicture()}
+        />
         <TouchableOpacity
           style={styles.ChooseImageButton}
           title="Pick Image From Gallery"

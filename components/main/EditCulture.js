@@ -53,37 +53,41 @@ const EditCulture = ({navigation, route}) => {
   
   
     return (
-      <View>
-       <FlatList
-          nestedScrollEnabled
-          keyExtractor={(item, index) => index.toString()}
-          numColumns={1}
-          horizontal={false}
-          data={filteredDataSource}
-          style={{ flex: 1 }}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity
-                style={styles.buttonVocab}
-                onPress={() => navigation.navigate("EditClothings", { data: item , language: language})}
-              >
-                <View style={styles.contextButton}>
-                  <Text style={styles.inKagan}>{item.title} </Text>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
-        />
-        <Pressable
-        style={styles.buttonss}
-        onPress={() =>
-          navigation.navigate("AddCulture", { language: language })
-        }
-        //onPress={() => navigation.navigate("NewContribution")}
-      >
-        <MaterialCommunityIcons name="plus" color={"#ffffff"} size={40} />
-      </Pressable>
-      </View>
+        <View>
+        <FlatList
+           nestedScrollEnabled
+           keyExtractor={(item, index) => index.toString()}
+           numColumns={1}
+           horizontal={false}
+           data={filteredDataSource}
+           style={{ flex: 1 }}
+           renderItem={({ item }) => {
+             return (
+             <View>
+               <TouchableOpacity
+               style={styles.container}
+                 onPress={() => navigation.navigate("EditCultures", { data: item , language: language})}
+               >
+                 <View style={styles.contextButton}>
+                   <Text style={styles.inKagan}>{item.title} </Text>
+                 </View>
+               </TouchableOpacity>
+               </View>
+             );
+           }}
+         />
+         <Pressable
+         style={styles.buttonss}
+         onPress={() =>
+           navigation.navigate("AddCultures", { language: language })
+         }
+         //onPress={() => navigation.navigate("NewContribution")}
+       >
+         <MaterialCommunityIcons name="plus" color={"#ffffff"} size={40} />
+       </Pressable>
+         </View>
+       
+      
       
     )
 }
@@ -176,5 +180,21 @@ const styles = StyleSheet.create({
         elevation: 9,
         
       },
+      fab: { 
+        position: 'absolute', 
+        width: 56, 
+        height: 56, 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        right: 20, 
+        bottom: 20, 
+        backgroundColor: '#03A9F4', 
+        borderRadius: 30, 
+        elevation: 8 
+        }, 
+        fabIcon: { 
+          fontSize: 40, 
+          color: 'white' 
+        }
   });
   

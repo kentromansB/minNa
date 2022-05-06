@@ -53,7 +53,7 @@ const EditFood = ({navigation, route}) => {
   
   
     return (
-      <View>
+      <ScrollView>
        <FlatList
           nestedScrollEnabled
           keyExtractor={(item, index) => index.toString()}
@@ -83,7 +83,7 @@ const EditFood = ({navigation, route}) => {
       >
         <MaterialCommunityIcons name="plus" color={"#ffffff"} size={40} />
       </Pressable>
-      </View>
+      </ScrollView>
       
     )
 }

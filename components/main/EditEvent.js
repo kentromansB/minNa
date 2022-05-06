@@ -63,14 +63,16 @@ const EditEvent = ({navigation, route}) => {
           style={{ flex: 1 }}
           renderItem={({ item }) => {
             return (
+            <View>
               <TouchableOpacity
-                style={styles.buttonVocab}
+              style={styles.container}
                 onPress={() => navigation.navigate("EditEvents", { data: item , language: language})}
               >
                 <View style={styles.contextButton}>
                   <Text style={styles.inKagan}>{item.title} </Text>
                 </View>
               </TouchableOpacity>
+              </View>
             );
           }}
         />
@@ -83,7 +85,9 @@ const EditEvent = ({navigation, route}) => {
       >
         <MaterialCommunityIcons name="plus" color={"#ffffff"} size={40} />
       </Pressable>
-      </View>
+        </View>
+       
+      
       
     )
 }
