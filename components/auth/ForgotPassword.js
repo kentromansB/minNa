@@ -62,7 +62,7 @@ export default class ForgotPassword extends Component {
         </View>
         <View>
           <Pressable style={styles.button} onPress={() => this.onReset()}>
-            <Text style={styles.text}>Reset Email</Text>
+            <Text style={styles.text}>Send Email</Text>
           </Pressable>
         </View>
         <View style={styles.BackButton}>

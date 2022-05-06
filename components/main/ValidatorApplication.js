@@ -156,8 +156,8 @@ function ValidatorApplication({ route, navigation }) {
           </View>
           <Text style={{ textAlign: "justify" }}>
             An ALIMA Validator must be from the Tribe, a linguist, or speaks the{" "}
-            {language} language. He/She will validate submissions and
-            contributions of different words.
+            language. He/She will validate submissions and contributions of
+            different words.
           </Text>
         </View>
 
